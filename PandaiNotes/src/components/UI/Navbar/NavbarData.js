@@ -5,16 +5,16 @@ export const NavbarData = [
   {
     title: "To-Do",
     icon: <AiFillHome />,
-    link: "/todo",
+    link: "#todo",
   },
   {
     title: "Files",
     icon: <AiOutlineFolder />,
-    link: "/files",
+    link: "#files",
   },
   {
     title: "Community",
     icon: <AiOutlineTeam />,
-    link: "/community",
+    link: "#community",
   },
 ];
