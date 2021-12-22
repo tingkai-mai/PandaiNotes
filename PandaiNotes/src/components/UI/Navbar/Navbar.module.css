@@ -1,4 +1,37 @@
-.Navbar {
+.side-navbar {
+  width: 180px;
+  height: 100%;
+  position: fixed;
+  background-color: white;
+  transition: 0.5s;
+}
+
+.nav-link:active,
+.nav-link:focus,
+.nav-link:hover {
+  background-color: #ffffff26;
+}
+
+.my-container {
+  transition: 0.4s;
+}
+
+.active-nav {
+  margin-left: 0;
+}
+
+/* for main section */
+.active-cont {
+  margin-left: 180px;
+}
+
+#menu-btn {
+  background-color: #100901;
+  color: #fff;
+  margin-left: -62px;
+}
+
+/* .Navbar {
   height: 100%;
   width: 250px;
   background-color: rgb(20, 185, 100);
@@ -35,4 +68,4 @@
 .NavbarData {
   width: 100px;
   height: 100px;
-}
+} */
