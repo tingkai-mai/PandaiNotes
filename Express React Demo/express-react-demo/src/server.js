@@ -5,6 +5,10 @@ const morgan = require("morgan");
 
 const app = express();
 
+// ADDED @IAN
+var cors = require("cors");
+app.use(cors()); // Use this after the variable declaration
+
 // Define middleware
 app.use(morgan("dev"));
 app.use(express.json());

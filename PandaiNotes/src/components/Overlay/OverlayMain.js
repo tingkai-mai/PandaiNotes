@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useReducer } from "react";
 
-const OverlayMain = (props) => {};
+const pageHandler = () => {};
+
+const OverlayMain = (props) => {
+  const [currState, changePage] = useReducer(pageHandler);
+};
 
 export default OverlayMain;
