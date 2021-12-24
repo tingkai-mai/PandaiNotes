@@ -9,9 +9,16 @@ const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.end("Hello from the server");
+});
+
 app.post("/api/v1/txtedit", (req, res) => {
   console.log("Connected to react...");
-  console.log(req.body);
+  console.log(req);
+  fs.writeFile("editorLogs.txt", JSON.stringify(req.body), () => {
+    console.log("File written!");
+  });
 });
 
 // Start the server

@@ -1,1 +1,295 @@
-<mxfile host="app.diagrams.net" modified="2021-12-23T01:11:36.297Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" version="16.0.0" etag="ctfH-1YJVk4Vw4zUKIs-" type="github"><diagram id="097e-s0VUpdyl4n--xl8">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="65bd71144e">
+    <diagram id="097e-s0VUpdyl4n--xl8" name="Page-1">
+        <mxGraphModel dx="2143" dy="1922" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="6" value="App.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;overflow=block;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="-320" width="390" height="620" as="geometry">
+                        <mxRectangle x="354" y="50" width="70" height="26" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="8" value="States:&#10;- activeNoteID&#10;- activeNoteState (stores a Note object)&#10;&#10;Reducer States:&#10;- overlayActive&#10;- overlayPage&#10;&#10;Reducers:&#10;- overlayReducer(state, action)&#10;    &quot;PAGENAME&quot;: Navigates AWAY from document editing page to pageName.&#10;Sets overlayActive to false, and overlayPage to inputted page.&#10;    &quot;NEWNOTE&quot;: Creates a new note by calling the createNewNoteHandler(). overlayActive remains the same, overlayPage remains the same (i.e Document Editing)&#10;&#10;&#10;Contexts:&#10;- note-context.js&#10;&#10;Handlers:&#10;(PAGE HANDLING)&#10;&#10;(NOTE HANDLING)&#10;- createNewNoteHandler()&#10;    Calls note-context generateNewNote() and updates the activeNoteID to a new unique note id&#10;- getNoteHandler(id)&#10;    Updates the activeNoteID  based on a given EXISTING note ID&#10;- saveNoteHandler(Note)&#10;    Calls note-context saveNoteHandler(Note)&#10;- updateActiveNoteStateHandler(Note)&#10;    Given a Note object, updates the activeNoteID &#10;    &#10;- settingsHandler()&#10;&#10;Functions:&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0;whiteSpace=wrap;" parent="6" vertex="1">
+                    <mxGeometry y="26" width="390" height="594" as="geometry"/>
+                </mxCell>
+                <mxCell id="217" style="edgeStyle=none;html=1;entryX=0;entryY=0;entryDx=0;entryDy=0;" parent="1" source="38" target="213" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="Todo.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="840" y="625" width="460" height="404" as="geometry"/>
+                </mxCell>
+                <mxCell id="220" value="&lt;h1&gt;TODO INCOMPLETE&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="38" vertex="1">
+                    <mxGeometry y="26" width="460" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="States:&#10;- filterRequirements&#10;    Object containing a list of filters&#10;&#10;Handlers:&#10;- createToDoCategoryHandler&#10;- createToDoItemHandler&#10;- updateToDoCategoryHandler&#10;- updateToDoItemHandler&#10;- deleteToDoCategoryHandler&#10;- deleteToDoItemHandler&#10;- collapseCardHandler&#10;&#10;&#10;Functions:&#10;- queryDatabase(filterRequirements)&#10;    Query the todo database and returns all ToDoCategory objects that meet the requirements&#10;- generateUniqueToDoItemID()&#10;- generateUniqueToDoCategoryID()&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="38" vertex="1">
+                    <mxGeometry y="70" width="460" height="334" as="geometry"/>
+                </mxCell>
+                <mxCell id="180" style="edgeStyle=none;html=1;" parent="1" source="46" target="50" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="ModuleFileExplorer.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="-90" y="790" width="420" height="290" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="States:&#10;- useCase&#10;    &quot;OPENFILE&quot;, &quot;VIEWFILE&quot;, &quot;SAVEFILE&quot;&#10;    Depending on the usecase, will change other states&#10;- currentlyViewingModuleFiles&#10;    If true, will display ModuleFilesViewer.js&#10;&#10;Handlers:&#10;- selectModuleHandler&#10;    Modifies the currentlyViewingModuleFiles state, and passes on the selected module as a prop to ModuleFilesViewer&#10;- toggleModuleFilesViewerHandler&#10;    Toggles whether or not to view the module files viewer&#10;    &#10;&#10;Functions:&#10;- getModulesInUse()&#10;    &#10;    &#10;&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="46" vertex="1">
+                    <mxGeometry y="26" width="420" height="264" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="ModuleFilesViewer.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="1310" width="350" height="430" as="geometry"/>
+                </mxCell>
+                <mxCell id="51" value="States:&#10;&#10;&#10;Handlers:&#10;- onReturnHandler&#10;- saveHandler&#10;    Grab the active Note from note-context, and POST it to module data db. Need to handle replacement of files with same filename.&#10;- openNoteHandler&#10;    Opens the selected Note, then uses the onDisableOverlay prop to return to Document Editor to edit the Note. Should modify the active Note from note-context.&#10;- deleteNoteHandler&#10;    Deletes the selected Note, should call note-context to do so&#10;- editNoteHandler&#10;    Edits the selected Note, should call note-context to do so. Generates a new Note object, and updates the corresponding Note object in the Note database.&#10;    &#10;&#10;Functions:&#10;- postNewFile(moduleID)&#10;- fetchModuleFileData(moduleID)&#10;    Given a module ID, fetch all related files for that module&#10;- fetchTodo&#10;    Given a module ID, fetch all related Todo items" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="50" vertex="1">
+                    <mxGeometry y="26" width="350" height="404" as="geometry"/>
+                </mxCell>
+                <mxCell id="54" value="CommunityBrowseMods.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="770" y="440" width="170" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="55" value="TODO" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="54" vertex="1">
+                    <mxGeometry y="26" width="170" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="58" value="CommunityBrowsePosts.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="1010" y="558" width="170" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="59" value="TODO" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="58" vertex="1">
+                    <mxGeometry y="26" width="170" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="181" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="63" target="128" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="182" style="edgeStyle=none;html=1;entryX=0.429;entryY=-0.058;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="63" target="173" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="183" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="65" target="120" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="203" style="edgeStyle=none;html=1;" parent="1" source="63" target="38" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="63" value="OverlayMain.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="195" width="250" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="65" value="States:&#10;- currentActivePage&#10;&#10;Handlers:&#10;- switchCurrentActivePage(pageName)&#10;    Uses onChangePage prop, switches the current active page to the given page Name, depending on the navbar link the user clicks&#10;- returnToDocumentEditorHandle()&#10;    Sets overlayActive to false to reset back to editing the document&#10;&#10;Functions:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="63" vertex="1">
+                    <mxGeometry y="26" width="250" height="174" as="geometry"/>
+                </mxCell>
+                <mxCell id="67" value="DocumentEditor.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="1050" y="190" width="280" height="330" as="geometry"/>
+                </mxCell>
+                <mxCell id="69" value="States:&#10;- activeNote&#10;    Uses noteID prop&#10;- noteContent&#10;    Updated with each keystroke? (timer?)&#10;&#10;Handlers:&#10;- saveNoteHandler(id, content, module)&#10;    Given note ID, content, and module, CREATE  a NEW Note object and save it to the database, calls onSaveNote prop&#10;- updateCurrentNoteState(id, content, module)&#10;    Creates a NEW Note object based on the current state of the Note, but DOES NOT save to database, and instead updates the active Note object in App.js. (Lifted up state)&#10;&#10;Functions:&#10;- fetchCurrentNoteContents()&#10;- fetchNoteID(id)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="67" vertex="1">
+                    <mxGeometry y="26" width="280" height="304" as="geometry"/>
+                </mxCell>
+                <mxCell id="71" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="8" target="63" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="8" target="67" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="73" value="NavbarOverlay.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="-690" y="-50" width="330" height="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="158" value="States:&#10;&#10;Handlers:&#10;- switchPageHandler(PAGENAME)&#10;    Switches the page depending on the given page name." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="73" vertex="1">
+                    <mxGeometry y="26" width="330" height="164" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" value="NavbarDocEditor.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="1170" y="-200" width="220" height="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="78" value="States:&#10;&#10;Handlers:&#10;- switchPageHandler(PAGENAME)&#10;    Switches the page depending on the given page name. May remain on document editor (&quot;NEWNOTE&quot; action) or switch to overlay." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="77" vertex="1">
+                    <mxGeometry y="26" width="220" height="164" as="geometry"/>
+                </mxCell>
+                <mxCell id="81" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="8" target="77" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="82" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="65" target="73" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="104" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="58" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="939.9999999999995" y="493.00000000000045" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="117" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="141" target="118" edge="1">
+                    <mxGeometry width="100" height="100" relative="1" as="geometry">
+                        <mxPoint x="410" y="30" as="sourcePoint"/>
+                        <mxPoint x="410" y="-100" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="118" value="Notes" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
+                    <mxGeometry x="461.5" y="-480" width="149" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="119" value="- user id&lt;br&gt;- note id&lt;br&gt;- content&amp;nbsp;&lt;br&gt;- tagged content?&lt;br&gt;- module&lt;br&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="580" y="-440" width="170" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="172" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="120" target="46" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="120" value="SaveFile.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="551" width="140" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="121" value="NIL&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="120" vertex="1">
+                    <mxGeometry y="26" width="140" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="124" value="CommunityFileShare.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="-640" y="220" width="200" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="125" value="TODO" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="124" vertex="1">
+                    <mxGeometry y="26" width="200" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="128" value="OpenFile.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="-190" y="545" width="160" height="80" as="geometry">
+                        <mxRectangle x="-250" y="490" width="90" height="26" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="131" value="NIL" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="128" vertex="1">
+                    <mxGeometry y="26" width="160" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="132" value="ExportFile.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="-640" y="380" width="140" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="136" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="65" target="132" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="137" style="edgeStyle=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="65" target="125" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="141" value="note-context.js" style="swimlane;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="-50" y="-558.75" width="352.5" height="277.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="142" value="States:&lt;br&gt;- activeNote&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;Should be a Note object&lt;br&gt;&lt;br&gt;Reducers:&lt;br&gt;&lt;br&gt;Handlers:&lt;br&gt;- saveNoteHandler(Note)&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;Given a note object, saves a Note object to the database&lt;br&gt;- modifyActiveNote(ID)&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;Modifies the activeNote&amp;nbsp;&lt;br&gt;&lt;br&gt;Functions:&lt;br&gt;- generateUniqueNoteID()&lt;br&gt;- generateNewNote()&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;Generates a new Note object with a unique ID&lt;br&gt;- fetchNoteContent(id)&lt;br&gt;- deleteNoteContent(id)" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" parent="141" vertex="1">
+                    <mxGeometry x="12.5" y="15" width="340" height="260" as="geometry"/>
+                </mxCell>
+                <mxCell id="143" value="Props:&lt;br&gt;onSaveNote:saveNoteHandler&lt;br&gt;updateNoteState:updateCurrentNoteStateHandler&lt;br&gt;noteID:currentNoteID" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="990" y="70" width="180" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="144" value="DocumentEditor should grab data directly from note-context.js through note ID, which can be existing or new. This note ID is passed from App.js as a prop.&lt;br&gt;&lt;br&gt;SHOULD NOT RECEIVE NOTE DATA DIRECTLY AS A PROP" style="ellipse;shape=cloud;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="1340" y="170" width="240" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="145" value="Note Object contains:&lt;br&gt;- id&lt;br&gt;- content&lt;br&gt;- module" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-250" y="-400" width="210" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="148" value="Props:&lt;br&gt;onChangePage:overlayReducer(pageName)&lt;br&gt;currentNote:currentNoteState" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="230" y="100" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="149" value="OverlayMain should merely switch between components depending on the currentActivePage state. NOTE:&lt;br&gt;OverlayMain displays the component, and does NOT INCLUDE THE NAVBAR!!!!&lt;br&gt;&lt;br&gt;Navbar changes are handled by App.js&lt;br&gt;&lt;br&gt;Might want to use switch statements to decide output Component" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-160" y="-175" width="360" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="150" value="NavbarDocEditor and DocumentEditor are shown if overlayActive is false" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1260" y="30" width="230" height="104" as="geometry"/>
+                </mxCell>
+                <mxCell id="152" value="Props:&lt;br&gt;onChangePage:switchCurrentActivePage" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="-50" y="140" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="153" value="Props:&lt;br&gt;onSwitchPage:overlayReducer" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="1020" y="-130" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="159" value="Props:&lt;br&gt;currentNote:currentNote" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="-260" y="330" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="162" value="Module Data" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
+                    <mxGeometry x="610.5" y="1020" width="149" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="167" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" parent="1" source="65" target="54" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="168" value="UI Elements" style="swimlane;" parent="1" vertex="1">
+                    <mxGeometry x="-740" y="650" width="200" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="169" value="File Explorer UI&lt;br&gt;Card" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="168" vertex="1">
+                    <mxGeometry x="10" y="44" width="120" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="178" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="173" target="46" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="173" value="ViewFile.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="545" width="140" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="174" value="NIL" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="173" vertex="1">
+                    <mxGeometry y="26" width="140" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="179" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="131" target="46" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="184" value="ModuleFileExplorer will conditionally display different titles and input bars (eg. filter, current file's name, etc...) depending on its current use. Eg. If it's being used to save a file (through SaveFile.js), then it will display &quot;Save As&quot; as the title, and &quot;Current File: ___&quot; at the top, and display the options to scroll through the Notes/Tutorials/Lecture Slides/Assignments..." style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-610" y="940" width="450" height="164" as="geometry"/>
+                </mxCell>
+                <mxCell id="186" value="Props:&lt;br&gt;usage=&quot;OPENFILE&quot;&lt;br&gt;onDisableOverlay=onDisableOverlay" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="-20" y="650" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="187" value="Props:&lt;br&gt;usage=&quot;VIEWFILE&quot;&lt;br&gt;onDisableOverlay=onDisableOverlay" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="160" y="630" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="188" value="Props:&lt;br&gt;usage=&quot;SAVEFILE&quot;&lt;br&gt;onDisableOverlay=onDisableOverlay" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="662" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="189" value="Might need to hardcode the HTML for the search bars and the like depending on the use case (Bad practice, need to highlight in the documentation)" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-450" y="838" width="217" height="102" as="geometry"/>
+                </mxCell>
+                <mxCell id="160" value="DocumentEditor should autosave as an option...?" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1270" y="450" width="280" height="98" as="geometry"/>
+                </mxCell>
+                <mxCell id="190" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="47" target="162" edge="1">
+                    <mxGeometry width="100" height="100" relative="1" as="geometry">
+                        <mxPoint x="358.99999999999955" y="1059.5" as="sourcePoint"/>
+                        <mxPoint x="467.5" y="984.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="191" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;exitX=1;exitY=0.385;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="50" target="162" edge="1">
+                    <mxGeometry width="100" height="100" relative="1" as="geometry">
+                        <mxPoint x="320" y="1355" as="sourcePoint"/>
+                        <mxPoint x="441" y="1287" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="192" value="Query all files relating to given module&lt;br&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="420" y="1240" width="160" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="193" value="Query modules in use by user" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="1040" width="160" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="194" value="Todo Data" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
+                    <mxGeometry x="940" y="1130" width="149" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="195" value="Props:&lt;br&gt;useCase:useCase&lt;br&gt;moduleToView:module&lt;br&gt;onReturn:toggleModuleFilesViewerHandler&lt;br&gt;onDisableOverlay=onDisableOverlay" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="70" y="1180" width="80" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="198" value="Props:&lt;br&gt;onDisableOverlay=returnToDocumentEditorHandle()" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="-50" y="420" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="199" value="Props:&lt;br&gt;onDisableOverlay=returnToDocumentEditorHandle()" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="470" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="200" value="Props:&lt;br&gt;onDisableOverlay=returnToDocumentEditorHandle()" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="450" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="201" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;exitX=1;exitY=0.354;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="51" target="194" edge="1">
+                    <mxGeometry width="100" height="100" relative="1" as="geometry">
+                        <mxPoint x="460" y="1443.1999999999998" as="sourcePoint"/>
+                        <mxPoint x="695" y="1150" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="202" value="Query related Todo data wrt the module" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="752" y="1350" width="75" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="207" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;" parent="1" source="194" target="38" edge="1">
+                    <mxGeometry width="100" height="100" relative="1" as="geometry">
+                        <mxPoint x="1000" y="1070" as="sourcePoint"/>
+                        <mxPoint x="970" y="910" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="209" value="TodoItem Object contains:&lt;br&gt;- id&lt;br&gt;- module&lt;br&gt;- title&lt;br&gt;- description&lt;br&gt;- deadline&lt;br&gt;- completionStatus" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1300" y="650" width="240" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="212" value="TodoCategory Object contains:&lt;br&gt;- id&lt;br&gt;- TodoItem Objects&lt;br&gt;- Color" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1340" y="800" width="240" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="213" value="Card.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="1260" y="1230" width="230" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="214" value="States:&#10;&#10;Handlers:&#10;&#10;Functions:&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="213" vertex="1">
+                    <mxGeometry y="26" width="230" height="154" as="geometry"/>
+                </mxCell>
+                <mxCell id="218" value="Props:&lt;br&gt;ToDoCategoryTitle&lt;br&gt;ToDoCategoryColor&lt;br&gt;ToDoItems" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="1180" y="1090" width="170" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="219" value="ToDo objects should be updated as an entire category? (ASK IAN)" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1400" y="967" width="160" height="110" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
