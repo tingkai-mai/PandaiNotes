@@ -3,11 +3,14 @@ import classes from "./App.module.css";
 import DocumentEditor from "./components/DocumentEditor/DocumentEditor";
 
 import NavbarInternal from "./components/UI/Navbar/Navbar";
+import OverlayMain from "./components/OverlayMain/OverlayMain";
 
-import { React } from "react";
+import { React, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
+
 function App() {
+  const [overlayActive, setOverlayActive] = useState(true);
   return (
     <Container fluid>
       <Row className="vh-100">
@@ -15,7 +18,10 @@ function App() {
           <NavbarInternal />
         </Col>
         <Col>
-          <DocumentEditor />
+          {overlayActive
+            ? <OverlayMain />
+            : <DocumentEditor />
+          }
         </Col>
       </Row>
     </Container>
