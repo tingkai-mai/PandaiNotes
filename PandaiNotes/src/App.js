@@ -17,7 +17,7 @@ function App() {
   // Create overlay handler
 
   const [overlayActive, setOverlayActive] = useState(true);
-  const [NavbarActive, setNavbarActive] = useState(true);
+  const [NavbarActive, setNavbarActive] = useState(false);
   return (
     <Container fluid>
       <Row className="vh-100">

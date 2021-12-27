@@ -13,7 +13,7 @@ function NavbarOverlay() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto flex-column">
-              <Nav.Link className={`${classes["sidebar-list"]} flex-column`}>
+              <Nav.Link className={`${classes["sidebar-list"]} flex-row`}>
                 {NavbarOverlayData.map((val, key) => {
                   return (
                     <li
@@ -21,7 +21,7 @@ function NavbarOverlay() {
                       className={classes.row}
                       id={window.location.pathname === val.link ? "active" : ""}
                       onClick={() => {
-                        window.location.pathname = val.link;
+                        ;
                       }}
                     >
                       <div id="icon">{val.icon}</div>
