@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-const moduleCard = (props) => {
+const ModuleCard = (props) => {
   return (
     <>
       <Card border="dark" style={{ width: "18rem" }}>
@@ -19,4 +19,4 @@ const moduleCard = (props) => {
   );
 };
 
-export default moduleCard;
+export default ModuleCard;

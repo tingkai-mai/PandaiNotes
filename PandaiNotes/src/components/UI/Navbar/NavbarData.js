@@ -17,4 +17,5 @@ export const NavbarData = [
     icon: <AiOutlineTeam />,
     link: "#community",
   },
+  
 ];

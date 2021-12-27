@@ -1,9 +1,9 @@
 import React, { useState, useReducer } from "react";
 import { Card } from "react-bootstrap";
 
-import moduleCard from "../SmallComponents/moduleCard/moduleCard";
-import TodoPage from "../Pages/TodoPage/TodoPage";
-import FileExplorerPage from "../Pages/FileExplorerPage/FileExplorerPage";
+import ModuleCard from "../SmallComponents/moduleCard/ModuleCard";
+import TodoPage from "../Pages/todoPage/TodoPage";
+import FileExplorerPage from "../Pages/fileExplorerPage/FileExplorerPage";
 
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -21,12 +21,13 @@ import { Container, Row, Col } from "react-bootstrap";
 // }
 
 const OverlayMain = (props) => {
-  const [overlayPage, setOverlayPage] = useState(<todoPage />);
+  const [overlayPage, setOverlayPage] = useState(<TodoPage />);
+
   return (
     <Container>
       <Row>
         <Col>
-          <TodoPage />
+          {overlayPage}
         </Col>
       </Row>
     </Container>
