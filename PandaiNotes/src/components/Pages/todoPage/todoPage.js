@@ -3,9 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 const todoPage = (props) => {
     return (
-        <Container>
-            <div>To - Do</div>
-        </Container>
+        <div>To-DO</div>
     )
 }
 

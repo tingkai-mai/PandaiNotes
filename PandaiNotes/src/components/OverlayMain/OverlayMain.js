@@ -7,7 +7,6 @@ import fileExplorerPage from "../Pages/fileExplorerPage/fileExplorerPage";
 
 import { Container, Row, Col } from "react-bootstrap";
 
-const initialPage = "todo";
 
 // function reducer(state, action) {
 //   switch (action.type) {
@@ -24,16 +23,24 @@ const initialPage = "todo";
 
 
 const OverlayMain = (props) => {
-  const [overlayPage, setOverlayPage] = useState(true);
+  const [overlayPage, setOverlayPage] = useState(<todoPage />);
+
+  // lifting up the state
+
+  const SwitchPage = (overlayPageComponent) => {
+    switch(overlayPageComponent) {
+      case "todo":
+        return <todoPage></todoPage>;
+
+    }
+  }
+  
   return (
     <>
       <Container>
         <Row>
           <Col>
-            {overlayPage
-              ? <todoPage />
-              : <fileExplorerPage />
-            }
+            <todoPage></todoPage>
           </Col>
         </Row>
       </Container>
