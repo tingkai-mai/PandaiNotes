@@ -36,12 +36,13 @@ function DocumentEditor({ initialValue }) {
           height: "100vh",
           menubar: false,
           resize: false,
+          contextmenu: "link image table forecolor backcolor",
           plugins: [
             "advlist autolink lists link image",
             "charmap print preview anchor help",
             "searchreplace visualblocks code",
             "insertdatetime media table paste wordcount",
-            "save",
+            "save textcolor colorpicker",
           ],
           toolbar: [
             "undo redo save | fontselect fontsizeselect | alignleft aligncenter alignright alignnone | formatselect | bullist numlist outdent indent | help ",

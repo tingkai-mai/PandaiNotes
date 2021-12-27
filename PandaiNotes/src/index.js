@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+
+// Ensure App is imported AFTER ./custom.scss to allow BS5 styling
 import "bootstrap/dist/css/bootstrap.min.css";
+import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>

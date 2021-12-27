@@ -1,0 +1,8 @@
+.title {
+  padding-top: 3%;
+  font-size: 40px;
+}
+
+hr.solid-divider {
+  border-top: 3px solid rgb(92, 92, 92);
+}
