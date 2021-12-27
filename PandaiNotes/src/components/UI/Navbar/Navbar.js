@@ -4,13 +4,15 @@ import { NavbarData } from "./NavbarData";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 
 function NavbarInternal() {
+  
+
   return (
     <Navbar className={`${classes["side-navbar"]} flex-column`}>
       <Navbar.Brand href="#home">Pandai-Notes</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto flex-column">
-          <Nav.Link className="SidebarList">
+          <Nav.Link className={`${classes["sidebar-list"]} flex-column`}>
             {NavbarData.map((val, key) => {
               return (
                 <li
