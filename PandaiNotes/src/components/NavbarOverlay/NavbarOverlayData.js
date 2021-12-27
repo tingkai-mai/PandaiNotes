@@ -1,11 +1,11 @@
 import React from "react";
-import { AiFillHome, AiOutlineTeam, AiOutlineFolder, AiOutlinePlus, AiOutlineCalendar, AiOutlineProfile } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineTeam, AiOutlineFolder, AiOutlinePlus, AiOutlineCalendar, AiOutlineProfile } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
 
 export const NavbarOverlayData = [
   {
     title: "To-Do",
-    icon: <AiFillHome />,
+    icon: <AiOutlineHome />,
     link: "#todo",
   },
   {
