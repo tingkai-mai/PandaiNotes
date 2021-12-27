@@ -1,7 +1,6 @@
 // import Navbar from "./components/UI/Navbar/Navbar";
 import classes from "./App.module.css";
 import DocumentEditor from "./components/DocumentEditor/DocumentEditor";
-
 import NavbarInternal from "./components/UI/Navbar/Navbar";
 import OverlayMain from "./components/OverlayMain/OverlayMain";
 
