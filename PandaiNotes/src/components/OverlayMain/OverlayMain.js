@@ -2,11 +2,10 @@ import React, { useState, useReducer } from "react";
 import { Card } from "react-bootstrap";
 
 import moduleCard from "../SmallComponents/moduleCard/moduleCard";
-import todoPage from "../Pages/todoPage/todoPage";
-import fileExplorerPage from "../Pages/fileExplorerPage/fileExplorerPage";
+import TodoPage from "../Pages/TodoPage/TodoPage";
+import FileExplorerPage from "../Pages/FileExplorerPage/FileExplorerPage";
 
 import { Container, Row, Col } from "react-bootstrap";
-
 
 // function reducer(state, action) {
 //   switch (action.type) {
@@ -21,31 +20,17 @@ import { Container, Row, Col } from "react-bootstrap";
 //   }
 // }
 
-
 const OverlayMain = (props) => {
   const [overlayPage, setOverlayPage] = useState(<todoPage />);
-
-  // lifting up the state
-
-  const SwitchPage = (overlayPageComponent) => {
-    switch(overlayPageComponent) {
-      case "todo":
-        return <todoPage></todoPage>;
-
-    }
-  }
-  
   return (
-    <>
-      <Container>
-        <Row>
-          <Col>
-            <todoPage></todoPage>
-          </Col>
-        </Row>
-      </Container>
-    </>
-  )
+    <Container>
+      <Row>
+        <Col>
+          <TodoPage />
+        </Col>
+      </Row>
+    </Container>
+  );
 };
 
 export default OverlayMain;
