@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./NavbarOverlay.module.css";
-import { Nav, Navbar, NavDropdown, Container, Row, Col } from "react-bootstrap";
+import { Nav, Navbar, Container, Row, Col, Collapse } from "react-bootstrap";
 
 import { NavbarOverlayData } from "./NavbarOverlayData";
 
@@ -21,17 +21,30 @@ const NavbarOverlay = (props) => {
                   className={classes.row}
                   id={window.location.pathname === val.link ? "active" : ""}
                   onClick={() => {
-                    if (val.title === "To-Do") {
-                      props.onTodoPage(); 
+                    switch(val.title) {
+                      case "To-Do":
+                        props.onTodoPage();
+                        break;
+                      case "New Note":
+                        props.onCloseNavbar(); 
+                        props.onCloseOverlay();
+                        break;
+                      case "Files":
+                        props.onFileExplorerPage();
+                        break;
+                      case "Community":
+                        props.onCommunityPage();
+                        break;
+                      case "Calendar":
+                        props.onCalendarPage();
+                        break;
+                      case "Modules":
+                        props.onModulePage();
+                        break;
+                      case "Settings":
+                        props.onSettingsPage();
+                        break;
                     }
-                    if (val.title === "New Note") {
-                      props.onCloseNavbar(); 
-                      props.onCloseOverlay();
-                    }
-                    if (val.title === "Files") {
-                      props.onFileExplorerPage();
-                    }
-
                   }}
                 >
                   <Container>

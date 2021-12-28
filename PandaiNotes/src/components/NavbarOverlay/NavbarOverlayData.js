@@ -11,7 +11,7 @@ export const NavbarOverlayData = [
   {
     title: "New Note",
     icon: <AiOutlinePlus />,
-    link: "#community",
+    link: "#newnote",
   },
   {
     title: "Files",
@@ -26,16 +26,16 @@ export const NavbarOverlayData = [
   {
     title: "Calendar",
     icon: <AiOutlineCalendar />,
-    link: "#community",
+    link: "#calendar",
   },
   {
     title: "Modules",
     icon: <AiOutlineProfile />,
-    link: "#community",
+    link: "#modules",
   },
   {
     title: "Settings",
     icon: <FiSettings />,
-    link: "#community",
+    link: "#settings",
   },
 ];
