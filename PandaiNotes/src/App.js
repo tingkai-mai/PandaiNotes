@@ -20,65 +20,104 @@ function App() {
   const [NavbarActive, setNavbarActive] = useState(false);
   const [overlayPage, setOverlayPage] = useState(<TodoPage />);
 
+  // Error
+  const openPageHandler = (page) => {
+    let inputPage = page;
+    switch (inputPage) {
+      case "todo":
+        setOverlayPage(<TodoPage />);
+        break;
+      case "fileExplorer":
+        console.log("Rendering file explorer");
+        setOverlayPage(<FileExplorerPage />);
+        break;
+      case "community":
+        setOverlayPage(<CommunityPage />);
+        break;
+      case "calendar":
+        setOverlayPage(<CalendarPage />);
+        break;
+      case "modules":
+        setOverlayPage(<ModulePage />);
+        break;
+      case "settings":
+        setOverlayPage(<SettingsPage />);
+        break;
+      default:
+        console.log("Missing page!");
+    }
+  };
   const closeOverlayHandler = () => {
     console.log("closing overlay");
     setOverlayActive(false);
-  }
+  };
 
   const openOverlayHandler = () => {
     console.log("opening overlay");
     setOverlayActive(true);
-  }
+  };
 
   const closeNavbarHandler = () => {
     setNavbarActive(false);
-  }
+  };
 
   const openNavbarHandler = () => {
     setNavbarActive(true);
-  }
+  };
 
   const openTodoPage = () => {
     setOverlayPage(<TodoPage />);
-  }
+  };
 
   const openFileExplorerPage = () => {
     setOverlayPage(<FileExplorerPage />);
-  }
+  };
 
   const openCommunityPage = () => {
     setOverlayPage(<CommunityPage />);
-  }
+  };
 
   const openCalendarPage = () => {
     setOverlayPage(<CalendarPage />);
-  }
+  };
 
   const openModulePage = () => {
     setOverlayPage(<ModulePage />);
-  }
+  };
 
   const openSettingsPage = () => {
     setOverlayPage(<SettingsPage />);
-  }
+  };
 
   return (
     <Container fluid className="vh-100">
       <Row>
         <Col className="col-2">
-          {NavbarActive 
-            ? <NavbarOverlay 
-                onCloseNavbar={closeNavbarHandler} 
-                onCloseOverlay={closeOverlayHandler} 
-                onTodoPage={openTodoPage}
-                onFileExplorerPage={openFileExplorerPage}
-                onCommunityPage={openCommunityPage}
-                onCalendarPage={openCalendarPage}
-                onModulePage={openModulePage}
-                onSettingsPage={openSettingsPage}/>
-            : <NavbarInternal onOpenNavbar={openNavbarHandler} onOpenOverlay={openOverlayHandler}/>}
+          {NavbarActive ? (
+            <NavbarOverlay
+              onCloseNavbar={closeNavbarHandler}
+              onCloseOverlay={closeOverlayHandler}
+              onTodoPage={openTodoPage}
+              onFileExplorerPage={openPageHandler("fileExplorer")}
+              onCommunityPage={openCommunityPage}
+              onCalendarPage={openCalendarPage}
+              onModulePage={openModulePage}
+              onSettingsPage={openSettingsPage}
+            />
+          ) : (
+            <NavbarInternal
+              onOpenNavbar={openNavbarHandler}
+              onOpenOverlay={openOverlayHandler}
+            />
+          )}
         </Col>
-        <Col>{overlayActive ? <OverlayMain onOverlayPage={overlayPage}/> : <DocumentEditor />}</Col>
+        <Col>
+          {overlayActive ? (
+            <OverlayMain onOverlayPage={overlayPage} />
+          ) : (
+            <DocumentEditor />
+          )}
+        </Col>
       </Row>
     </Container>
   );
