@@ -6,6 +6,12 @@ import NavbarOverlay from "./components/NavbarOverlay/NavbarOverlay";
 import { React, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> e782eff95329c2342567e2ff02f2f499ff161d0d
 function App() {
   // Create overlay handler
 
@@ -15,7 +21,10 @@ function App() {
     <Container fluid>
       <Row>
         <Col className="col-2">
-          {NavbarActive ? <NavbarOverlay /> : <NavbarInternal />}
+          {NavbarActive
+            ? <NavbarOverlay />
+            : <NavbarInternal />
+          }
         </Col>
         <Col>{overlayActive ? <OverlayMain /> : <DocumentEditor />}</Col>
       </Row>
