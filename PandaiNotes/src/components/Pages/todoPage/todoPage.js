@@ -8,6 +8,7 @@ import { MODULES } from "../../../db/SAMPLE_MODULES_DB";
 import { TODO_CATEGORIES } from "../../../db/SAMPLE_TODO_DB";
 import ModuleCard from "../../UI/Card/ModuleCard";
 
+// HELPER FUNCTIONS
 function sliceIntoChunks(arr, chunkSize) {
   const res = [];
   for (let i = 0; i < arr.length; i += chunkSize) {
@@ -16,6 +17,7 @@ function sliceIntoChunks(arr, chunkSize) {
   }
   return res;
 }
+
 
 const TodoPage = (props) => {
   const [todoCategories, setTodoCategories] = useState(TODO_CATEGORIES);
@@ -57,7 +59,9 @@ const TodoPage = (props) => {
       <Row>
         <div className={classes.title}>To - Do</div>
       </Row>
+
       <hr className={classes["solid-divider"]}></hr>
+      
       {/* Select modules, add todo */}
       <Row>
         <Col>
