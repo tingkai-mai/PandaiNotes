@@ -16,9 +16,11 @@ const TodoItemModal = (props) => {
     console.log(todoModuleRef.current.value);
     console.log(calendarValue);
     console.log(todoDescriptionRef.current.value);
+
+    // Create todo object that points to its id and category id for addition to that specific item category
     const newTodoObject = {
       todo_item_id: Math.random(),
-      category_item_id: props.category_id, 
+      category_item_id: props.category_id,
       module: todoModuleRef.current.value,
       title: todoNameRef.current.value,
       description: todoDescriptionRef.current.value,

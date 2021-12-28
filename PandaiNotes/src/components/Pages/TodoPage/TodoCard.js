@@ -1,8 +1,8 @@
 import { React, useState } from "react";
 import { Card, Form, InputGroup, Button } from "react-bootstrap";
 import { AiOutlinePlus } from "react-icons/ai";
-import { MdDeleteOutline } from "react-icons/md";
 import classes from "./TodoCard.module.scss";
+import TodoItem from "./TodoItem";
 import TodoItemModal from "./TodoItemModal";
 
 const TodoCard = (props) => {
@@ -15,12 +15,6 @@ const TodoCard = (props) => {
 
   const openModalHandler = () => {
     setShowModal(true);
-  };
-
-  // Checkbox
-  const checkboxHandler = (evt) => {
-    console.log(evt.target.checked);
-    console.log(evt.target.value);
   };
 
   // TODO HANDLERS
@@ -49,6 +43,7 @@ const TodoCard = (props) => {
   const todoItems = props.todoItems;
   return (
     <>
+      {/* To show when you want to add an item to the Todo */}
       <TodoItemModal
         show={showModal}
         onOpenModal={openModalHandler}
@@ -69,27 +64,7 @@ const TodoCard = (props) => {
           {/* Listing out TodoItems */}
           {todoItems.map((todoItem) => {
             return (
-              <Form.Check
-                key={todoItem.id}
-                className={`${classes.inputItem}`}
-                value={todoItem.id}
-              >
-                <Form.Check.Input
-                  onClick={checkboxHandler}
-                  type="checkbox"
-                  value={todoItem.id}
-                />
-                <Form.Check.Label
-                  title={todoItem.id}
-                  // style={{ textDecoration: "line-through" }}
-                >
-                  {todoItem.description}
-                </Form.Check.Label>
-                <MdDeleteOutline
-                  onClick={deleteItemHandler}
-                  value={todoItem.id}
-                />
-              </Form.Check>
+              <TodoItem todoItem={todoItem} onDeleteItem={deleteItemHandler} />
             );
           })}
         </InputGroup>
