@@ -9,13 +9,30 @@ import { Container, Row, Col } from "react-bootstrap";
 function App() {
   // Create overlay handler
 
-  const [overlayActive, setOverlayActive] = useState(true);
+  const [overlayActive, setOverlayActive] = useState(false);
   const [NavbarActive, setNavbarActive] = useState(false);
+
+  const closeOverlayHandler = () => {
+    setOverlayActive(false);
+  }
+
+  const openOverlayHandler = () => {
+    setOverlayActive(true);
+  }
+
+  const closeNavbarHandler = () => {
+    setNavbarActive(false);
+  }
+
+  const openNavbarHandler = () => {
+    setNavbarActive(true);
+  }
+
   return (
     <Container fluid className="vh-100">
       <Row>
         <Col className="col-2">
-          {NavbarActive ? <NavbarOverlay /> : <NavbarInternal />}
+          {NavbarActive ? <NavbarOverlay /> : <NavbarInternal onOpenNavbar={openNavbarHandler} onOpenOverlay={openOverlayHandler}/>}
         </Col>
         <Col>{overlayActive ? <OverlayMain /> : <DocumentEditor />}</Col>
       </Row>
