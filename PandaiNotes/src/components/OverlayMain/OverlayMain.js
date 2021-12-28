@@ -1,6 +1,4 @@
 import React, { useState, useReducer } from "react";
-import { Card } from "react-bootstrap";
-import ModuleCard from "../UI/Card/ModuleCard";
 import TodoPage from "../Pages/TodoPage/TodoPage";
 import FileExplorerPage from "../Pages/FileExplorerPage/FileExplorerPage";
 

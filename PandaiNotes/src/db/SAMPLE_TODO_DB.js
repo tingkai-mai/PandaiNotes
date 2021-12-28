@@ -5,7 +5,7 @@ export const TODO_ITEMS_ONE = [
     module_title: "Programming Methodology",
     title: "Programming Homework Urgent",
     description: "Hello World!",
-    deadline: new Date(2021, 12, 10),
+    deadline: new Date(2021, 12, 10, 12, 12, 12),
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ export const TODO_ITEMS_ONE = [
     module_title: "Calculus for Computing",
     title: "Math Homework",
     description: "Submit assignments 1, 2, 3",
-    deadline: new Date(2022, 1, 3),
+    deadline: new Date(2022, 1, 3, 12, 12, 12),
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ export const TODO_ITEMS_ONE = [
     module_title: "Linear Algebra",
     title: "Math Homework 2",
     description: "Difficult Module",
-    deadline: new Date(2022, 1, 5),
+    deadline: new Date(2022, 1, 5, 12, 12, 12),
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ export const TODO_ITEMS_ONE = [
     module_title: "Discrete Structures",
     title: "Math Homework 3",
     description: "Quiz 1, 2, 3",
-    deadline: new Date(2021, 12, 10),
+    deadline: new Date(2021, 12, 10, 12, 12, 12),
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ export const TODO_ITEMS_ONE = [
     module_title: "Discrete Structures",
     title: "Math Homework 3",
     description: "Quiz 1, 2, 3",
-    deadline: new Date(2021, 12, 10),
+    deadline: new Date(2021, 12, 10, 12, 12, 12),
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ export const TODO_ITEMS_ONE = [
     module_title: "Discrete Structures",
     title: "Math Homework 3",
     description: "Quiz 1, 2, 3",
-    deadline: new Date(2021, 12, 10),
+    deadline: new Date(2021, 12, 10, 12, 12, 12),
   },
 ];
 
@@ -55,14 +55,14 @@ export const TODO_ITEMS_TWO = [
     module: "CS2040S",
     title: "Data Structures and Algorithms",
     description: "Submit homework as soon as possible!",
-    deadline: new Date(2021, 12, 10),
+    deadline: new Date(2021, 12, 10, 12, 12, 12),
   },
   {
     id: 2,
     module: "CS2040S",
     title: "Data Structures and Algorithms",
     description: "Prepare lab report",
-    deadline: new Date(2022, 3, 4),
+    deadline: new Date(2022, 3, 4, 12, 12, 12),
   },
 ];
 

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import classes from "./Todo.module.css";
+import classes from "./Todo.module.scss";
 
 import { Container, Dropdown, Row, Col, Button } from "react-bootstrap";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
 import { MODULES } from "../../../db/SAMPLE_MODULES_DB";
 import { TODO_CATEGORIES } from "../../../db/SAMPLE_TODO_DB";
-import ModuleCard from "../../UI/Card/ModuleCard";
+import TodoCard from "./TodoCard";
 
 // HELPER FUNCTIONS
 function sliceIntoChunks(arr, chunkSize) {
@@ -18,7 +18,6 @@ function sliceIntoChunks(arr, chunkSize) {
   return res;
 }
 
-
 const TodoPage = (props) => {
   const [todoCategories, setTodoCategories] = useState(TODO_CATEGORIES);
   const chunks = sliceIntoChunks(todoCategories, 3);
@@ -28,16 +27,70 @@ const TodoPage = (props) => {
   };
 
   // Handle Todo Items
-  const addTodoHandler = (evt) => {
-    console.log("Added a Todo");
+  const addTodoHandler = (todoItemObject) => {
+    console.log("Added a Todo in TodoPage");
+    const newTodoItemObject = { ...todoItemObject };
+    newTodoItemObject["id"] = newTodoItemObject.todo_item_id;
+    delete newTodoItemObject.category_item_id;
+    delete newTodoItemObject.todo_item_id;
+
+    setTodoCategories((prevState) => {
+      // ERROR HERE
+      let newState = prevState.filter(
+        (category) => category.id !== todoItemObject.category_item_id
+      ); // Remove the Category that's being added to first
+      let category_id_to_filter = todoItemObject.category_item_id;
+      console.log("ID to filter is: " + category_id_to_filter);
+      const newCategory = prevState.filter(
+        (category) => category.id === todoItemObject.category_item_id
+      ); // Get the Category that's being added to, then add the new todo item to it
+
+      console.log(newCategory[0].todo_items.push(newTodoItemObject));
+      console.log("New category item is: ");
+      console.log(newCategory);
+
+      newState = [newCategory[0], ...newState];
+      console.log("New state is: ");
+      console.log(newState);
+      return newState;
+    });
   };
 
-  const removeTodoHandler = (evt) => {
-    console.log("Removing Todo");
+  const removeTodoHandler = (todoItemID, todoCategoryID) => {
+    console.log("Removing Todo in TodoPage");
+    console.log(todoItemID);
+    setTodoCategories((prevState) => {
+      let newState = prevState.filter(
+        (category) => category.id !== todoCategoryID
+      ); // Remove the Category that's being removed from first
+      const newCategory = prevState.filter(
+        (category) => category.id === todoCategoryID
+      ); // Get the Category that's being removed from to, then remove the selected todo item
+
+      // newCategory[0].todo_items = newCategory[0].todo_items.filter((item) => item.id !== todoItemID);
+      console.log(
+        (newCategory[0].todo_items = newCategory[0].todo_items.filter(
+          (item) => item.id.toString() !== todoItemID
+        ))
+      );
+      console.log("New category item is: ");
+      console.log(newCategory);
+
+      newState = [newCategory[0], ...newState];
+      console.log("New state is: ");
+      console.log(newState);
+      return newState;
+    });
   };
 
-  const updateTodoHandler = (evt) => {
+  // todoUpdatedItemObject should contain just the field + ID
+  const updateTodoHandler = (
+    todoItemID,
+    todoCategoryID,
+    todoUpdatedItemObject
+  ) => {
     console.log("Updating Todo");
+    console.log(todoUpdatedItemObject);
   };
 
   // Handle Todo Categories
@@ -61,7 +114,7 @@ const TodoPage = (props) => {
       </Row>
 
       <hr className={classes["solid-divider"]}></hr>
-      
+
       {/* Select modules, add todo */}
       <Row>
         <Col>
@@ -82,7 +135,7 @@ const TodoPage = (props) => {
         </Col>
         <Col xs={9}></Col>
         <Col>
-          <Button onClick={addTodoHandler}>
+          <Button onClick={addTodoCategoryHandler}>
             <AiOutlinePlusCircle />
           </Button>
         </Col>
@@ -96,9 +149,9 @@ const TodoPage = (props) => {
         >
           {chunk.map((category) => {
             return (
-              <ModuleCard
+              <TodoCard
                 key={category.id}
-                category_key={category.id}
+                category_id={category.id}
                 cardTitle={category.title}
                 cardColor={category.color}
                 todoItems={category.todo_items}

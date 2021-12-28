@@ -9,7 +9,7 @@ import { Container, Row, Col } from "react-bootstrap";
 function App() {
   // Create overlay handler
 
-  const [overlayActive, setOverlayActive] = useState(false);
+  const [overlayActive, setOverlayActive] = useState(true);
   const [NavbarActive, setNavbarActive] = useState(false);
 
   const closeOverlayHandler = () => {
