@@ -5,12 +5,13 @@ import FileExplorerPage from "../Pages/FileExplorerPage/FileExplorerPage";
 import { Container, Row, Col } from "react-bootstrap";
 
 const OverlayMain = (props) => {
-  const [overlayPage, setOverlayPage] = useState(<TodoPage />);
+  const currstate = props.onOverlayPage;
+  console.log(currstate);
 
   return (
     <Container>
       <Row>
-        <Col>{overlayPage}</Col>
+        <Col>{currstate}</Col>
       </Row>
     </Container>
   );

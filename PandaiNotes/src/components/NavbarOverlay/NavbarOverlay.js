@@ -1,13 +1,15 @@
 import React from "react";
 import classes from "./NavbarOverlay.module.css";
-import { Nav, Navbar, NavDropdown, Container, Row, Col } from "react-bootstrap";
+import { Nav, Navbar, Container, Row, Col, Collapse } from "react-bootstrap";
 
 import { NavbarOverlayData } from "./NavbarOverlayData";
 
 const NavbarOverlay = (props) => {
   return (
     <Navbar className={`${classes["side-navbar"]} flex-column`}>
-      <Navbar.Brand href="#home">Pandai-Notes</Navbar.Brand>
+      <h1 onClick={() => {props.onCloseNavbar(); props.onCloseOverlay(); }}>
+        Pandai Notes
+      </h1>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto flex-column">
@@ -18,7 +20,32 @@ const NavbarOverlay = (props) => {
                   key={key}
                   className={classes.row}
                   id={window.location.pathname === val.link ? "active" : ""}
-                  onClick={() => {}}
+                  onClick={() => {
+                    switch(val.title) {
+                      case "To-Do":
+                        props.onTodoPage();
+                        break;
+                      case "New Note":
+                        props.onCloseNavbar(); 
+                        props.onCloseOverlay();
+                        break;
+                      case "Files":
+                        props.onFileExplorerPage();
+                        break;
+                      case "Community":
+                        props.onCommunityPage();
+                        break;
+                      case "Calendar":
+                        props.onCalendarPage();
+                        break;
+                      case "Modules":
+                        props.onModulePage();
+                        break;
+                      case "Settings":
+                        props.onSettingsPage();
+                        break;
+                    }
+                  }}
                 >
                   <Container>
                     <Row>
