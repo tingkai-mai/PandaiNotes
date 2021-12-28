@@ -7,7 +7,9 @@ import { NavbarOverlayData } from "./NavbarOverlayData";
 const NavbarOverlay = (props) => {
   return (
     <Navbar className={`${classes["side-navbar"]} flex-column`}>
-      <Navbar.Brand href="#home">Pandai-Notes</Navbar.Brand>
+      <h1 onClick={() => {props.onCloseNavbar(); props.onCloseOverlay(); }}>
+        Pandai Notes
+      </h1>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto flex-column">
@@ -18,7 +20,19 @@ const NavbarOverlay = (props) => {
                   key={key}
                   className={classes.row}
                   id={window.location.pathname === val.link ? "active" : ""}
-                  onClick={() => {}}
+                  onClick={() => {
+                    if (val.title === "To-Do") {
+                      props.onTodoPage(); 
+                    }
+                    if (val.title === "New Note") {
+                      props.onCloseNavbar(); 
+                      props.onCloseOverlay();
+                    }
+                    if (val.title === "Files") {
+                      props.onFileExplorerPage();
+                    }
+
+                  }}
                 >
                   <Container>
                     <Row>

@@ -8,10 +8,8 @@ const NavbarInternal = (props) => {
 
   return (
     <Navbar className={`${classes["side-navbar"]} flex-column`}>
-      <h1>
-      <Navbar.Brand onClick={() => {props.onOpenNavbar(); props.onOpenOverlay(); }}>
-        Pandai-Notes
-      </Navbar.Brand>
+      <h1 onClick={() => {props.onOpenNavbar(); props.onOpenOverlay(); }}>
+        Pandai Notes
       </h1>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -22,10 +20,11 @@ const NavbarInternal = (props) => {
                 <li
                   key={key}
                   className={classes.row}
-                  id={window.location.pathname === val.link ? "active" : ""}
                   onClick={() => {
-                    props.onOpenNavbar();
-                    props.onOpenOverlay();
+                    if (val.title === "Home") {
+                      props.onOpenNavbar(); 
+                      props.onOpenOverlay();
+                    }
                   }}
                 >
                   <Container>
