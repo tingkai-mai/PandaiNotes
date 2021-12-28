@@ -1,14 +1,18 @@
 import React from "react";
 import classes from "./Navbar.module.css";
 import { NavbarData } from "./NavbarData";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Nav, Navbar, NavDropdown, Container, Row, Col } from "react-bootstrap";
 
-function NavbarInternal() {
+const NavbarInternal = (props) => {
   
 
   return (
     <Navbar className={`${classes["side-navbar"]} flex-column`}>
-      <Navbar.Brand href="#home">Pandai-Notes</Navbar.Brand>
+      <h1>
+      <Navbar.Brand onClick={() => {props.onOpenNavbar(); props.onOpenOverlay(); }}>
+        Pandai-Notes
+      </Navbar.Brand>
+      </h1>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto flex-column">
@@ -20,11 +24,20 @@ function NavbarInternal() {
                   className={classes.row}
                   id={window.location.pathname === val.link ? "active" : ""}
                   onClick={() => {
-                    window.location.pathname = val.link;
+                    props.onOpenNavbar();
+                    props.onOpenOverlay();
                   }}
                 >
-                  <div id="icon">{val.icon}</div>
-                  <div id="title">{val.title}</div>
+                  <Container>
+                    <Row>
+                      <Col sm={3}>
+                        <div id="icon">{val.icon}</div>
+                      </Col>
+                      <Col sm ={8}>
+                        <div id="title">{val.title}</div>
+                      </Col>
+                    </Row>
+                  </Container>
                 </li>
               );
             })}
