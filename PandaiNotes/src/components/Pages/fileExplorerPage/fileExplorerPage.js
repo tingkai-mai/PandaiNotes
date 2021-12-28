@@ -1,6 +1,6 @@
 import React from 'react'
 
-function fileExplorerPage() {
+function FileExplorerPage() {
     return (
         <div>
             File Explorer
@@ -8,4 +8,5 @@ function fileExplorerPage() {
     )
 }
 
-export default fileExplorerPage;
+export default FileExplorerPage
+
