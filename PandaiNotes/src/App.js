@@ -12,7 +12,7 @@ function App() {
   const [overlayActive, setOverlayActive] = useState(true);
   const [NavbarActive, setNavbarActive] = useState(false);
   return (
-    <Container fluid>
+    <Container fluid className="vh-100">
       <Row>
         <Col className="col-2">
           {NavbarActive ? <NavbarOverlay /> : <NavbarInternal />}

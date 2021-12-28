@@ -1,9 +1,8 @@
 import React, { useState, useReducer } from "react";
 import { Card } from "react-bootstrap";
-
-import ModuleCard from "../SmallComponents/moduleCard/ModuleCard";
-import TodoPage from "../Pages/todoPage/TodoPage";
-import FileExplorerPage from "../Pages/fileExplorerPage/FileExplorerPage";
+import ModuleCard from "../UI/Card/ModuleCard";
+import TodoPage from "../Pages/TodoPage/TodoPage";
+import FileExplorerPage from "../Pages/FileExplorerPage/FileExplorerPage";
 
 import { Container, Row, Col } from "react-bootstrap";
 
