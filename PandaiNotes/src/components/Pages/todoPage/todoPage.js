@@ -52,7 +52,7 @@ const TodoPage = (props) => {
     delete newTodoItemObject.todo_item_id;
 
     setTodoCategories((prevState) => {
-      // ERROR HERE
+      // ERROR HERE ???
       let newState = prevState.filter(
         (category) => category.id !== todoItemObject.category_item_id
       ); // Remove the Category that's being added to first
