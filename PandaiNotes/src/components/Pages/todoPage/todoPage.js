@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import classes from "./Todo.module.scss";
 
 import { Container, Dropdown, Row, Col, Button } from "react-bootstrap";
-import { AiOutlinePlusCircle } from "react-icons/ai";
 
 import { MODULES } from "../../../db/SAMPLE_MODULES_DB";
 import { TODO_CATEGORIES } from "../../../db/SAMPLE_TODO_DB";
 import TodoCard from "./TodoCard";
+import TodoCategoryModal from "./TodoCategoryModal";
+import TodoItemModal from "./TodoItemModal";
 
 // HELPER FUNCTIONS
 function sliceIntoChunks(arr, chunkSize) {
@@ -94,12 +95,32 @@ const TodoPage = (props) => {
   };
 
   // Handle Todo Categories
-  const addTodoCategoryHandler = (evt) => {
+  const addTodoCategoryHandler = (todoCategoryObject) => {
     console.log("Added a Todo Category");
+    if (!Object.keys(todoCategoryObject).includes("todo_items")) {
+      todoCategoryObject = { ...todoCategoryObject, todo_items: [] };
+    }
+    console.log(todoCategoryObject);
+
+    setTodoCategories((prevState) => {
+      let newState = prevState.filter(
+        (category) => category.id !== todoCategoryObject.id
+      );
+      newState = [todoCategoryObject, ...newState];
+      console.log(newState);
+      return newState;
+    });
   };
 
-  const removeTodoCategoryHandler = (evt) => {
+  const removeTodoCategoryHandler = (category_id) => {
     console.log("Removing Todo Category");
+    setTodoCategories((prevState) => {
+      let newState = prevState.filter(
+        (category) => category.id !== category_id
+      );
+      console.log(newState);
+      return newState;
+    });
   };
 
   const updateTodoCategoryHandler = (evt) => {
@@ -135,9 +156,10 @@ const TodoPage = (props) => {
         </Col>
         <Col xs={9}></Col>
         <Col>
-          <Button onClick={addTodoCategoryHandler}>
-            <AiOutlinePlusCircle />
-          </Button>
+          <TodoCategoryModal
+            useCase="ADD"
+            onAddTodoCategory={addTodoCategoryHandler}
+          />
         </Col>
       </Row>
 

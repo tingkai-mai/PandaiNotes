@@ -1,11 +1,15 @@
 import { React, useState } from "react";
-import { Card, Form, InputGroup, Button } from "react-bootstrap";
+import { Card, InputGroup, Button } from "react-bootstrap";
 import { AiOutlinePlus } from "react-icons/ai";
+import { MdDeleteOutline } from "react-icons/md";
 import classes from "./TodoCard.module.scss";
 import TodoItem from "./TodoItem";
 import TodoItemModal from "./TodoItemModal";
+import TodoCategoryModal from "./TodoCategoryModal";
 
 const TodoCard = (props) => {
+  const todoItems = props.todoItems;
+
   // MODAL
   const [showModal, setShowModal] = useState(false);
 
@@ -40,7 +44,15 @@ const TodoCard = (props) => {
     console.log("Context menu called");
   };
 
-  const todoItems = props.todoItems;
+  const modifyTodoCategoryHandler = (todoCategoryObject) => {
+    props.onAddTodoCategory({ ...todoCategoryObject, todo_items: todoItems });
+  };
+
+  const deleteTodoCategoryHandler = (evt) => {
+    console.log("Deleting category ID: " + props.category_id);
+    props.onRemoveTodoCategory(props.category_id);
+  };
+
   return (
     <>
       {/* To show when you want to add an item to the Todo */}
@@ -56,7 +68,12 @@ const TodoCard = (props) => {
         className={`${classes.cardBox} p-3 d-flex flex-column rounded-2`}
         style={{ borderColor: props.cardColor }}
       >
-        <Card.Title>{props.cardTitle}</Card.Title>
+        <Card.Title>
+          <div className="d-flex justify-content-between">
+            {props.cardTitle}{" "}
+            <MdDeleteOutline onClick={deleteTodoCategoryHandler} />
+          </div>
+        </Card.Title>
         <InputGroup
           className={`d-flex flex-column`}
           onContextMenu={contextMenuHandler}
@@ -64,17 +81,28 @@ const TodoCard = (props) => {
           {/* Listing out TodoItems */}
           {todoItems.map((todoItem) => {
             return (
-              <TodoItem todoItem={todoItem} onDeleteItem={deleteItemHandler} />
+              <TodoItem
+                key={todoItem.id}
+                todoItem={todoItem}
+                onDeleteItem={deleteItemHandler}
+              />
             );
           })}
         </InputGroup>
-        <Button
-          className="align-self-end m-2 rounded-circle"
-          variant="outline-primary"
-          onClick={openAddTodoItemModalHandler}
-        >
-          <AiOutlinePlus />
-        </Button>
+        <div className="d-flex justify-content-between">
+          <Button
+            className="m-2 rounded-circle"
+            variant="outline-primary"
+            onClick={openAddTodoItemModalHandler}
+          >
+            <AiOutlinePlus />
+          </Button>
+          <TodoCategoryModal
+            category_id={props.category_id}
+            onAddTodoCategory={modifyTodoCategoryHandler}
+            useCase="EDIT"
+          />
+        </div>
       </Card>
       <br />
     </>

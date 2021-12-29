@@ -1,81 +1,82 @@
-h1 { color: whitesmoke; 
-  font-family: 'Open Sans Condensed', sans-serif; 
-  font-size: 42px; 
-  font-weight: 700; 
-  line-height: 64px; 
-  margin: 0 0 0; 
-  padding: 20px 30px; 
+h1 {
+  color: whitesmoke;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 64px;
+  margin: 0 0 0;
+  padding: 20px 30px;
   text-align: center;
-  text-transform: uppercase; 
+  text-transform: uppercase;
   text-shadow: 1px 1px 2px #000000;
 }
 
 .side-navbar {
   width: 200px;
-  height: 100%;
+  height: 100vh;
   background-color: #70ad47;
   transition: 0.5s;
   margin-left: -7%;
-  }
-  
-  .sidebar-list {
-    height: auto;
-    padding: 0px;
-    width: 200px;
-  }
-  
-  .sidebar-list .row {
-    width: 100%;
-    height: 50px;
-    list-style-type: none;
-    margin: 0%;
-    display: flex;
-    flex-direction: row;
-    color: white;
-    text-shadow: 1px 1px 2px #000000;
-    justify-content: center;
-    align-items: center;
-    font-family: sans-serif;
-    font-size: large;
-    border-radius: 5px;
-  }
-  
-  .row #icon {
-    flex: 30%;
-    display: grid;
-  }
-  
-  .row #title {
-    flex: 70%;
-    background-color: aqua;
-  }
+}
 
-  .sidebar-list .row:hover {
-    cursor: pointer;
-    background-color:#A9D18E;
-  }
-  
-  .nav-link:active,
-  .nav-link:focus,
-  .nav-link:hover {
-    background-color: #ffffff26;
-  }
-  
-  .my-container {
-    transition: 0.4s;
-  }
-  
-  .active-nav {
-    margin-left: 0;
-  }
-  
-  /* for main section */
-  .active-cont {
-    margin-left: 180px;
-  }
-  
-  #menu-btn {
-    background-color: #100901;
-    color: #fff;
-    margin-left: -62px;
-  }
+.sidebar-list {
+  height: auto;
+  padding: 0px;
+  width: 200px;
+}
+
+.sidebar-list .row {
+  width: 100%;
+  height: 50px;
+  list-style-type: none;
+  margin: 0%;
+  display: flex;
+  flex-direction: row;
+  color: white;
+  text-shadow: 1px 1px 2px #000000;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  font-size: large;
+  border-radius: 5px;
+}
+
+.row #icon {
+  flex: 30%;
+  display: grid;
+}
+
+.row #title {
+  flex: 70%;
+  background-color: aqua;
+}
+
+.sidebar-list .row:hover {
+  cursor: pointer;
+  background-color: #a9d18e;
+}
+
+.nav-link:active,
+.nav-link:focus,
+.nav-link:hover {
+  background-color: #ffffff26;
+}
+
+.my-container {
+  transition: 0.4s;
+}
+
+.active-nav {
+  margin-left: 0;
+}
+
+/* for main section */
+.active-cont {
+  margin-left: 180px;
+}
+
+#menu-btn {
+  background-color: #100901;
+  color: #fff;
+  margin-left: -62px;
+}
