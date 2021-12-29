@@ -52,10 +52,13 @@ const TodoItemModal = (props) => {
               form="todoForm"
               ref={todoModuleRef}
             >
-              <option>MA1521</option>
-              <option>CS1231S</option>
-              <option>CS1101S</option>
-              <option>CS2040S</option>
+              {props.modules.map((module) => {
+                return (
+                  <option
+                    key={module.module_code}
+                  >{`${module.module_code} ${module.module_name}`}</option>
+                );
+              })}
             </Form.Select>
           </Form.Group>
           <Form.Group className="mt-3">

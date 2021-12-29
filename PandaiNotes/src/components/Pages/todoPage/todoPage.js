@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { createRef, useState } from "react";
 import classes from "./Todo.module.scss";
 
-import { Container, Dropdown, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, FloatingLabel } from "react-bootstrap";
 
 import { MODULES } from "../../../db/SAMPLE_MODULES_DB";
 import { TODO_CATEGORIES } from "../../../db/SAMPLE_TODO_DB";
 import TodoCard from "./TodoCard";
 import TodoCategoryModal from "./TodoCategoryModal";
-import TodoItemModal from "./TodoItemModal";
 
 // HELPER FUNCTIONS
 function sliceIntoChunks(arr, chunkSize) {
@@ -23,8 +22,25 @@ const TodoPage = (props) => {
   const [todoCategories, setTodoCategories] = useState(TODO_CATEGORIES);
   const chunks = sliceIntoChunks(todoCategories, 3);
 
+  // Filter categories containing only modules that fit the requirement
+  const filteredModule = createRef();
   const chooseModuleHandler = (evt) => {
-    console.log(evt.target.title);
+    console.log(filteredModule.current.value);
+    if (filteredModule.current.value === "ALL") {
+      setTodoCategories(TODO_CATEGORIES);
+    } else {
+      setTodoCategories(() => {
+        let filteredCategories = JSON.parse(JSON.stringify(TODO_CATEGORIES));
+        filteredCategories = filteredCategories.map((category) => {
+          category.todo_items = category.todo_items.filter((item) => {
+            return item.module === filteredModule.current.value;
+          });
+          return category;
+        });
+
+        return filteredCategories;
+      });
+    }
   };
 
   // Handle Todo Items
@@ -85,13 +101,45 @@ const TodoPage = (props) => {
   };
 
   // todoUpdatedItemObject should contain just the field + ID
-  const updateTodoHandler = (
-    todoItemID,
-    todoCategoryID,
-    todoUpdatedItemObject
-  ) => {
-    console.log("Updating Todo");
-    console.log(todoUpdatedItemObject);
+  const updateTodoHandler = (todoItemObject) => {
+    console.log("Updating item...");
+    const newTodoItemObject = { ...todoItemObject };
+    const category_id = newTodoItemObject.category_item_id;
+    newTodoItemObject["id"] = newTodoItemObject.todo_item_id;
+    delete newTodoItemObject.category_item_id;
+    delete newTodoItemObject.todo_item_id;
+
+    console.log(newTodoItemObject);
+
+    setTodoCategories((prevState) => {
+      // Filter out unedited ItemCategories
+      let newState = prevState.filter((category) => {
+        return category.id !== category_id;
+      });
+
+      // Grab the edited ItemCategory
+      let oldItemCategory = prevState.filter((category) => {
+        return category.id === category_id;
+      })[0];
+
+      // Grab the unedited todo items in the edited ItemCategory
+      oldItemCategory.todo_items = oldItemCategory.todo_items.filter((item) => {
+        return item.id !== todoItemObject.todo_item_id;
+      });
+
+      // Add the new todo item to the edited ItemCategory
+      let newItemCategory = { ...oldItemCategory };
+      newItemCategory.todo_items = [
+        newTodoItemObject,
+        ...newItemCategory.todo_items,
+      ];
+
+      // Add the new ItemCategory to the newState
+      newState = [newItemCategory, ...newState];
+
+      console.log(newState);
+      return newState;
+    });
   };
 
   // Handle Todo Categories
@@ -138,24 +186,22 @@ const TodoPage = (props) => {
 
       {/* Select modules, add todo */}
       <Row>
-        <Col>
-          <Dropdown>
-            <Dropdown.Toggle>Select Modules</Dropdown.Toggle>
-            <Dropdown.Menu>
-              {MODULES.map((module) => (
-                <Dropdown.Item
-                  key={module.key}
-                  title={module.module_name}
-                  onClick={chooseModuleHandler}
-                >
-                  {module.module_name}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
+        <Col xs={3}>
+          <Form>
+            <FloatingLabel label="Choose a module to filter...">
+              <Form.Select onChange={chooseModuleHandler} ref={filteredModule}>
+                <option value="ALL">All modules...</option>
+                {MODULES.map((module) => (
+                  <option key={module.key} value={module.module_code}>
+                    {module.module_code + " " + module.module_name}
+                  </option>
+                ))}
+              </Form.Select>
+            </FloatingLabel>
+          </Form>
         </Col>
-        <Col xs={9}></Col>
-        <Col>
+        <Col xs={7}></Col>
+        <Col xs={2}>
           <TodoCategoryModal
             useCase="ADD"
             onAddTodoCategory={addTodoCategoryHandler}
@@ -177,6 +223,7 @@ const TodoPage = (props) => {
                 cardTitle={category.title}
                 cardColor={category.color}
                 todoItems={category.todo_items}
+                modules={MODULES}
                 className="m-3"
                 onAddTodo={addTodoHandler}
                 onRemoveTodo={removeTodoHandler}

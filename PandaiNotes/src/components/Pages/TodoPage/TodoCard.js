@@ -53,6 +53,10 @@ const TodoCard = (props) => {
     props.onRemoveTodoCategory(props.category_id);
   };
 
+  const updateTodoItemHandler = (todoItemObject) => {
+    props.onUpdateTodo(todoItemObject);
+  };
+
   return (
     <>
       {/* To show when you want to add an item to the Todo */}
@@ -62,6 +66,7 @@ const TodoCard = (props) => {
         onCloseModal={closeModalHandler}
         onAddTodoItem={addTodoItemHandler}
         category_id={props.category_id}
+        modules={props.modules}
       />
 
       <Card
@@ -83,8 +88,12 @@ const TodoCard = (props) => {
             return (
               <TodoItem
                 key={todoItem.id}
+                item_id={todoItem.id}
                 todoItem={todoItem}
                 onDeleteItem={deleteItemHandler}
+                category_id={props.category_id}
+                onUpdateTodo={updateTodoItemHandler}
+                modules={props.modules}
               />
             );
           })}
