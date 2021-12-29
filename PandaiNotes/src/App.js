@@ -98,7 +98,7 @@ function App() {
               onCloseNavbar={closeNavbarHandler}
               onCloseOverlay={closeOverlayHandler}
               onTodoPage={openTodoPage}
-              onFileExplorerPage={openPageHandler("fileExplorer")}
+              onFileExplorerPage={openFileExplorerPage}
               onCommunityPage={openCommunityPage}
               onCalendarPage={openCalendarPage}
               onModulePage={openModulePage}
