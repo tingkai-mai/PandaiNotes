@@ -7,6 +7,9 @@ var cors = require("cors");
 
 const app = express();
 
+// Importing custom routers
+const ImageRouter = require("./routes/imageRoutes");
+
 // add extra environemntal variables to process.env using dotenv package
 dotenv.config({ path: `${__dirname}/../config.env` });
 
@@ -34,6 +37,8 @@ app.use(cors()); // Use this after the variable declaration
 // Define middleware
 app.use(morgan("dev"));
 app.use(express.json());
+
+app.use("/api/v1/images", ImageRouter);
 
 app.get("/", (req, res) => {
   res.end("Hello from the server");
