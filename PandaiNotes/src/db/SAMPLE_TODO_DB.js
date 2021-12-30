@@ -53,14 +53,16 @@ export const TODO_ITEMS_TWO = [
   {
     id: 1,
     module: "CS2040S",
-    title: "Data Structures and Algorithms",
+    module_title: "Data Structures and Algorithms",
+    title: "Lab Homework",
     description: "Submit homework as soon as possible!",
     deadline: new Date(2021, 12, 10, 12, 12, 12),
   },
   {
     id: 2,
     module: "CS2040S",
-    title: "Data Structures and Algorithms",
+    module_title: "Data Structures and Algorithms",
+    title: "Another lab report...",
     description: "Prepare lab report",
     deadline: new Date(2022, 3, 4, 12, 12, 12),
   },
