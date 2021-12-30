@@ -22,28 +22,12 @@ const NavbarOverlay = (props) => {
                   id={window.location.pathname === val.link ? "active" : ""}
                   onClick={() => {
                     switch(val.title) {
-                      case "To-Do":
-                        props.onTodoPage();
-                        break;
                       case "New Note":
                         props.onCloseNavbar(); 
                         props.onCloseOverlay();
                         break;
-                      case "Files":
-                        props.onFileExplorerPage();
-                        break;
-                      case "Community":
-                        props.onCommunityPage();
-                        break;
-                      case "Calendar":
-                        props.onCalendarPage();
-                        break;
-                      case "Modules":
-                        props.onModulePage();
-                        break;
-                      case "Settings":
-                        props.onSettingsPage();
-                        break;
+                      case val.title:
+                        props.onOpenPage(val.title);
                     }
                   }}
                 >

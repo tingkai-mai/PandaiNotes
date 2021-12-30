@@ -2,12 +2,11 @@ import React from "react";
 import classes from "./ModuleCard.module.css";
 
 import { Card } from "react-bootstrap";
-import { MODULES } from "../../../db/SAMPLE_MODULES_DB";
 
 const ModuleCard = (props) => {
   return (
     <>
-      <Card style={{ width: "18rem" }} className={`${classes["modulecard"]} flex-column`}>
+      <Card className={`${classes["modulecard"]} flex-column`} style={{ width: "18rem" }}>
         <Card.Body>
           <Card.Title className={`${classes["moduletitle"]} flex-column`}>
             {props.mod_code}
