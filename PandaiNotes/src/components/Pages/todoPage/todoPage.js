@@ -3,7 +3,7 @@ import classes from "./Todo.module.scss";
 
 import { Container, Row, Col, Form, FloatingLabel } from "react-bootstrap";
 
-import { MODULES } from "../../../db/SAMPLE_MODULES_DB";
+import { MODULES } from "../../../db/SAMPLE_MODULES_CURRENT_DB";
 import { TODO_CATEGORIES } from "../../../db/SAMPLE_TODO_DB";
 import TodoCard from "./TodoCard";
 import TodoCategoryModal from "./TodoCategoryModal";

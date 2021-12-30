@@ -20,7 +20,6 @@ function App() {
   const [NavbarActive, setNavbarActive] = useState(false);
   const [overlayPage, setOverlayPage] = useState(<TodoPage />);
 
-  // Error
   const openPageHandler = (page) => {
     let inputPage = page;
     switch (inputPage) {
@@ -65,9 +64,8 @@ function App() {
     setNavbarActive(true);
   };
 
-
   return (
-    <Container fluid className="vh-100">
+    <Container fluid className="vh-100" style={{ overflow: "scroll" }}>
       <Row>
         <Col className="col-2">
           {NavbarActive ? (
