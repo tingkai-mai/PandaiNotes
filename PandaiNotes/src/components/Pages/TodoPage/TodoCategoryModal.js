@@ -1,6 +1,7 @@
 import { React, useState, useRef } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { AiOutlinePlusCircle, AiOutlineEdit } from "react-icons/ai";
+import classes from "./Todo.module.scss";
 
 function TodoCategoryModal(props) {
   const [show, setShow] = useState(false);
@@ -28,7 +29,7 @@ function TodoCategoryModal(props) {
   const defaultTitle = "";
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="secondary" className={`${classes["addbutton"]} flex-column`} onClick={handleShow}>
         {icon}
       </Button>
 

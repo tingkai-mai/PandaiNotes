@@ -79,6 +79,7 @@ const TodoCard = (props) => {
             <MdDeleteOutline onClick={deleteTodoCategoryHandler} />
           </div>
         </Card.Title>
+        <hr className={`${classes["linespacing"]} flex-column`}></hr>
         <InputGroup
           className={`d-flex flex-column`}
           onContextMenu={contextMenuHandler}

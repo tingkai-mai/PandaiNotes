@@ -9,4 +9,5 @@ export const MODULES = [
     module_name: "Data Structures and Algorithms",
   },
   { key: 6, module_code: "CS2030S", module_name: "Programming Methodology II" },
+  {key: 7, module_code: "CS1000", module_name: "Programming Sucks"}
 ];

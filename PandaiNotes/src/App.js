@@ -24,23 +24,23 @@ function App() {
   const openPageHandler = (page) => {
     let inputPage = page;
     switch (inputPage) {
-      case "todo":
+      case "To-Do":
         setOverlayPage(<TodoPage />);
         break;
-      case "fileExplorer":
+      case "Files":
         console.log("Rendering file explorer");
         setOverlayPage(<FileExplorerPage />);
         break;
-      case "community":
+      case "Community":
         setOverlayPage(<CommunityPage />);
         break;
-      case "calendar":
+      case "Calendar":
         setOverlayPage(<CalendarPage />);
         break;
-      case "modules":
+      case "Modules":
         setOverlayPage(<ModulePage />);
         break;
-      case "settings":
+      case "Settings":
         setOverlayPage(<SettingsPage />);
         break;
       default:
@@ -65,29 +65,6 @@ function App() {
     setNavbarActive(true);
   };
 
-  const openTodoPage = () => {
-    setOverlayPage(<TodoPage />);
-  };
-
-  const openFileExplorerPage = () => {
-    setOverlayPage(<FileExplorerPage />);
-  };
-
-  const openCommunityPage = () => {
-    setOverlayPage(<CommunityPage />);
-  };
-
-  const openCalendarPage = () => {
-    setOverlayPage(<CalendarPage />);
-  };
-
-  const openModulePage = () => {
-    setOverlayPage(<ModulePage />);
-  };
-
-  const openSettingsPage = () => {
-    setOverlayPage(<SettingsPage />);
-  };
 
   return (
     <Container fluid className="vh-100">
@@ -95,14 +72,9 @@ function App() {
         <Col className="col-2">
           {NavbarActive ? (
             <NavbarOverlay
+              onOpenPage={openPageHandler}
               onCloseNavbar={closeNavbarHandler}
               onCloseOverlay={closeOverlayHandler}
-              onTodoPage={openTodoPage}
-              onFileExplorerPage={openFileExplorerPage}
-              onCommunityPage={openCommunityPage}
-              onCalendarPage={openCalendarPage}
-              onModulePage={openModulePage}
-              onSettingsPage={openSettingsPage}
             />
           ) : (
             <NavbarInternal

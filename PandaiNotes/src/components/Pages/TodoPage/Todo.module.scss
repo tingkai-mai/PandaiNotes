@@ -8,3 +8,21 @@
 hr.solid-divider {
   border-top: 3px solid rgb(92, 92, 92);
 }
+
+.addbutton{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 0.7rem;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  backface-visibility: hidden;
+  border: 0.3rem solid transparent;
+  border-radius: 10rem;
+  background-size: 5px;
+  border-color: transparent;
+  transition: background-color 0.3s ease-in-out;
+}
