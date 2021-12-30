@@ -1,0 +1,15 @@
+.modulecard {
+    position: relative;
+    background-color: #E7E6E6;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+    height: 125px;
+    width: 50px;
+    margin-bottom: 30px;
+    margin-right: 20px;
+}
+
+.moduletitle {
+    color: #E34234;
+    text-shadow: 1px 1px 1px grey;
+    font-size: x-large;
+}

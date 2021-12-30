@@ -16,7 +16,7 @@ import { Container, Row, Col } from "react-bootstrap";
 function App() {
   // Create overlay handler
 
-  const [overlayActive, setOverlayActive] = useState(true);
+  const [overlayActive, setOverlayActive] = useState(false);
   const [NavbarActive, setNavbarActive] = useState(false);
   const [overlayPage, setOverlayPage] = useState(<TodoPage />);
 
