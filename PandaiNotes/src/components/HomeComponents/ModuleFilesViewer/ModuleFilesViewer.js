@@ -11,7 +11,7 @@ const ModuleFilesViewer = (props) => {
     <Container>
       <Row>
         {MODULES.map((val, key) => {
-          return <ModuleCard mod_code={val.module_code} mod_name={val.module_name} onClick={() => {props.changemodule(val.module_code)}} />
+          return <ModuleCard mod_code={val.module_code} mod_name={val.module_name} onClick={() => {props.changeModuleinner("CS1101S")}} />
         })};
       </Row>
     </Container>
