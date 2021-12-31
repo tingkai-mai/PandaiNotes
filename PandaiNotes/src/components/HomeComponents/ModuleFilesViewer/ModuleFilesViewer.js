@@ -14,7 +14,7 @@ const ModuleFilesViewer = (props) => {
               mod_code={val.module_code}
               mod_name={val.module_name}
               onClick={() => {
-                props.changemodule(val.module_code);
+                props.changeModuleinner("CS1101S");
               }}
             />
           );

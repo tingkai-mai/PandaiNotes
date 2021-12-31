@@ -10,7 +10,7 @@ const OverlayMain = (props) => {
   return (
     <Container>
       <Row> 
-        <Col>{ props.isModuleActive === 'none' ? currstate : <SingleModulePage mod_code={props.isModuleActive} /> }</Col>
+        <Col>{ props.currModule === 'none' ? currstate : <SingleModulePage mod_code={props.currModule} /> } </Col>
       </Row>
     </Container>
   );
