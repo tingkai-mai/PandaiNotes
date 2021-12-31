@@ -4,7 +4,7 @@ import classes from "./FileExplorerPage.module.css";
 
 import ModuleFilesViewer from "../../HomeComponents/ModuleFilesViewer/ModuleFilesViewer";
 
-function FileExplorerPage() {
+const FileExplorerPage = (props) => {
   return (
     <>
       <Container>
@@ -15,7 +15,7 @@ function FileExplorerPage() {
         <hr className={classes["solid-divider"]}></hr>
 
         <Row>
-          <ModuleFilesViewer />
+          <ModuleFilesViewer changeModule={props.onModuleActive} />
         </Row>
       </Container>
     </>

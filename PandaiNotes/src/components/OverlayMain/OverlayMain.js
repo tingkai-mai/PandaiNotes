@@ -1,8 +1,7 @@
 import React, { useState, useReducer } from "react";
-import TodoPage from "../Pages/TodoPage/TodoPage";
-import FileExplorerPage from "../Pages/FileExplorerPage/FileExplorerPage";
-
 import { Container, Row, Col } from "react-bootstrap";
+
+import SingleModulePage from "../Pages/SingleModulePage/SingleModulePage";
 
 const OverlayMain = (props) => {
   const currstate = props.onOverlayPage;
@@ -10,8 +9,8 @@ const OverlayMain = (props) => {
 
   return (
     <Container>
-      <Row>
-        <Col>{currstate}</Col>
+      <Row> 
+        <Col>{ props.isModuleActive === 'none' ? currstate : <SingleModulePage mod_code={props.isModuleActive} /> }</Col>
       </Row>
     </Container>
   );

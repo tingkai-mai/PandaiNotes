@@ -9,6 +9,7 @@ import CommunityPage from "./components/Pages/CommunityPage/CommunityPage";
 import CalendarPage from "./components/Pages/CalendarPage/CalendarPage";
 import ModulePage from "./components/Pages/ModulesPage/ModulePage";
 import SettingsPage from "./components/Pages/SettingsPage/SettingsPage";
+import SingleModulePage from "./components/Pages/SingleModulePage/SingleModulePage";
 
 import { React, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
@@ -19,6 +20,7 @@ function App() {
   const [overlayActive, setOverlayActive] = useState(false);
   const [NavbarActive, setNavbarActive] = useState(false);
   const [overlayPage, setOverlayPage] = useState(<TodoPage />);
+  const [ModuleActive, setModuleActive] = useState("CS1101S");
 
   const openPageHandler = (page) => {
     let inputPage = page;
@@ -28,7 +30,7 @@ function App() {
         break;
       case "Files":
         console.log("Rendering file explorer");
-        setOverlayPage(<FileExplorerPage />);
+        setOverlayPage(<FileExplorerPage onModuleActive={setModuleActive}/>);
         break;
       case "Community":
         setOverlayPage(<CommunityPage />);
@@ -83,7 +85,7 @@ function App() {
         </Col>
         <Col>
           {overlayActive ? (
-            <OverlayMain onOverlayPage={overlayPage} />
+            <OverlayMain onOverlayPage={overlayPage} isModuleActive={ModuleActive} onModuleActive={setModuleActive}/>
           ) : (
             <DocumentEditor />
           )}
