@@ -1,5 +1,35 @@
 const Image = require("./../models/imageModel");
 
+exports.pushImage = async (req, res) => {
+  try {
+    const image = await Image.create(req.body);
+    res.status(200).json({
+      status: "success",
+      data: {
+        image: image,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      status: "fail",
+      message: "An error occurred!",
+    });
+  }
+};
+
+exports.updateImage = async (req, res) => {
+  try {
+    await Image.findOneAndUpdate({ name: req.body.imageName }, req.body.data);
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({
+      status: "fail",
+      message: "An error occurred!",
+    });
+  }
+};
+
 exports.getAllImages = async (req, res) => {
   try {
     const images = await Image.find();
@@ -14,7 +44,7 @@ exports.getAllImages = async (req, res) => {
     console.log(err);
     res.status(400).json({
       status: "fail",
-      message: "An error occured!",
+      message: "An error occurred!",
     });
   }
 };
