@@ -7,6 +7,16 @@ var cors = require("cors");
 
 const app = express();
 
+// Catch unhandled exceptions from synchronous functions / standard errors
+// === SAFETY NET ===
+process.on("unhandledException", (err) => {
+  console.log(err.name, err.message);
+  console.log("Uncaught Exception! Shutting down...");
+  server.close(() => {
+    process.exit(1);
+  });
+});
+
 // Importing custom routers
 const ImageRouter = require("./routes/imageRoutes");
 
@@ -57,4 +67,14 @@ app.post("/api/v1/txtedit", (req, res) => {
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
+});
+
+// Catch unhandled rejection from rejected promises / async functions
+// === SAFETY NET ===
+process.on("unhandledRejection", (err) => {
+  console.log(err.name, err.message);
+  console.log("Unhandled Rejection! Shutting down...");
+  server.close(() => {
+    process.exit(1);
+  });
 });
