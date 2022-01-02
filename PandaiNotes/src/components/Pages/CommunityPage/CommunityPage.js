@@ -104,7 +104,7 @@ function CommunityPage(props) {
         </div>
         <hr className={classes["solid-divider"]} />
         {currFilterState.modules.map((module) => {
-          return <ModuleSection module={module} />;
+          return <ModuleSection key={module.module_code} module={module} />;
         })}
       </Row>
 

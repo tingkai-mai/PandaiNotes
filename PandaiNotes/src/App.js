@@ -10,6 +10,9 @@ import CalendarPage from "./components/Pages/CalendarPage/CalendarPage";
 import ModulePage from "./components/Pages/ModulesPage/ModulePage";
 import SettingsPage from "./components/Pages/SettingsPage/SettingsPage";
 
+// Marked for removal
+import SummaryPage from "./components/Pages/SummaryPage/SummaryPage";
+
 import { React, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import classes from "./App.module.scss";
@@ -19,7 +22,7 @@ function App() {
 
   const [overlayActive, setOverlayActive] = useState(true); // Changed
   const [NavbarActive, setNavbarActive] = useState(false);
-  const [overlayPage, setOverlayPage] = useState(<CommunityPage />); // Changed
+  const [overlayPage, setOverlayPage] = useState(<SummaryPage />); // Changed
 
   const openPageHandler = (page) => {
     let inputPage = page;

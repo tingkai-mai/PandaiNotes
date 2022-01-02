@@ -4,7 +4,7 @@ import { SAMPLE_NOTES } from "../db/SAMPLE_NOTES_DB";
 // Change me to set the initial note. Should default to "" for the actual code!
 // Currently is SAMPLE_NOTE_SMALL for testing purposes.
 const EMPTY_NOTE = { id: null, content: "", module: "" };
-const INITIAL_NOTE = EMPTY_NOTE;
+const INITIAL_NOTE = SAMPLE_NOTES[1];
 
 const axios = require("axios");
 const NoteContext = React.createContext({

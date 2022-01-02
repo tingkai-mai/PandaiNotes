@@ -1,8 +1,9 @@
 import { Editor } from "@tinymce/tinymce-react";
 import tinymce from "tinymce/tinymce";
+import { MODULES_ALL_IN_NUS } from "../../db/SAMPLE_MODULES_MASTER";
 import { useRef, useState, useEffect, useContext } from "react";
 import NoteContext from "../../store/note-context";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 
 tinymce.PluginManager.add("tag-difficult", function (editor) {
@@ -203,6 +204,7 @@ const settings = {
 
 function DocumentEditor({ initialValue }) {
   const editorRef = useRef(null);
+  const moduleRef = useRef();
   const [dirty, setDirty] = useState(false);
   useEffect(() => setDirty(false), [initialValue]);
 
@@ -223,8 +225,18 @@ function DocumentEditor({ initialValue }) {
       console.log("Raise Save As...");
       // Things should be handled from the SaveAs component, probably need to pass things to Save As as a prop
     } else {
-      noteCtx.onSaveNote(noteCtx.noteObject.id, content, null, tags); // TODO: Change module: null to module that user assigns the note to!!!!!!
+      noteCtx.onSaveNote(
+        noteCtx.noteObject.id,
+        content,
+        moduleRef.current.value,
+        tags
+      ); // TODO: Change module: null to module that user assigns the note to!!!!!!
     }
+  };
+
+  // Tag for removal
+  const noteCurrModuleHandler = () => {
+    console.log(moduleRef.current.value);
   };
 
   const grabTaggedHandler = () => {
@@ -241,6 +253,16 @@ function DocumentEditor({ initialValue }) {
 
   return (
     <>
+      <Form>
+        <Form.Label>Choose the module this note belongs to:</Form.Label>
+        <Form.Select size="lg" ref={moduleRef} onChange={noteCurrModuleHandler}>
+          {MODULES_ALL_IN_NUS.filter(
+            (mod) => mod.taken === "current" || mod.taken === "over"
+          ).map((mod) => (
+            <option>{`${mod.module_code} ${mod.module_name}`}</option>
+          ))}
+        </Form.Select>
+      </Form>
       <Editor
         apiKey="d3f45aljwuxlcvru4bo029urhq9qjtrutg60orm85vtmuzxh"
         initialValue={noteCtx.noteObject.content}
