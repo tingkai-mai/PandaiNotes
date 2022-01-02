@@ -1,25 +1,17 @@
-import React from "react";
-import { Container, Dropdown, Row, Col, Button } from "react-bootstrap";
+import { React, useState } from "react";
+import { Container, Row } from "react-bootstrap";
 import classes from "./ViewFile.module.css";
 
-import ModuleFilesViewer from "../../HomeComponents/ModuleFilesViewer/ModuleFilesViewer";
+import SingleModulePage from "../SingleModulePage/SingleModulePage";
+import ModulePageMain from "../../ModulePageMain/ModulePageMain";
 
 const FileExplorerPage = (props) => {
-  const changeModule = props.onModuleActive;
+  const [ModuleActive, setModuleActive] = useState("none");
 
   return (
     <>
       <Container>
-        <Row className={classes.title}>
-          File explorer {props.currModule}
-        </Row>
-
-        <hr className={classes["solid-divider"]}></hr>
-
-        <Row>
-          <ModuleFilesViewer currModuleinner={props.currModule} changeModuleinner={changeModule} />
-          
-        </Row>
+          {ModuleActive === "none" ? <ModulePageMain test={ModuleActive} onChangeModule={setModuleActive}/> : <SingleModulePage currModule={ModuleActive}/> }
       </Container>
     </>
   );
