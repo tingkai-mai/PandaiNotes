@@ -12,13 +12,14 @@ import SettingsPage from "./components/Pages/SettingsPage/SettingsPage";
 
 import { React, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import classes from "./App.module.scss";
 
 function App() {
   // Create overlay handler
 
   const [overlayActive, setOverlayActive] = useState(true); // Changed
   const [NavbarActive, setNavbarActive] = useState(false);
-  const [overlayPage, setOverlayPage] = useState(<ViewFilePage />); // Changed
+  const [overlayPage, setOverlayPage] = useState(<CommunityPage />); // Changed
 
   const openPageHandler = (page) => {
     let inputPage = page;
@@ -64,7 +65,7 @@ function App() {
   };
 
   return (
-    <Container fluid className="vh-100" style={{ overflow: "scroll" }}>
+    <Container fluid className="vh-100">
       <Row>
         <Col className="col-2">
           {/* Handle Navbar */}
@@ -83,7 +84,7 @@ function App() {
         </Col>
 
         {/* Handle viewport's page */}
-        <Col>
+        <Col className={classes["overflow"]}>
           {overlayActive ? (
             <OverlayMain onOverlayPage={overlayPage} />
           ) : (

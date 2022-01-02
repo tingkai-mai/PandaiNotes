@@ -286,83 +286,83 @@
                 <mxCell id="219" value="ToDo objects should be updated as an entire category? (ASK IAN)" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1400" y="967" width="160" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="231" style="edgeStyle=none;html=1;" edge="1" parent="1" source="221">
+                <mxCell id="231" style="edgeStyle=none;html=1;" parent="1" source="221" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="1780" y="212.5" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="221" value="New Note" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="221" value="New Note" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="1630" y="190.5" width="80" height="44" as="geometry"/>
                 </mxCell>
-                <mxCell id="232" style="edgeStyle=none;html=1;" edge="1" parent="1" source="222">
+                <mxCell id="232" style="edgeStyle=none;html=1;" parent="1" source="222" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="1780" y="357.5" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="222" value="Load existing Note" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="222" value="Load existing Note" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="1660" y="347.5" width="40" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="234" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="225" target="226">
+                <mxCell id="234" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="225" target="226" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="235" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="225" target="227">
+                <mxCell id="235" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="225" target="227" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="225" value="Edit Note" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="225" value="Edit Note" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="1790" y="177.5" width="80" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="237" style="edgeStyle=none;html=1;" edge="1" parent="1" source="226">
+                <mxCell id="237" style="edgeStyle=none;html=1;" parent="1" source="226" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="2060" y="184.5" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="226" value="Manual Save" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="226" value="Manual Save" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="1940" y="193.25" width="40" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="238" style="edgeStyle=none;html=1;" edge="1" parent="1" source="227">
+                <mxCell id="238" style="edgeStyle=none;html=1;" parent="1" source="227" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="2070" y="204.5" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="227" value="Navigate away from page" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="227" value="Navigate away from page" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="1940" y="247.5" width="40" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="228" value="Prompt to Save As..." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="228" value="Prompt to Save As..." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="2080" y="177.5" width="40" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="240" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="243">
+                <mxCell id="240" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="243" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="1880" y="357.5" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="241" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="245">
+                <mxCell id="241" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="245" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="1880" y="373.86363636363626" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="242" style="edgeStyle=none;html=1;" edge="1" parent="1" source="243">
+                <mxCell id="242" style="edgeStyle=none;html=1;" parent="1" source="243" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="2070" y="329.5" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="243" value="Manual Save" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="243" value="Manual Save" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="1950" y="338.25" width="40" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="244" style="edgeStyle=none;html=1;" edge="1" parent="1" source="245">
+                <mxCell id="244" style="edgeStyle=none;html=1;" parent="1" source="245" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="2070" y="392.5" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="245" value="Navigate away from page" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="245" value="Navigate away from page" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="1950" y="392.5" width="40" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="246" value="Prompt to Save&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="246" value="Prompt to Save&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="2070" y="387.5" width="40" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="247" value="Edit Note" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="247" value="Edit Note" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="1790" y="317.5" width="80" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="248" value="Silently save" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="248" value="Silently save" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="2080" y="318.25" width="40" height="20" as="geometry"/>
                 </mxCell>
             </root>

@@ -1,0 +1,20 @@
+.card {
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(207, 207, 207);
+  }
+}
+
+.moduleIcon {
+  width: 60px !important;
+  border: 1px solid rgb(165, 165, 165);
+  border-radius: 100%;
+}
+
+.title {
+  font-size: 25px !important;
+}
+
+.text {
+  font-size: 20px !important;
+}

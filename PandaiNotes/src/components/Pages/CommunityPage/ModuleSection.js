@@ -1,14 +1,24 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { BsBook } from "react-icons/bs";
+import classes from "./ModuleSection.module.scss";
 import nus_logo from "./nus_logo.png";
 
 const ModuleSection = (props) => {
   return (
-    <Card className="d-flex">
-      <Card.Img variant="left" src={nus_logo}></Card.Img>
-      <Card.Title>{props.module.module_code}</Card.Title>
-      <Card.Text>{props.module.module_name}</Card.Text>
+    <Card
+      className={`${classes["card"]} d-flex flex-row align-items-center p-1`}
+    >
+      <Card.Img
+        variant="left"
+        src={nus_logo}
+        className={`${classes.moduleIcon}`}
+      ></Card.Img>
+      <Card.Title className={`m-3 ${classes["title"]}`}>
+        {props.module.module_code}
+      </Card.Title>
+      <Card.Text className={classes["text"]}>
+        {props.module.module_name}
+      </Card.Text>
     </Card>
   );
 };

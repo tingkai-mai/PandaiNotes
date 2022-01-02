@@ -1,0 +1,125 @@
+// Consists of all modules in NUS and whether the user is currently taking it, had taken it before, or never taken it
+// Modules should contain "taken: current, over, never"
+export const MODULES_ALL_IN_NUS = [
+  {
+    key: 1,
+    module_code: "CS1101S",
+    module_name: "Programming Methodology",
+    taken: "current",
+  },
+  {
+    key: 2,
+    module_code: "MA1521",
+    module_name: "Calculus for Computing",
+    taken: "current",
+  },
+  {
+    key: 3,
+    module_code: "MA2001",
+    module_name: "Linear Algebra",
+    taken: "current",
+  },
+  {
+    key: 4,
+    module_code: "CS1231S",
+    module_name: "Discrete Structures",
+    taken: "current",
+  },
+  {
+    key: 5,
+    module_code: "CS2040S",
+    module_name: "Data Structures and Algorithms",
+    taken: "current",
+  },
+  {
+    key: 6,
+    module_code: "CS2030S",
+    module_name: "Programming Methodology II",
+    taken: "current",
+  },
+  { key: 7, module_code: "PC1421", module_name: "Physics", taken: "over" },
+  {
+    key: 8,
+    module_code: "CS1234",
+    module_name: "Sample Module 1",
+    taken: "over",
+  },
+  {
+    key: 9,
+    module_code: "CS5678",
+    module_name: "Sample Module 2",
+    taken: "over",
+  },
+  {
+    key: 10,
+    module_code: "CS9101",
+    module_name: "Sample Module 3",
+    taken: "over",
+  },
+  {
+    key: 11,
+    module_code: "CS1213",
+    module_name: "Sample Module 4",
+    taken: "over",
+  },
+  {
+    key: 12,
+    module_code: "CS1415",
+    module_name: "Sample Module 5",
+    taken: "never",
+  },
+  {
+    key: 13,
+    module_code: "CS1617",
+    module_name: "Sample Module 6",
+    taken: "never",
+  },
+  {
+    key: 14,
+    module_code: "CS1819",
+    module_name: "Sample Module 7",
+    taken: "never",
+  },
+  {
+    key: 15,
+    module_code: "CS1920",
+    module_name: "Sample Module 8",
+    taken: "never",
+  },
+  {
+    key: 16,
+    module_code: "CS2021",
+    module_name: "Sample Module 9",
+    taken: "never",
+  },
+  {
+    key: 17,
+    module_code: "CS2223",
+    module_name: "Sample Module 10",
+    taken: "never",
+  },
+  {
+    key: 18,
+    module_code: "CS1242",
+    module_name: "Sample Module 11",
+    taken: "never",
+  },
+  {
+    key: 19,
+    module_code: "CS6243",
+    module_name: "Sample Module 12",
+    taken: "never",
+  },
+  {
+    key: 20,
+    module_code: "CS1236",
+    module_name: "Sample Module 13",
+    taken: "never",
+  },
+  {
+    key: 21,
+    module_code: "CS8764",
+    module_name: "Sample Module 14",
+    taken: "never",
+  },
+];
