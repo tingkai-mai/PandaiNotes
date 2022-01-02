@@ -19,7 +19,6 @@ function App() {
   const [overlayActive, setOverlayActive] = useState(false);
   const [NavbarActive, setNavbarActive] = useState(false);
   const [overlayPage, setOverlayPage] = useState(<TodoPage />);
-  const [ModuleActive, setModuleActive] = useState("none");
 
   const openPageHandler = (page) => {
     let inputPage = page;
@@ -29,7 +28,7 @@ function App() {
         break;
       case "Files":
         console.log("Rendering file explorer");
-        setOverlayPage(<ViewFilePage currModule={ModuleActive} onModuleActive={setModuleActive}/>);
+        setOverlayPage(<ViewFilePage />);
         break;
       case "Community":
         setOverlayPage(<CommunityPage />);
@@ -84,7 +83,7 @@ function App() {
         </Col>
         <Col>
           {overlayActive ? (
-            <OverlayMain onOverlayPage={overlayPage} currModule={ModuleActive}/>
+            <OverlayMain onOverlayPage={overlayPage} />
           ) : (
             <DocumentEditor />
           )}

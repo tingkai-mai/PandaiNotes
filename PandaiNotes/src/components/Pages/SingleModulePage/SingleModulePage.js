@@ -6,7 +6,7 @@ const SingleModulePage = (props) => {
     <Container>
       <Row>
         <Col>
-          <div>{props.mod_code}</div>
+          <div>{props.currModule}</div>
         </Col>
       </Row>
       <hr></hr>

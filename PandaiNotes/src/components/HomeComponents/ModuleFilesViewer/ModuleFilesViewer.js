@@ -1,12 +1,15 @@
 import React from "react";
-import { Nav, Navbar, Container, Row, Col, Collapse } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 
 import ModuleCard from "../../UI/ModuleCard/ModuleCard";
 import { MODULES } from "../../../db/SAMPLE_MODULES_CURRENT_DB";
+import ModulePageMain from "../../ModulePageMain/ModulePageMain";
 
 const ModuleFilesViewer = (props) => {
   return (
     <Container>
+      {props.test}
+
       <Row>
         {MODULES.map((val, key) => {
           return (
@@ -14,7 +17,7 @@ const ModuleFilesViewer = (props) => {
               mod_code={val.module_code}
               mod_name={val.module_name}
               onClick={() => {
-                props.changeModuleinner("CS1101S");
+                props.changeModule("CS1101S");
               }}
             />
           );
