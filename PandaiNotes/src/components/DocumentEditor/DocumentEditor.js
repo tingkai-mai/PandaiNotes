@@ -199,24 +199,30 @@ const settings = {
   },
 };
 
+// TODO: Prompt users to save when navigating away from page!!
+
 function DocumentEditor({ initialValue }) {
   const editorRef = useRef(null);
   const [dirty, setDirty] = useState(false);
-
   useEffect(() => setDirty(false), [initialValue]);
 
   const noteCtx = useContext(NoteContext);
 
   const save = () => {
-    if (editorRef.current) {
-      const content = editorRef.current.getContent();
-      setDirty(false);
-      editorRef.current.setDirty(false);
-      const tags = {
-        difficult: tinymce.get()[0].annotator.getAll("difficult"),
-        important: tinymce.get()[0].annotator.getAll("important"),
-        revision: tinymce.get()[0].annotator.getAll("revision"),
-      };
+    const content = editorRef.current.getContent();
+    setDirty(false);
+    editorRef.current.setDirty(false);
+    const tags = {
+      difficult: tinymce.get()[0].annotator.getAll("difficult"),
+      important: tinymce.get()[0].annotator.getAll("important"),
+      revision: tinymce.get()[0].annotator.getAll("revision"),
+    };
+    // Checks if the Note is new or not. If it's a new Note, prompt user to Save As...
+    if (noteCtx.noteObject.id === null) {
+      console.log("New note detected");
+      console.log("Raise Save As...");
+      // Things should be handled from the SaveAs component, probably need to pass things to Save As as a prop
+    } else {
       noteCtx.onSaveNote(noteCtx.noteObject.id, content, null, tags); // TODO: Change module: null to module that user assigns the note to!!!!!!
     }
   };

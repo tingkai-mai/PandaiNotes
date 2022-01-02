@@ -1,11 +1,38 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { Container, Row } from "react-bootstrap";
 
-function ModuleFileExplorer() {
-    return (
-        <div>
-            This is the Module File Explorer
-        </div>
-    )
-}
+import ModuleCard from "../../UI/ModuleCard/ModuleCard";
+import { MODULES } from "../../../db/SAMPLE_MODULES_CURRENT_DB";
+import $ from "jquery";
 
-export default ModuleFileExplorer
+const ModuleFilesExplorer = (props) => {
+  const viewFileHandler = (evt) => {
+    console.log("Clicked");
+  };
+
+  useEffect(() => {
+    $(".card").on("click", viewFileHandler);
+
+    return () => {
+      $(".card").off("click", viewFileHandler);
+    };
+  }, []);
+
+  return (
+    <Container>
+      <Row>
+        {MODULES.map((module) => {
+          return (
+            <ModuleCard
+              key={module.module_code}
+              mod_code={module.module_code}
+              mod_name={module.module_name}
+            />
+          );
+        })}
+      </Row>
+    </Container>
+  );
+};
+
+export default ModuleFilesExplorer;

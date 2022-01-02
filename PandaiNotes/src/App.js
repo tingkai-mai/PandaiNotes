@@ -16,9 +16,9 @@ import { Container, Row, Col } from "react-bootstrap";
 function App() {
   // Create overlay handler
 
-  const [overlayActive, setOverlayActive] = useState(false);
+  const [overlayActive, setOverlayActive] = useState(true); // Changed
   const [NavbarActive, setNavbarActive] = useState(false);
-  const [overlayPage, setOverlayPage] = useState(<TodoPage />);
+  const [overlayPage, setOverlayPage] = useState(<ViewFilePage />); // Changed
 
   const openPageHandler = (page) => {
     let inputPage = page;
@@ -27,7 +27,6 @@ function App() {
         setOverlayPage(<TodoPage />);
         break;
       case "Files":
-        console.log("Rendering file explorer");
         setOverlayPage(<ViewFilePage />);
         break;
       case "Community":
@@ -68,6 +67,7 @@ function App() {
     <Container fluid className="vh-100" style={{ overflow: "scroll" }}>
       <Row>
         <Col className="col-2">
+          {/* Handle Navbar */}
           {NavbarActive ? (
             <NavbarOverlay
               onOpenPage={openPageHandler}
@@ -81,6 +81,8 @@ function App() {
             />
           )}
         </Col>
+
+        {/* Handle viewport's page */}
         <Col>
           {overlayActive ? (
             <OverlayMain onOverlayPage={overlayPage} />

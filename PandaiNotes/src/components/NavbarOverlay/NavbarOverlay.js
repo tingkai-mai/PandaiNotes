@@ -7,7 +7,12 @@ import { NavbarOverlayData } from "./NavbarOverlayData";
 const NavbarOverlay = (props) => {
   return (
     <Navbar className={`${classes["side-navbar"]} flex-column`}>
-      <h1 onClick={() => {props.onCloseNavbar(); props.onCloseOverlay(); }}>
+      <h1
+        onClick={() => {
+          props.onCloseNavbar();
+          props.onCloseOverlay();
+        }}
+      >
         Pandai Notes
       </h1>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -21,9 +26,10 @@ const NavbarOverlay = (props) => {
                   className={classes.row}
                   id={window.location.pathname === val.link ? "active" : ""}
                   onClick={() => {
-                    switch(val.title) {
+                    // @NIGEL: Refactor this bring this outside
+                    switch (val.title) {
                       case "New Note":
-                        props.onCloseNavbar(); 
+                        props.onCloseNavbar();
                         props.onCloseOverlay();
                         break;
                       case val.title:

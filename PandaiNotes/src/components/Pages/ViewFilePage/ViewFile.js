@@ -3,18 +3,15 @@ import { Container, Row } from "react-bootstrap";
 import classes from "./ViewFile.module.css";
 
 import SingleModulePage from "../SingleModulePage/SingleModulePage";
-import ModulePageMain from "../../ModulePageMain/ModulePageMain";
+import ModuleFilesExplorer from "../../HomeComponents/ModuleFileExplorer/ModuleFileExplorer";
 
-const FileExplorerPage = (props) => {
-  const [ModuleActive, setModuleActive] = useState("none");
-
+const ViewFilePage = (props) => {
   return (
     <>
-      <Container>
-          {ModuleActive === "none" ? <ModulePageMain test={ModuleActive} onChangeModule={setModuleActive}/> : <SingleModulePage currModule={ModuleActive}/> }
-      </Container>
+      <h1>Files</h1>
+      <ModuleFilesExplorer />
     </>
   );
-}
+};
 
-export default FileExplorerPage;
+export default ViewFilePage;

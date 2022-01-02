@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { SAMPLE_NOTES } from "../db/SAMPLE_NOTES_DB";
 
-// Change me to set the initial note. Should default to none for the actual code!
+// Change me to set the initial note. Should default to "" for the actual code!
 // Currently is SAMPLE_NOTE_SMALL for testing purposes.
-const INITIAL_NOTE = SAMPLE_NOTES[0];
+const EMPTY_NOTE = { id: null, content: "", module: "" };
+const INITIAL_NOTE = EMPTY_NOTE;
 
 const axios = require("axios");
 const NoteContext = React.createContext({
@@ -31,7 +32,7 @@ export const NoteContextProvider = (props) => {
     for (let [tag_type, content] of Object.entries(tags)) {
       console.log(content);
       for (let [tag_id, html] of Object.entries(content)) {
-        console.log(html[0].innerHTML);
+        // console.log(html[0].innerHTML);
         tags[tag_type][tag_id] = {
           html: html[0].innerHTML,
           comment: html[0].attributes[3].textContent,
