@@ -47,7 +47,7 @@ app.get("/", (req, res) => {
 app.post("/api/v1/txtedit", (req, res) => {
   console.log("Connected to react...");
   console.log(req);
-  fs.writeFile("editorLogs.txt", JSON.stringify(req.body), () => {
+  fs.writeFile("editorLogs.json", JSON.stringify(req.body), () => {
     console.log("File written!");
   });
 });

@@ -4,11 +4,14 @@ import ReactDOM from "react-dom";
 // Ensure App is imported AFTER ./custom.scss to allow BS5 styling
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
+import { NoteContextProvider } from "./store/note-context";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <NoteContextProvider>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </NoteContextProvider>,
   document.getElementById("root")
 );
 

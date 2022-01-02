@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="097e-s0VUpdyl4n--xl8" name="Page-1">
-        <mxGraphModel dx="2044" dy="1842" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1875" dy="1758" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -9,7 +9,7 @@
                         <mxRectangle x="354" y="50" width="70" height="26" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="8" value="States:&#10;- activeNoteID&#10;- activeNoteState (stores a Note object)&#10;&#10;Reducer States:&#10;- overlayActive&#10;- overlayPage&#10;&#10;Reducers:&#10;- overlayReducer(state, action)&#10;    &quot;PAGENAME&quot;: Navigates AWAY from document editing page to pageName.&#10;Sets overlayActive to false, and overlayPage to inputted page.&#10;    &quot;NEWNOTE&quot;: Creates a new note by calling the createNewNoteHandler(). overlayActive remains the same, overlayPage remains the same (i.e Document Editing)&#10;&#10;&#10;Contexts:&#10;- note-context.js&#10;&#10;Handlers:&#10;(PAGE HANDLING)&#10;&#10;(NOTE HANDLING)&#10;- createNewNoteHandler()&#10;    Calls note-context generateNewNote() and updates the activeNoteID to a new unique note id&#10;- getNoteHandler(id)&#10;    Updates the activeNoteID  based on a given EXISTING note ID&#10;- saveNoteHandler(Note)&#10;    Calls note-context saveNoteHandler(Note)&#10;- updateActiveNoteStateHandler(Note)&#10;    Given a Note object, updates the activeNoteID &#10;    &#10;- settingsHandler()&#10;&#10;Functions:&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0;whiteSpace=wrap;" parent="6" vertex="1">
+                <mxCell id="8" value="States:&#10;&#10;Reducer States:&#10;- overlayActive&#10;- overlayPage&#10;&#10;Reducers:&#10;- overlayReducer(state, action)&#10;    &quot;PAGENAME&quot;: Navigates AWAY from document editing page to pageName.&#10;Sets overlayActive to false, and overlayPage to inputted page.&#10;    &quot;NEWNOTE&quot;: Creates a new note by calling the createNewNoteHandler(). overlayActive remains the same, overlayPage remains the same (i.e Document Editing)&#10;&#10;&#10;Contexts:&#10;- note-context.js&#10;&#10;Handlers:&#10;(PAGE HANDLING)&#10;&#10;(NOTE HANDLING)&#10;- createNewNoteHandler()&#10;    Calls note-context generateNewNote() and updates the activeNoteID to a new unique note id&#10;- getNoteHandler(id)&#10;    Updates the activeNoteID  based on a given EXISTING note ID&#10;- saveNoteHandler(Note)&#10;    Calls note-context saveNoteHandler(Note)&#10;- updateActiveNoteStateHandler(Note)&#10;    Given a Note object, updates the activeNoteID &#10;    &#10;- settingsHandler()&#10;&#10;Functions:&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0;whiteSpace=wrap;" parent="6" vertex="1">
                     <mxGeometry y="26" width="390" height="594" as="geometry"/>
                 </mxCell>
                 <mxCell id="217" style="edgeStyle=none;html=1;entryX=0;entryY=0;entryDx=0;entryDy=0;" parent="1" source="38" target="213" edge="1">
@@ -72,7 +72,7 @@
                 <mxCell id="67" value="DocumentEditor.js" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
                     <mxGeometry x="1050" y="190" width="280" height="330" as="geometry"/>
                 </mxCell>
-                <mxCell id="69" value="States:&#10;- activeNote&#10;    Uses noteID prop&#10;- noteContent&#10;    Updated with each keystroke? (timer?)&#10;&#10;Handlers:&#10;- saveNoteHandler(id, content, module)&#10;    Given note ID, content, and module, CREATE  a NEW Note object and save it to the database, calls onSaveNote prop&#10;- updateCurrentNoteState(id, content, module)&#10;    Creates a NEW Note object based on the current state of the Note, but DOES NOT save to database, and instead updates the active Note object in App.js. (Lifted up state)&#10;&#10;Functions:&#10;- fetchCurrentNoteContents()&#10;- fetchNoteID(id)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="67" vertex="1">
+                <mxCell id="69" value="States:&#10;&#10;Handlers:&#10;- saveNoteHandler(id, content, module)&#10;    id can be null or an existing ID obtained from mongolDB. When saving a Note, the Note can be new (id=null) or an existing Note retrieved from the db (id=some uid). Thus, behavior will differ depending if the Note is new or not (refer to flowchart on right). Given id, content, module, should generate a Note object which is saved to the db via the context manager.&#10;&#10;Functions:&#10;- fetchCurrentNoteContents()&#10;- fetchNoteID(id)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="67" vertex="1">
                     <mxGeometry y="26" width="280" height="304" as="geometry"/>
                 </mxCell>
                 <mxCell id="71" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="8" target="63" edge="1">
@@ -149,15 +149,12 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="141" value="note-context.js" style="swimlane;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="-50" y="-558.75" width="352.5" height="277.5" as="geometry"/>
+                    <mxGeometry x="-50" y="-558.75" width="352.5" height="290" as="geometry"/>
                 </mxCell>
-                <mxCell id="142" value="States:&lt;br&gt;- activeNote&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;Should be a Note object&lt;br&gt;&lt;br&gt;Reducers:&lt;br&gt;&lt;br&gt;Handlers:&lt;br&gt;- saveNoteHandler(Note)&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;Given a note object, saves a Note object to the database&lt;br&gt;- modifyActiveNote(ID)&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;Modifies the activeNote&amp;nbsp;&lt;br&gt;&lt;br&gt;Functions:&lt;br&gt;- generateUniqueNoteID()&lt;br&gt;- generateNewNote()&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;Generates a new Note object with a unique ID&lt;br&gt;- fetchNoteContent(id)&lt;br&gt;- deleteNoteContent(id)" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" parent="141" vertex="1">
-                    <mxGeometry x="12.5" y="15" width="340" height="260" as="geometry"/>
+                <mxCell id="142" value="States:&lt;br&gt;- activeNote&lt;br&gt;&#9;Should be a Note object&lt;br&gt;&lt;br&gt;Reducers:&lt;br&gt;&lt;br&gt;Handlers:&lt;br&gt;- saveNoteHandler(Note)&lt;br&gt;&#9;Given a note object, saves a Note object to the database&lt;br&gt;- loadNoteHandler(ID)&lt;br&gt;&#9;Given an existing Note ID, return a Note object.&amp;nbsp;&lt;br&gt;- modifyActiveNote(ID)&lt;br&gt;&#9;Modifies the activeNote&amp;nbsp;&lt;br&gt;&lt;br&gt;Functions:&lt;br&gt;- fetchNoteContent(id)&lt;br&gt;- deleteNoteContent(id)" style="text;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;html=1;fillColor=#2a2a2a;strokeOpacity=100;labelBorderColor=none;" parent="141" vertex="1">
+                    <mxGeometry x="12.5" y="25" width="320" height="240" as="geometry"/>
                 </mxCell>
-                <mxCell id="143" value="Props:&lt;br&gt;onSaveNote:saveNoteHandler&lt;br&gt;updateNoteState:updateCurrentNoteStateHandler&lt;br&gt;noteID:currentNoteID" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="990" y="70" width="180" height="50" as="geometry"/>
-                </mxCell>
-                <mxCell id="144" value="DocumentEditor should grab data directly from note-context.js through note ID, which can be existing or new. This note ID is passed from App.js as a prop.&lt;br&gt;&lt;br&gt;SHOULD NOT RECEIVE NOTE DATA DIRECTLY AS A PROP" style="ellipse;shape=cloud;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+                <mxCell id="144" value="DocumentEditor should grab data directly from note-context.js through note ID, which can be existing or new. This note ID is obtained entirely from the context manager." style="ellipse;shape=cloud;html=1;whiteSpace=wrap;" parent="1" vertex="1">
                     <mxGeometry x="1340" y="170" width="240" height="220" as="geometry"/>
                 </mxCell>
                 <mxCell id="145" value="Note Object contains:&lt;br&gt;- id&lt;br&gt;- content&lt;br&gt;- module" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -288,6 +285,85 @@
                 </mxCell>
                 <mxCell id="219" value="ToDo objects should be updated as an entire category? (ASK IAN)" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1400" y="967" width="160" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="231" style="edgeStyle=none;html=1;" edge="1" parent="1" source="221">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1780" y="212.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="221" value="New Note" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="1630" y="190.5" width="80" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="232" style="edgeStyle=none;html=1;" edge="1" parent="1" source="222">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1780" y="357.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="222" value="Load existing Note" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="1660" y="347.5" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="234" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="225" target="226">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="235" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="225" target="227">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="225" value="Edit Note" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="1790" y="177.5" width="80" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="237" style="edgeStyle=none;html=1;" edge="1" parent="1" source="226">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="2060" y="184.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="226" value="Manual Save" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="1940" y="193.25" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="238" style="edgeStyle=none;html=1;" edge="1" parent="1" source="227">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="2070" y="204.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="227" value="Navigate away from page" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="1940" y="247.5" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="228" value="Prompt to Save As..." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="2080" y="177.5" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="240" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="243">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1880" y="357.5" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="241" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="245">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1880" y="373.86363636363626" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="242" style="edgeStyle=none;html=1;" edge="1" parent="1" source="243">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="2070" y="329.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="243" value="Manual Save" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="1950" y="338.25" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="244" style="edgeStyle=none;html=1;" edge="1" parent="1" source="245">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="2070" y="392.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="245" value="Navigate away from page" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="1950" y="392.5" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="246" value="Prompt to Save&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="2070" y="387.5" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="247" value="Edit Note" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="1790" y="317.5" width="80" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="248" value="Silently save" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="2080" y="318.25" width="40" height="20" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
