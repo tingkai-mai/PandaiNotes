@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
-import classes from "./SingleModulePage.module.css";
+import classes from "./ModuleFileViewer.module.css";
 import { MODULES } from "../../../db/SAMPLE_MODULES_CURRENT_DB";
 
 const SingleModulePage = (props) => {

@@ -6,7 +6,7 @@ import ModuleFilesExplorer from '../ModuleFileExplorer/ModuleFileExplorer';
 const ExportFile = (props) => {
     return (
         <Container>
-            <ModuleFilesExplorer />
+            <ModuleFilesExplorer headerName={"Export"} />
         </Container>
     )
 }
