@@ -11,18 +11,19 @@ const ModuleFilesExplorer = (props) => {
   };
 
   useEffect(() => {
-    var getthevalue = $(props).attr('id');
+    var getthevalue = $(props).attr("id");
     $(".card").on("click", viewFileHandler);
 
     return () => {
-      console.log(getthevalue)
+      console.log(getthevalue);
       $(".card").off("click", viewFileHandler);
     };
   }, []);
 
-
   return (
     <Container>
+      <Row>{props.headerName}</Row>
+      <hr></hr>
       <Row>
         {MODULES.map((module) => {
           return (

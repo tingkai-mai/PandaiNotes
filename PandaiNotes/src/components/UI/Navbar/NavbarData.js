@@ -27,7 +27,7 @@ export const NavbarData = [
   {
     title: "Export",
     icon: <BiExport />,
-    link: "#community",
+    link: "#Export",
   },
   {
     title: "Settings",
