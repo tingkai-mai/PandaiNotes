@@ -12,12 +12,18 @@ const documentSchema = new mongoose.Schema({
   },
   dateCreated: {
     type: Date,
-    required: [true, "A document must contain a created date!"],
+    default: Date.now(),
   },
   content: {
     type: String,
     required: [true, "A document must have content inside it!"],
   },
+  tags: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "tag",
+    },
+  ],
 });
 
 // The Document database is created based on this model here, we will refer to it when applying CRUD operations
