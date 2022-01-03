@@ -2,7 +2,7 @@ import classes from "./SummaryPage.module.scss";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { MODULES_ALL_IN_NUS } from "../../../db/SAMPLE_MODULES_MASTER";
 import React, { useState, useReducer, useRef } from "react";
-import { MultiSelect } from "react-multi-select-component";
+// import { MultiSelect } from "react-multi-select-component";
 import SummaryCardGroup from "./SummaryCardGroup";
 const filterReducer = (state, action) => {};
 
@@ -57,12 +57,12 @@ const SummaryPage = (props) => {
         </Col>
         <Col xs={3}>
           {" "}
-          <MultiSelect
+          {/* <MultiSelect
             options={mods_display}
             value={selected}
             onChange={changeModFilterHandler}
             labelledBy="Select"
-          />
+          /> */}
         </Col>
       </Row>
 
