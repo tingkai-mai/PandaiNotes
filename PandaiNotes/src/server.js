@@ -12,7 +12,7 @@ const app = express();
 process.on("unhandledException", (err) => {
   console.log(err.name, err.message);
   console.log("Uncaught Exception! Shutting down...");
-  server.close(() => {
+  app.close(() => {
     process.exit(1);
   });
 });
@@ -74,7 +74,7 @@ app.listen(PORT, () => {
 process.on("unhandledRejection", (err) => {
   console.log(err.name, err.message);
   console.log("Unhandled Rejection! Shutting down...");
-  server.close(() => {
+  app.close(() => {
     process.exit(1);
   });
 });

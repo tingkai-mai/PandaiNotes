@@ -1,12 +1,12 @@
-const Image = require("./../models/imageModel");
+const Document = require("./../models/documentModel");
 
-exports.createImage = async (req, res) => {
+exports.createDocument = async (req, res) => {
   try {
-    const image = await Image.create(req.body);
+    const document = await Document.create(req.body);
     res.status(200).json({
       status: "success",
       data: {
-        image: image,
+        document: document,
       },
     });
   } catch (err) {
@@ -20,15 +20,15 @@ exports.createImage = async (req, res) => {
 
 exports.updateImage = async (req, res) => {
   try {
-    const image = await Image.findOneAndUpdate(
-      { name: req.params.imageName },
+    const document = await Document.findOneAndUpdate(
+      { name: req.params.documentName },
       req.body,
       { new: true, runValidators: true }
     );
     res.status(200).json({
       status: "success",
       data: {
-        image: image,
+        document: document,
       },
     });
   } catch (err) {
@@ -40,14 +40,14 @@ exports.updateImage = async (req, res) => {
   }
 };
 
-exports.getAllImages = async (req, res) => {
+exports.getAllDocuments = async (req, res) => {
   try {
-    const images = await Image.find();
+    const documents = await Document.find();
     res.status(200).json({
       status: "success",
       data: {
-        images: images,
-        links: images.map((el) => el.link),
+        documents: documents,
+        contents: documents.map((el) => el.contents),
       },
     });
   } catch (err) {
@@ -59,20 +59,20 @@ exports.getAllImages = async (req, res) => {
   }
 };
 
-exports.getImage = async (req, res) => {
+exports.getDocument = async (req, res) => {
   try {
-    const image = await Image.findOne({ name: req.params.imageName });
+    const document = await Document.findOne({ name: req.params.documentName });
     res.status(200).json({
       status: "success",
       data: {
-        image: image,
-        link: image.link,
+        document: document,
+        content: document.content,
       },
     });
   } catch (err) {
     res.status(404).json({
       status: "fail",
-      message: `Could not find image with associated name: ${req.params.imageName}`,
+      message: `Could not find image with associated name: ${req.params.documentName}`,
     });
   }
 };
