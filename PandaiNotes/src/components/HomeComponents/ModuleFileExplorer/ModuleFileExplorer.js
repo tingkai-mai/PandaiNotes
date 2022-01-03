@@ -7,16 +7,19 @@ import $ from "jquery";
 
 const ModuleFilesExplorer = (props) => {
   const viewFileHandler = (evt) => {
-    console.log("Clicked");
+    props.onChangeModule(evt.target.id);
   };
 
   useEffect(() => {
+    var getthevalue = $(props).attr('id');
     $(".card").on("click", viewFileHandler);
 
     return () => {
+      console.log(getthevalue)
       $(".card").off("click", viewFileHandler);
     };
   }, []);
+
 
   return (
     <Container>
@@ -24,6 +27,7 @@ const ModuleFilesExplorer = (props) => {
         {MODULES.map((module) => {
           return (
             <ModuleCard
+              id={module.module_code}
               key={module.module_code}
               mod_code={module.module_code}
               mod_name={module.module_name}
