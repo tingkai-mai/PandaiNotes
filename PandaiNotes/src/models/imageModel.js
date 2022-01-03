@@ -6,7 +6,7 @@ const imageSchema = new mongoose.Schema({
   },
   dateCreated: {
     type: Date,
-    required: [true, "An image must contain a created date!"],
+    default: Date.now(),
   },
   link: {
     type: String,
