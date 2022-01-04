@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Document = require("./documentModel");
 
 const tagSchema = new mongoose.Schema({
   name: {
@@ -12,6 +13,10 @@ const tagSchema = new mongoose.Schema({
   content: {
     type: String,
     requried: [true, "A tag must have some stored content!"],
+  },
+  document: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Document",
   },
 });
 

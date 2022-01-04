@@ -12,9 +12,12 @@ const moduleSchema = new mongoose.Schema({
   description: {
     type: String,
   },
-  dateCreated: {
-    type: Date,
-    default: Date.now(),
+  status: {
+    type: String,
+    enum: {
+      values: ["taken", "over", "taking", "never"],
+      message: "Status of a module must only be: Taken, Over, Taking or Never.",
+    },
   },
 });
 

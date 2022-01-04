@@ -5,15 +5,12 @@ const documentRouter = express.Router();
 
 documentRouter.get("/getAllDocuments", documentController.getAllDocuments);
 
-documentRouter.get(
-  "/getdocument/:documentName",
-  documentController.getDocument
-);
+documentRouter.get("/getDocument/:documentId", documentController.getDocument);
 
 documentRouter.post("/pushDocument", documentController.createDocument);
 
 documentRouter.patch(
-  "/updatedDocument/:documentName",
+  "/updateDocument/:documentId",
   documentController.updateDocument
 );
 
