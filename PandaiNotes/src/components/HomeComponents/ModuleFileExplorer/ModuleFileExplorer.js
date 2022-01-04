@@ -4,6 +4,7 @@ import { Container, Row } from "react-bootstrap";
 import ModuleCard from "../../UI/ModuleCard/ModuleCard";
 import { MODULES } from "../../../db/SAMPLE_MODULES_CURRENT_DB";
 import $ from "jquery";
+import classes from "./ModuleFileExplorer.module.css"
 
 const ModuleFileExplorer = (props) => {
   const viewFileHandler = (evt) => {
@@ -22,7 +23,11 @@ const ModuleFileExplorer = (props) => {
 
   return (
     <Container>
-      <Row>{props.headerName}</Row>
+      <Row>
+        <div className={`${classes["title"]} flex-column`}>
+          {props.headerName}
+        </div>
+      </Row>
       <hr></hr>
       <Row>
         {MODULES.map((module) => {

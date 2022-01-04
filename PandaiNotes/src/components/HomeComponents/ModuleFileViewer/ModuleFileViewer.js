@@ -10,7 +10,7 @@ const ModuleFileViewer = (props) => {
       <Row>
         <Col>
           <div className={`${classes["title"]} flex-column`}>
-            {props.currModule}
+            {props.headerName}
           </div>
         </Col>
       </Row>

@@ -1,10 +1,14 @@
 import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
+
 import ModuleFileTemplate from "../../HomeComponents/ModuleFileTemplate/ModuleFileTemplate";
 
-function OpenFilePage() {
+const OpenFilePage = (props) => {
   return (
     <>
-      <ModuleFileTemplate useCase="OPENFILE" />
+      <Container>
+        <ModuleFileTemplate mainHeader={"Open"} useCase="OPENFILE" />
+      </Container>
     </>
   );
 }
