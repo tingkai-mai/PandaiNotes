@@ -1,12 +1,12 @@
-const Document = require("./../models/documentModel");
+const Todo = require("./../models/todoModel");
 
-exports.createDocument = async (req, res) => {
+exports.createTodo = async (req, res) => {
   try {
-    const document = await Document.create(req.body);
+    const todo = await Todo.create(req.body);
     res.status(200).json({
       status: "success",
       data: {
-        document: document,
+        todo: todo,
       },
     });
   } catch (err) {
@@ -18,17 +18,16 @@ exports.createDocument = async (req, res) => {
   }
 };
 
-exports.updateDocument = async (req, res) => {
+exports.updateTodo = async (req, res) => {
   try {
-    const document = await Document.findByIdAndUpdate(
-      req.params.documentId,
-      req.body,
-      { new: true, runValidators: true }
-    );
+    const todo = await Todo.findByIdAndUpdate(req.params.todoId, req.body, {
+      new: true,
+      runValidators: true,
+    });
     res.status(200).json({
       status: "success",
       data: {
-        document: document,
+        todo: todo,
       },
     });
   } catch (err) {
@@ -40,14 +39,14 @@ exports.updateDocument = async (req, res) => {
   }
 };
 
-exports.getAllDocuments = async (req, res) => {
+exports.getAllTodos = async (req, res) => {
   try {
-    const documents = await Document.find();
+    const todos = await Todo.find();
     res.status(200).json({
       status: "success",
       data: {
-        documents: documents,
-        contents: documents.map((el) => el.content),
+        todos: todos,
+        descriptions: todos.map((el) => el.description),
       },
     });
   } catch (err) {
@@ -59,24 +58,23 @@ exports.getAllDocuments = async (req, res) => {
   }
 };
 
-exports.getDocument = async (req, res) => {
+exports.getTodo = async (req, res) => {
   try {
-    const document = await Document.findById(req.params.documentId).populate({
-      path: "tags",
+    const todo = await Todo.findById(req.params.todoId).populate({
+      path: "module",
       select: "-__v",
     });
     res.status(200).json({
       status: "success",
       data: {
-        document: document,
-        content: document.content,
+        todo: todo,
       },
     });
   } catch (err) {
     console.log(err);
     res.status(404).json({
       status: "fail",
-      message: `Could not find document with associated id: ${req.params.documentId}`,
+      message: `Could not find todo task with associated id: ${req.params.todoId}`,
     });
   }
 };

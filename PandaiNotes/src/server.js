@@ -19,6 +19,10 @@ process.on("unhandledException", (err) => {
 
 // Importing custom routers
 const ImageRouter = require("./routes/imageRoutes");
+const DocumentRouter = require("./routes/documentRoutes");
+const ModuleRouter = require("./routes/moduleRoutes");
+const CategoryRouter = require("./routes/categoryRouter");
+const TodoRouter = require("./routes/todoRoutes");
 
 // add extra environemntal variables to process.env using dotenv package
 dotenv.config({ path: `${__dirname}/../config.env` });
@@ -49,6 +53,10 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 app.use("/api/v1/images", ImageRouter);
+app.use("/api/v1/documents", DocumentRouter);
+app.use("/api/v1/modules", ModuleRouter);
+app.use("/api/v1/cats", CategoryRouter);
+app.use("/api/v1/todo", TodoRouter);
 
 app.get("/", (req, res) => {
   res.end("Hello from the server");

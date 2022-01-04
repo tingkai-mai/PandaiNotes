@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Tag = require("./tagModel");
 
 // Schema for a single document in the text editor
 const documentSchema = new mongoose.Schema({
@@ -21,7 +22,8 @@ const documentSchema = new mongoose.Schema({
   tags: [
     {
       type: mongoose.Schema.ObjectId,
-      ref: "tag",
+      ref: "Tag",
+      select: "-__v",
     },
   ],
 });

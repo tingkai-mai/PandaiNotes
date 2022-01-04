@@ -1,12 +1,12 @@
-const Document = require("./../models/documentModel");
+const Cat = require("./../models/todoCategoryModel");
 
-exports.createDocument = async (req, res) => {
+exports.createCat = async (req, res) => {
   try {
-    const document = await Document.create(req.body);
+    const cat = await Cat.create(req.body);
     res.status(200).json({
       status: "success",
       data: {
-        document: document,
+        cat: cat,
       },
     });
   } catch (err) {
@@ -18,17 +18,16 @@ exports.createDocument = async (req, res) => {
   }
 };
 
-exports.updateDocument = async (req, res) => {
+exports.updateCat = async (req, res) => {
   try {
-    const document = await Document.findByIdAndUpdate(
-      req.params.documentId,
-      req.body,
-      { new: true, runValidators: true }
-    );
+    const cat = await Cat.findByIdAndUpdate(req.params.catId, req.body, {
+      new: true,
+      runValidators: true,
+    });
     res.status(200).json({
       status: "success",
       data: {
-        document: document,
+        cat: cat,
       },
     });
   } catch (err) {
@@ -40,14 +39,14 @@ exports.updateDocument = async (req, res) => {
   }
 };
 
-exports.getAllDocuments = async (req, res) => {
+exports.getAllCats = async (req, res) => {
   try {
-    const documents = await Document.find();
+    const cats = await Cat.find();
     res.status(200).json({
       status: "success",
       data: {
-        documents: documents,
-        contents: documents.map((el) => el.content),
+        cats: cats,
+        todoObjects: cats.map((el) => el.todo),
       },
     });
   } catch (err) {
@@ -59,24 +58,24 @@ exports.getAllDocuments = async (req, res) => {
   }
 };
 
-exports.getDocument = async (req, res) => {
+exports.getCat = async (req, res) => {
   try {
-    const document = await Document.findById(req.params.documentId).populate({
-      path: "tags",
+    const cat = await Cat.findById(req.params.catId).populate({
+      path: "todo",
       select: "-__v",
     });
     res.status(200).json({
       status: "success",
       data: {
-        document: document,
-        content: document.content,
+        cat: cat,
+        content: cat.todo,
       },
     });
   } catch (err) {
     console.log(err);
     res.status(404).json({
       status: "fail",
-      message: `Could not find document with associated id: ${req.params.documentId}`,
+      message: `Could not find category with associated id: ${req.params.catId}`,
     });
   }
 };
