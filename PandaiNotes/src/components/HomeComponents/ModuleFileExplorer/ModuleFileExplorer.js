@@ -24,12 +24,6 @@ const ModuleFileExplorer = (props) => {
   return (
     <Container>
       <Row>
-        <div className={`${classes["title"]} flex-column`}>
-          {props.headerName}
-        </div>
-      </Row>
-      <hr></hr>
-      <Row>
         {MODULES.map((module) => {
           return (
             <ModuleCard
