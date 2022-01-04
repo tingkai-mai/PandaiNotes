@@ -7,7 +7,7 @@ const SaveFilePage = (props) => {
   return (
     <>
       <Container>
-        <ModuleFileTemplate mainHeader={"Save"} useCase="SAVEFILE" />
+        <ModuleFileTemplate mainHeader={"Save As"} useCase="SAVEFILE" />
       </Container>
     </>
   );

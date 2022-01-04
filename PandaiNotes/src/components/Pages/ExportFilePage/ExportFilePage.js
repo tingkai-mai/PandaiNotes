@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Button } from "react-bootstrap";
 import classes from "./ExportFilePage.module.css";
 
 const ExportFilePage = (props) => {
@@ -9,10 +9,26 @@ const ExportFilePage = (props) => {
         <div className={`${classes["title"]} flex-column`}>Export</div>
       </Row>
       <hr></hr>
-      <Row>Download Locally</Row>
-      <Row>Save As</Row>
-      <Row>Export to Community</Row>
-      <Row>Settings</Row>
+      <Row>
+        <Button variant="outline-secondary" size="lg">
+          Download Locally
+        </Button>
+      </Row>
+      <Row>
+        <Button variant="outline-secondary" size="lg">
+          Save As
+        </Button>
+      </Row>
+      <Row>
+        <Button variant="outline-secondary" size="lg">
+          Export to Community
+        </Button>
+      </Row>
+      <Row>
+        <Button variant="outline-secondary" size="lg">
+          Settings
+        </Button>
+      </Row>
     </Container>
   );
 };

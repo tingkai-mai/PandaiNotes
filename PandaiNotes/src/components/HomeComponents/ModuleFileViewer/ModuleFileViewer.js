@@ -9,15 +9,6 @@ const ModuleFileViewer = (props) => {
     <Container>
       <Row>
         <Col>
-          <div className={`${classes["title"]} flex-column`}>
-            {props.headerName}
-          </div>
-        </Col>
-      </Row>
-      <Row></Row>
-      <hr></hr>
-      <Row>
-        <Col>
           <Button variant="secondary">Assignment</Button>
         </Col>
         <Col>
