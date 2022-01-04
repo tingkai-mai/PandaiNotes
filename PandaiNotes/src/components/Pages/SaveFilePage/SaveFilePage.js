@@ -1,10 +1,14 @@
 import React from "react";
-import ModuleFileTemplate from "../ViewFilePage/ViewFilePage";
+import { Container, Row, Col } from "react-bootstrap";
+
+import ModuleFileTemplate from "../../HomeComponents/ModuleFileTemplate/ModuleFileTemplate";
 
 const SaveFilePage = (props) => {
   return (
     <>
-      <ModuleFileTemplate useCase="SAVEFILE" />
+      <Container>
+        <ModuleFileTemplate mainHeader={"Save"} useCase="SAVEFILE" />
+      </Container>
     </>
   );
 };

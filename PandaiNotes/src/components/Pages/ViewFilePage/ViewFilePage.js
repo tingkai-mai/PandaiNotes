@@ -5,7 +5,7 @@ import ModuleFileTemplate from "../../HomeComponents/ModuleFileTemplate/ModuleFi
 const ViewFilePage = (props) => {
   return (
     <>
-      <ModuleFileTemplate useCase="VIEWFILE" />
+      <ModuleFileTemplate mainHeader={"Files"} useCase="VIEWFILE" />
     </>
   );
 };

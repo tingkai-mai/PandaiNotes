@@ -1,5 +1,5 @@
 import DocumentEditor from "./components/DocumentEditor/DocumentEditor";
-import NavbarInternal from "./components/UI/Navbar/Navbar";
+import NavbarInternal from "./components/UI/Navbar/NavbarInternal";
 import OverlayMain from "./components/OverlayMain/OverlayMain";
 import NavbarOverlay from "./components/NavbarOverlay/NavbarOverlay";
 

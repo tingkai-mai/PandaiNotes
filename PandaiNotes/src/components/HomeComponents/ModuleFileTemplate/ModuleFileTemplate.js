@@ -11,11 +11,11 @@ const ModuleFileTemplate = (props) => {
       <Container>
         {currPage === "main" ? (
           <ModuleFileExplorer
-            headerName={"File Explorer"}
+            headerName={props.mainHeader}
             onChangeModule={setModulePage}
           />
         ) : (
-          <ModuleFileViewer currModule={currPage} />
+          <ModuleFileViewer headerName={props.mainHeader} />
         )}
       </Container>
     </>
