@@ -4,15 +4,13 @@ import { MODULES_ALL_IN_NUS } from "../../../db/SAMPLE_MODULES_MASTER";
 import React, { useState, useReducer, useRef } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import SummaryCardGroup from "./SummaryCardGroup";
-// import * as NOTES from "../../../db/SAMPLE_NOTES_DB.json";
 import SAMPLE_NOTES_JSON from "../../../db/SAMPLE_NOTES_JSON";
 
 const filterReducer = (state, action) => {
-  // console.log(action);
-  // console.log(SAMPLE_NOTES_JSON);
+  // console.log("CALLED");
   const mods_filter = action.val.modules;
   const text_filter = action.val.text_filter;
-  // console.log(mods_filter);
+  const chosen_tags = action.val.chosen_tags;
 
   // Filter out the notes by the modules first.
   // Then, grab all the tags in the notes that belong to the specified modules.
@@ -50,7 +48,6 @@ const filterReducer = (state, action) => {
       });
     }
   });
-  // console.log(tags_filtered_by_mods);
 
   // Then filter each tag by keyword
   const regexp = new RegExp(text_filter, "i");
@@ -61,20 +58,24 @@ const filterReducer = (state, action) => {
     });
     tags_filtered_by_mods[tagType] = res;
   }
-  // console.log(tags_filtered_by_mods);
   return {
     text_filter: text_filter,
     modules: mods_filter,
-    tags: tags_filtered_by_mods,
+    tag_content: tags_filtered_by_mods,
+    chosen_tags: chosen_tags,
   };
 };
 
 const SummaryPage = (props) => {
   const textFilterRef = useRef();
-  const modFilterRef = useRef();
   const filteredMods = MODULES_ALL_IN_NUS.filter(
     (mod) => mod.taken === "current" || mod.taken === "over"
   );
+  const tags_display = [
+    { label: "Difficult", value: "Difficult" },
+    { label: "Important", value: "Important" },
+    { label: "For Revision", value: "For Revision" },
+  ];
   const mods_display = [];
   for (let i = 0; i < filteredMods.length; i++) {
     mods_display.push({
@@ -86,28 +87,58 @@ const SummaryPage = (props) => {
   const [currFilterState, dispatchFilter] = useReducer(filterReducer, {
     text_filter: "",
     modules: [],
-    tags: { difficult: [], important: [], revision: [] },
+    tag_content: { difficult: [], important: [], revision: [] },
+    chosen_tags: [],
   });
 
-  // BUG WITH SELECTION - For now, just set manually set selected modules
-  const [selected, setSelected] = useState([]);
-  const changeModFilterHandler = (evt) => {
-    setSelected((prevState) => {
-      return evt;
-    });
-    console.log(selected);
-  };
+  // Use Object as state to allow for more accurate state updating
+  const [selectedMods, setSelectedMods] = useState(mods_display);
+  const [selectedTags, setSelectedTags] = useState(tags_display);
 
-  const changeFilterHandler = () => {
-    const SELECTED_MODULES = [
-      "MA1521 Calculus for Computing",
-      "CS1101S Programming Methodology",
-    ];
+  // To display initial message
+  const [dirty, setDirty] = useState(false);
+
+  const changeModFilterHandler = (evt) => {
+    setDirty(true);
+    const updatedMods = evt;
+    setSelectedMods(evt);
     dispatchFilter({
       type: "FILTER",
       val: {
+        chosen_tags: selectedTags,
         text_filter: textFilterRef.current.value,
-        modules: SELECTED_MODULES,
+        modules: updatedMods.map((mod) => {
+          return mod.value;
+        }),
+      },
+    });
+  };
+
+  const changeTagsFilterHandler = (evt) => {
+    setDirty(true);
+    const updatedTags = evt;
+    // console.log(updatedTags);
+    setSelectedTags(evt);
+    dispatchFilter({
+      type: "FILTER",
+      val: {
+        chosen_tags: updatedTags,
+        text_filter: textFilterRef.current.value,
+        modules: selectedMods.map((mod) => {
+          return mod.value;
+        }),
+      },
+    });
+  };
+
+  const changeFilterHandler = () => {
+    setDirty(true);
+    dispatchFilter({
+      type: "FILTER",
+      val: {
+        chosen_tags: selectedTags,
+        text_filter: textFilterRef.current.value,
+        modules: selectedMods.map((mod) => mod.value),
       },
     });
   };
@@ -123,26 +154,40 @@ const SummaryPage = (props) => {
       <Row>
         <Col>
           <Form.Control
-            placeholder="Search by keyword or module..."
+            placeholder="Search by keyword..."
             onChange={changeFilterHandler}
             ref={textFilterRef}
           />
         </Col>
-        <Col xs={3}>
+        <Col xs={2}>
           {" "}
           <MultiSelect
             options={mods_display}
-            value={selected}
+            value={selectedMods}
             onChange={changeModFilterHandler}
+            labelledBy="Select"
+          />
+        </Col>
+        <Col xs={2}>
+          <MultiSelect
+            options={tags_display}
+            value={selectedTags}
+            onChange={changeTagsFilterHandler}
             labelledBy="Select"
           />
         </Col>
       </Row>
 
       {/* Display Cards */}
-      {/* <div>{JSON.stringify(currFilterState.tags)}</div> */}
-      {<div>{JSON.stringify(selected)}</div>}
-      <SummaryCardGroup tags={currFilterState.tags} />
+      {/* {<div>{JSON.stringify(selectedMods)}</div>} */}
+      {dirty ? (
+        <SummaryCardGroup
+          tagContent={currFilterState.tag_content}
+          chosenTags={currFilterState.chosen_tags.map((tag) => tag.value)}
+        />
+      ) : (
+        <div className={`${classes["placeholder"]} p-3`}>Enter a filter...</div>
+      )}
     </Container>
   );
 };

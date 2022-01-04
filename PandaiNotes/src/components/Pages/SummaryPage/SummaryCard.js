@@ -2,7 +2,7 @@ import { Card } from "react-bootstrap";
 import classes from "./SummaryCard.module.scss";
 
 const SummaryCard = (props) => {
-  let tagData = props.tags;
+  let tagData = props.tagContent;
 
   return (
     <Card className="m-3">

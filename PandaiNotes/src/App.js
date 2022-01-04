@@ -27,7 +27,7 @@ function App() {
 
   const [overlayActive, setOverlayActive] = useState(false); // Changed
   const [NavbarActive, setNavbarActive] = useState(false);
-  const [overlayPage, setOverlayPage] = useState(<TodoPage />); // Changed
+  const [overlayPage, setOverlayPage] = useState(<SummaryPage />); // Changed
   const [overlayInternalActive, setInternalActive] = useState(false);
   const [currPage, setCurrPage] = useState(<ExportFilePage />);
 
