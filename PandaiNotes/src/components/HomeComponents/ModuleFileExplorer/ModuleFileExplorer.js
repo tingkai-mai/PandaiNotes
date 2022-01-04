@@ -5,7 +5,7 @@ import ModuleCard from "../../UI/ModuleCard/ModuleCard";
 import { MODULES } from "../../../db/SAMPLE_MODULES_CURRENT_DB";
 import $ from "jquery";
 
-const ModuleFilesExplorer = (props) => {
+const ModuleFileExplorer = (props) => {
   const viewFileHandler = (evt) => {
     props.onChangeModule(evt.target.id);
   };
@@ -40,4 +40,4 @@ const ModuleFilesExplorer = (props) => {
   );
 };
 
-export default ModuleFilesExplorer;
+export default ModuleFileExplorer;

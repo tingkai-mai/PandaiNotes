@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./Navbar.module.css";
+import classes from "./Navbar.module.scss";
 import { NavbarData } from "./NavbarData";
 import { Nav, Navbar, NavDropdown, Container, Row, Col } from "react-bootstrap";
 

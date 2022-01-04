@@ -1,17 +1,16 @@
 import { React, useState } from "react";
 import { Container, Row } from "react-bootstrap";
-import classes from "./ViewFile.module.css";
-import ModuleFilesExplorer from "../../HomeComponents/ModuleFileExplorer/ModuleFileExplorer";
-import ModuleFileViewer from "../ModuleFileViewer/ModuleFileViewer";
+import ModuleFileExplorer from "../ModuleFileExplorer/ModuleFileExplorer";
+import ModuleFileViewer from "../../HomeComponents/ModuleFileViewer/ModuleFileViewer";
 
-const ViewFilePage = (props) => {
+const ModuleFileTemplate = (props) => {
   const [currPage, setModulePage] = useState("main");
 
   return (
     <>
       <Container>
         {currPage === "main" ? (
-          <ModuleFilesExplorer
+          <ModuleFileExplorer
             headerName={"File Explorer"}
             onChangeModule={setModulePage}
           />
@@ -23,4 +22,4 @@ const ViewFilePage = (props) => {
   );
 };
 
-export default ViewFilePage;
+export default ModuleFileTemplate;

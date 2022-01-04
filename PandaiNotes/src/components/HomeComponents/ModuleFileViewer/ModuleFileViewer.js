@@ -4,12 +4,14 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import classes from "./ModuleFileViewer.module.css";
 import { MODULES } from "../../../db/SAMPLE_MODULES_CURRENT_DB";
 
-const SingleModulePage = (props) => {
+const ModuleFileViewer = (props) => {
   return (
     <Container>
       <Row>
         <Col>
-          <div className={`${classes["title"]} flex-column`}>{props.currModule}</div>
+          <div className={`${classes["title"]} flex-column`}>
+            {props.currModule}
+          </div>
         </Col>
       </Row>
       <Row></Row>
@@ -36,4 +38,4 @@ const SingleModulePage = (props) => {
   );
 };
 
-export default SingleModulePage;
+export default ModuleFileViewer;

@@ -17,6 +17,10 @@ h1 {
   background-color: #70ad47;
   transition: 0.5s;
   margin-left: -7%;
+
+  h1 {
+    cursor: pointer;
+  }
 }
 
 .sidebar-list {

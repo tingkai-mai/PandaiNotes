@@ -3,8 +3,10 @@ import tinymce from "tinymce/tinymce";
 import { MODULES_ALL_IN_NUS } from "../../db/SAMPLE_MODULES_MASTER";
 import { useRef, useState, useEffect, useContext } from "react";
 import NoteContext from "../../store/note-context";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
+import { FiAlertTriangle } from "react-icons/fi";
+import classes from "./DocumentEditor.module.scss";
 
 tinymce.PluginManager.add("tag-difficult", function (editor) {
   console.log("setting up context-menu tag-difficult");
@@ -120,6 +122,7 @@ const settings = {
   height: "100vh",
   menubar: false,
   resize: false,
+  // Style highlighted content here
   content_style: `.mce-annotation { background-color: darkgreen; color: white; }
     span[data-mce-annotation="difficult"] { background-color: yellow; color: black; } 
     span[data-mce-annotation="important"] { background-color: red; color: white; } 
@@ -133,35 +136,36 @@ const settings = {
   },
 
   setup: function (editor) {
-    // Convenience button to grab tags. Uncomment to see it at the top of the menu bar!
-    // Uncomment annotator.register("grab-tags", ...) as well
-    // editor.ui.registry.addButton("grab-tags", {
-    //   text: "grab-tags",
-    //   onAction: function () {
-    //     console.log(editor.annotator.getAll("difficult"));
-    //   },
-    //   onSetup: function (btnApi) {
-    //     editor.annotator.annotationChanged(
-    //       "difficult",
-    //       function (state, name, obj) {
-    //         console.log("Selecting difficult annotation: ", state);
-    //       }
-    //     );
-    //   },
-    // });
+    // Convenience button to grab tags.
+    editor.ui.registry.addButton("grab-tags", {
+      text: "Grab tags",
+      onAction: function () {
+        console.log("Difficult: ", editor.annotator.getAll("difficult"));
+        console.log("Important: ", editor.annotator.getAll("important"));
+        console.log("Revision: ", editor.annotator.getAll("revision"));
+      },
+      onSetup: function (btnApi) {
+        editor.annotator.annotationChanged(
+          "difficult",
+          function (state, name, obj) {
+            console.log("Selecting difficult annotation: ", state);
+          }
+        );
+      },
+    });
 
     editor.on("init", function () {
-      // editor.annotator.register("grab-tags", {
-      //   persistent: true,
-      //   decorate: function (uid, data) {
-      //     return {
-      //       attributes: {
-      //         "data-tagging-comment": data.comment ? data.comment : "",
-      //         // "data-tagging-author": data.author ? data.author : "anonymous",
-      //       },
-      //     };
-      //   },
-      // });
+      editor.annotator.register("grab-tags", {
+        persistent: true,
+        decorate: function (uid, data) {
+          return {
+            attributes: {
+              "data-tagging-comment": data.comment ? data.comment : "",
+              // "data-tagging-author": data.author ? data.author : "anonymous",
+            },
+          };
+        },
+      });
       editor.annotator.register("difficult", {
         persistent: true,
         decorate: function (uid, data) {
@@ -220,49 +224,53 @@ function DocumentEditor({ initialValue }) {
       revision: tinymce.get()[0].annotator.getAll("revision"),
     };
     // Checks if the Note is new or not. If it's a new Note, prompt user to Save As...
+    // NOTE: Saving should eventually be handled by SaveFile component. User should be able to choose the module
+    // the note is attached to. For now, a simple dropdown is implemented.
     if (noteCtx.noteObject.id === null) {
       console.log("New note detected");
       console.log("Raise Save As...");
-      // Things should be handled from the SaveAs component, probably need to pass things to Save As as a prop
     } else {
       noteCtx.onSaveNote(
         noteCtx.noteObject.id,
         content,
         moduleRef.current.value,
         tags
-      ); // TODO: Change module: null to module that user assigns the note to!!!!!!
+      );
     }
-  };
-
-  // Tag for removal
-  const noteCurrModuleHandler = () => {
-    console.log(moduleRef.current.value);
-  };
-
-  const grabTaggedHandler = () => {
-    const difficult = tinymce.get()[0].annotator.getAll("difficult");
-    const important = tinymce.get()[0].annotator.getAll("important");
-    const revision = tinymce.get()[0].annotator.getAll("revision");
-    console.log("Difficult:");
-    console.log(difficult);
-    console.log("Important:");
-    console.log(important);
-    console.log("Revision:");
-    console.log(revision);
   };
 
   return (
     <>
-      <Form>
-        <Form.Label>Choose the module this note belongs to:</Form.Label>
-        <Form.Select size="lg" ref={moduleRef} onChange={noteCurrModuleHandler}>
-          {MODULES_ALL_IN_NUS.filter(
-            (mod) => mod.taken === "current" || mod.taken === "over"
-          ).map((mod) => (
-            <option>{`${mod.module_code} ${mod.module_name}`}</option>
-          ))}
-        </Form.Select>
-      </Form>
+      <div>
+        <Form className="mt-2">
+          <Form.Label>Choose the module this note belongs to:</Form.Label>
+          <Form.Select
+            size="lg"
+            ref={moduleRef}
+            onChange={() => {
+              console.log(moduleRef.current.value);
+            }}
+          >
+            {MODULES_ALL_IN_NUS.filter(
+              (mod) => mod.taken === "current" || mod.taken === "over"
+            ).map((mod) => (
+              <option>{`${mod.module_code} ${mod.module_name}`}</option>
+            ))}
+          </Form.Select>
+        </Form>
+        {dirty ? (
+          <OverlayTrigger
+            placement="top"
+            overlay={<Tooltip>You have unsaved changes!</Tooltip>}
+          >
+            <Button variant="outline-warning">
+              <FiAlertTriangle />
+            </Button>
+          </OverlayTrigger>
+        ) : (
+          <div className={classes["filler"]} />
+        )}
+      </div>
       <Editor
         apiKey="d3f45aljwuxlcvru4bo029urhq9qjtrutg60orm85vtmuzxh"
         initialValue={noteCtx.noteObject.content}
@@ -273,10 +281,7 @@ function DocumentEditor({ initialValue }) {
       <button onClick={save} disabled={!dirty}>
         Save
       </button>
-      {dirty && <p>You have unsaved content!</p>}
-      <Button onClick={grabTaggedHandler}>Grab tagged</Button>
-      <Button onClick={save}>Save Note</Button>
-      <Button onClick={noteCtx.onLoadNote}>Load Note</Button>
+      {/* <Button onClick={noteCtx.onLoadNote}>Load Note</Button> */}
     </>
   );
 }

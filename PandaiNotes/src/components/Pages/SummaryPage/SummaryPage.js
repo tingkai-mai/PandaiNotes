@@ -2,7 +2,7 @@ import classes from "./SummaryPage.module.scss";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { MODULES_ALL_IN_NUS } from "../../../db/SAMPLE_MODULES_MASTER";
 import React, { useState, useReducer, useRef } from "react";
-// import { MultiSelect } from "react-multi-select-component";
+import { MultiSelect } from "react-multi-select-component";
 import SummaryCardGroup from "./SummaryCardGroup";
 // import * as NOTES from "../../../db/SAMPLE_NOTES_DB.json";
 import SAMPLE_NOTES_JSON from "../../../db/SAMPLE_NOTES_JSON";
@@ -95,6 +95,7 @@ const SummaryPage = (props) => {
     setSelected((prevState) => {
       return evt;
     });
+    console.log(selected);
   };
 
   const changeFilterHandler = () => {
@@ -129,17 +130,18 @@ const SummaryPage = (props) => {
         </Col>
         <Col xs={3}>
           {" "}
-          {/* <MultiSelect
+          <MultiSelect
             options={mods_display}
             value={selected}
             onChange={changeModFilterHandler}
             labelledBy="Select"
-          /> */}
+          />
         </Col>
       </Row>
 
       {/* Display Cards */}
       {/* <div>{JSON.stringify(currFilterState.tags)}</div> */}
+      {<div>{JSON.stringify(selected)}</div>}
       <SummaryCardGroup tags={currFilterState.tags} />
     </Container>
   );

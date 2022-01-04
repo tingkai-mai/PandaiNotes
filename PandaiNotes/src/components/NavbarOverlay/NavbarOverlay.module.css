@@ -13,10 +13,11 @@ h1 {
 
 .side-navbar {
   width: 200px;
-  height:100vh;
+  height: 100vh;
   background-color: #70ad47;
   transition: 0.5s;
   margin-left: -7%;
+  cursor: pointer;
 }
 
 .sidebar-list {
