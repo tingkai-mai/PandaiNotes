@@ -4,20 +4,23 @@ import ModuleFileExplorer from "../ModuleFileExplorer/ModuleFileExplorer";
 import ModuleFileViewer from "../../HomeComponents/ModuleFileViewer/ModuleFileViewer";
 import classes from "./ModuleFileTemplate.module.css";
 import Searchbar from "../../UI/Searchbar/Searchbar";
+import { BsChevronDoubleLeft } from "react-icons/bs";
 
 const ModuleFileTemplate = (props) => {
   const [currPage, setModulePage] = useState(false);
+  const [currMod, setCurrMod] = useState("none");
 
   const onCloseOverlay = () => {
     setModulePage(false);
   };
+
 
   return (
     <>
       <Container>
         {currPage ? (
           <Button onClick={() => onCloseOverlay()} variant="warning">
-            Back to Modules
+            < BsChevronDoubleLeft /> Back to Modules
           </Button>
         ) : null}
         <Row>
@@ -29,9 +32,9 @@ const ModuleFileTemplate = (props) => {
           {currPage ? null : <Searchbar /> }
           {currPage ? null : <hr></hr> }
         {currPage === false ? (
-          <ModuleFileExplorer onChangeModule={setModulePage} />
+          <ModuleFileExplorer onChangeModName={setCurrMod}  onChangeModule={setModulePage} />
         ) : (
-          <ModuleFileViewer />
+          <ModuleFileViewer viewcurrMod={currMod}/>
         )}
       </Container>
     </>

@@ -4,7 +4,7 @@ import { MODULES_ALL_IN_NUS } from "../../../db/SAMPLE_MODULES_MASTER";
 import React, { useState, useReducer, useRef } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import SummaryCardGroup from "./SummaryCardGroup";
-import SAMPLE_NOTES_JSON from "../../../db/SAMPLE_NOTES_JSON";
+import SAMPLE_SUMMARY_JSON from "../../../db/SAMPLE_SUMMARY_JSON";
 
 const filterReducer = (state, action) => {
   // console.log("CALLED");
@@ -16,7 +16,7 @@ const filterReducer = (state, action) => {
   // Then, grab all the tags in the notes that belong to the specified modules.
   // Arrange them into difficult, important, and revision on line 20
   let tags_filtered_by_mods = { difficult: [], important: [], revision: [] };
-  let filtered_notes = SAMPLE_NOTES_JSON.filter((note) =>
+  let filtered_notes = SAMPLE_SUMMARY_JSON.filter((note) =>
     mods_filter.includes(note.module)
   );
   filtered_notes.map((note) => {
