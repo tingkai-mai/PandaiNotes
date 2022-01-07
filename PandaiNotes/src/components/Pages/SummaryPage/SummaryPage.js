@@ -1,13 +1,12 @@
 import classes from "./SummaryPage.module.scss";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { MODULES_ALL_IN_NUS } from "../../../db/SAMPLE_MODULES_MASTER";
 import React, { useState, useReducer, useRef } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import SummaryCardGroup from "./SummaryCardGroup";
 import SAMPLE_NOTES_JSON from "../../../db/SAMPLE_NOTES_JSON";
+import { MODULES_ALL_IN_NUS } from "../../../db/SAMPLE_MODULES_MASTER";
 
 const filterReducer = (state, action) => {
-  // console.log("CALLED");
   const mods_filter = action.val.modules;
   const text_filter = action.val.text_filter;
   const chosen_tags = action.val.chosen_tags;

@@ -8,10 +8,6 @@ const CategorySchema = new mongoose.Schema({
   },
   color: {
     type: String,
-    unique: [
-      true,
-      "An existing todo category with this colour already exists!",
-    ],
     required: [true, "A todo category must have its own colour!"],
   },
   // DB reference to Todo db

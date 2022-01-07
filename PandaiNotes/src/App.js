@@ -25,9 +25,9 @@ import classes from "./App.module.scss";
 function App() {
   // Create overlay handler
 
-  const [overlayActive, setOverlayActive] = useState(false); // Changed
+  const [overlayActive, setOverlayActive] = useState(true); // Changed
   const [NavbarActive, setNavbarActive] = useState(false);
-  const [overlayPage, setOverlayPage] = useState(<SummaryPage />); // Changed
+  const [overlayPage, setOverlayPage] = useState(<TodoPage />); // Changed
   const [overlayInternalActive, setInternalActive] = useState(false);
   const [currPage, setCurrPage] = useState(<ExportFilePage />);
 

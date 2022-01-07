@@ -4,7 +4,7 @@ import { SAMPLE_NOTES } from "../db/SAMPLE_NOTES_DB";
 // Change me to set the initial note. Should default to "" for the actual code!
 // Currently is SAMPLE_NOTE_SMALL for testing purposes.
 const EMPTY_NOTE = { id: null, content: "", module: "" };
-const INITIAL_NOTE = SAMPLE_NOTES[1];
+const INITIAL_NOTE = SAMPLE_NOTES[0];
 
 const axios = require("axios");
 const NoteContext = React.createContext({
@@ -39,28 +39,65 @@ export const NoteContextProvider = (props) => {
         };
       }
     }
-    console.log("finalized tags are: ", tags);
-
+    // POST to DB
     axios
-      .post("http://localhost:3001/api/v1/txtedit", {
-        id: id,
-        content: content,
+      .post("http://localhost:3001/api/v1/documents/pushDocument", {
+        name: "Sample Name",
         module: module,
-        difficult: tags.difficult,
-        important: tags.important,
-        revision: tags.revision,
+        dateCreated: new Date(),
+        content: content,
+        tags: [],
       })
       .then((res) => {
+        console.log("Successfully saved Note");
         console.log(`statusCode: ${res.status}`);
         console.log(res);
       })
       .catch((error) => {
         console.error(error);
       });
+
+    // POST to txt file
+    // axios
+    //   .post("http://localhost:3001/api/v1/txtedit", {
+    //     id: id,
+    //     content: content,
+    //     module: module,
+    //     difficult: tags.difficult,
+    //     important: tags.important,
+    //     revision: tags.revision,
+    //   })
+    //   .then((res) => {
+    //     console.log(`statusCode: ${res.status}`);
+    //     console.log(res);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
   };
 
   const loadNoteHandler = (id) => {
-    console.log("Loading note");
+    id = "61d456c5a2191d3b44ecacb4"; // REMOVE
+    axios
+      .get(`http://localhost:3001/api/v1/documents/getDocument/${id}`)
+      .then((res) => {
+        console.log("Successfully loaded Note");
+        console.log(`statusCode: ${res.status}`);
+        console.log(res);
+        const noteID = res.data.data.document._id;
+        const noteContent = res.data.data.content;
+        const noteModule = res.data.data.document.module;
+        console.log(noteID);
+        console.log(noteContent);
+        console.log(noteModule);
+        setActiveNote({ id: noteID, content: noteContent, module: noteModule });
+      })
+      .catch((error) => {
+        console.log(
+          "Error: Document ID does not exist in Database. This shouldn't happen..."
+        );
+        console.error(error);
+      });
   };
 
   return (

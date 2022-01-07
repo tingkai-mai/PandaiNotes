@@ -6,6 +6,7 @@ import classes from "./TodoItem.module.scss";
 import DateTimePicker from "react-datetime-picker";
 
 const TodoItem = (props) => {
+  // console.log(props);
   const [open, setOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [calendarValue, setCalendarValue] = useState(props.todoItem.deadline);
@@ -16,7 +17,7 @@ const TodoItem = (props) => {
     console.log(evt.target.value);
   };
 
-  const title = useRef();
+  const name = useRef();
   const description = useRef();
   const moduleTagged = useRef();
 
@@ -25,12 +26,14 @@ const TodoItem = (props) => {
   };
 
   const updateItemhandler = (evt) => {
+    let module = moduleTagged.current.value;
+    console.log(module.slice(0, 6));
     const newTodoObject = {
-      todo_item_id: props.item_id,
+      todo_item_id: props.todoItem._id,
       category_item_id: props.category_id,
-      module: moduleTagged.current.value,
-      module_title: props.todoItem.module_title,
-      title: title.current.value,
+      module: null,
+      // module: { code: module.slice(0, 6), name: module.slice(7) },
+      name: name.current.value,
       description: description.current.value,
       deadline: calendarValue,
     };
@@ -40,6 +43,7 @@ const TodoItem = (props) => {
 
   const deleteItemHandler = (evt) => {
     console.log("Deleting Item in TodoItem");
+    console.log(evt);
     props.onDeleteItem(evt);
   };
 
@@ -48,18 +52,19 @@ const TodoItem = (props) => {
   };
   return (
     <>
+      {/* Checkbox */}
       <Form.Check
-        key={props.todoItem.id}
+        key={props.todoItem._id}
         className={`${classes.inputItem}`}
-        value={props.todoItem.id}
+        value={props.todoItem._id}
       >
         <Form.Check.Input
           onClick={checkboxHandler}
           type="checkbox"
-          value={props.todoItem.id}
+          value={props.todoItem._id}
         />
         <Form.Check.Label
-          title={props.todoItem.id}
+          title={props.todoItem._id}
           onClick={openItemHandler}
           className="fw-light"
           // style={{ textDecoration: "line-through" }}
@@ -68,14 +73,17 @@ const TodoItem = (props) => {
         </Form.Check.Label>
         <MdDeleteOutline
           onClick={deleteItemHandler}
-          value={props.todoItem.id}
+          value={props.todoItem._id}
         />
       </Form.Check>
+
+      {/* To show either view or editing */}
       <Collapse in={open}>
+        {/* View Todo Content */}
         {!isEditing ? (
           <div>
-            <p>Title: {props.todoItem.title}</p>
-            <p>Deadline: {props.todoItem.deadline.toString()}</p>
+            <p>Name: {props.todoItem.name}</p>
+            <p>Deadline: {String(props.todoItem.deadline)}</p>
             <p>Description: {props.todoItem.description}</p>
             <p>
               Module Tagged To: {props.todoItem.module}{" "}
@@ -84,10 +92,11 @@ const TodoItem = (props) => {
             <AiOutlineEdit onClick={openUpdateItemHandler} />
           </div>
         ) : (
+          // Edit Todo Content
           <Form>
             <Form.Group className="mb-3">
-              <Form.Label>Title: </Form.Label>
-              <Form.Control defaultValue={props.todoItem.title} ref={title} />
+              <Form.Label>Name: </Form.Label>
+              <Form.Control defaultValue={props.todoItem.name} ref={name} />
               <Form.Label>Deadline: </Form.Label>
               <DateTimePicker
                 onChange={setCalendarValue}
@@ -101,9 +110,9 @@ const TodoItem = (props) => {
               <Form.Label>Module Tagged To: </Form.Label>
               <Form.Select
                 defaultValue={
-                  props.todoItem.module.toString() +
+                  String(props.todoItem.module) +
                   " " +
-                  props.todoItem.module_title.toString()
+                  String(props.todoItem.module_title)
                 }
                 ref={moduleTagged}
               >
@@ -111,8 +120,8 @@ const TodoItem = (props) => {
                 {props.modules.map((module) => {
                   return (
                     <option
-                      key={module.module_code}
-                    >{`${module.module_code} ${module.module_name}`}</option>
+                      key={module._id}
+                    >{`${module.code} ${module.name}`}</option>
                   );
                 })}
               </Form.Select>

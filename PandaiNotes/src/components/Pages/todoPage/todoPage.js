@@ -1,4 +1,4 @@
-import React, { createRef, useState } from "react";
+import React, { createRef, useState, useEffect } from "react";
 import classes from "./Todo.module.scss";
 
 import { Container, Row, Col, Form, FloatingLabel } from "react-bootstrap";
@@ -7,6 +7,8 @@ import { MODULES } from "../../../db/SAMPLE_MODULES_CURRENT_DB";
 import { TODO_CATEGORIES } from "../../../db/SAMPLE_TODO_DB";
 import TodoCard from "./TodoCard";
 import TodoCategoryModal from "./TodoCategoryModal";
+
+const axios = require("axios");
 
 // HELPER FUNCTIONS
 function sliceIntoChunks(arr, chunkSize) {
@@ -18,9 +20,49 @@ function sliceIntoChunks(arr, chunkSize) {
   return res;
 }
 
+function saveTodoCategory(title, color, TodoItems) {
+  axios
+    .post("http://localhost:3001/api/v1/cats/pushCat", {
+      title: title,
+      color: color,
+      todo: TodoItems,
+    })
+    .then((res) => {
+      console.log("Successfully saved TodoCategory");
+      console.log(`statusCode: ${res.status}`);
+      console.log(res);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 const TodoPage = (props) => {
-  const [todoCategories, setTodoCategories] = useState(TODO_CATEGORIES);
+  const [todoCategories, setTodoCategories] = useState([]);
+  const [modules, setModules] = useState([]);
+  async function getAllCategories() {
+    let categories = await axios.get(
+      "http://localhost:3001/api/v1/cats/getAllCats"
+    );
+    categories = categories.data.data.cats;
+    setTodoCategories(categories);
+  }
+
+  async function getModules() {
+    let modules = await axios.get(
+      "http://localhost:3001/api/v1/modules/getAllModules"
+    );
+    setModules(modules.data.data.modules);
+  }
+
+  useEffect(() => {
+    console.log("Setting categories");
+    getAllCategories();
+    getModules();
+  }, []);
+
   const chunks = sliceIntoChunks(todoCategories, 3);
+  console.log(chunks);
 
   // Filter categories containing only modules that fit the requirement
   const filteredModule = createRef();
@@ -52,42 +94,45 @@ const TodoPage = (props) => {
     delete newTodoItemObject.todo_item_id;
 
     setTodoCategories((prevState) => {
-      // ERROR HERE ???
       let newState = prevState.filter(
-        (category) => category.id !== todoItemObject.category_item_id
+        (category) => category._id !== todoItemObject.category_item_id
       ); // Remove the Category that's being added to first
       let category_id_to_filter = todoItemObject.category_item_id;
       console.log("ID to filter is: " + category_id_to_filter);
       const newCategory = prevState.filter(
-        (category) => category.id === todoItemObject.category_item_id
+        (category) => category._id === todoItemObject.category_item_id
       ); // Get the Category that's being added to, then add the new todo item to it
 
-      console.log(newCategory[0].todo_items.push(newTodoItemObject));
+      console.log(newCategory[0].todo.push(newTodoItemObject));
       console.log("New category item is: ");
       console.log(newCategory);
 
       newState = [newCategory[0], ...newState];
       console.log("New state is: ");
       console.log(newState);
+}
       return newState;
     });
   };
 
   const removeTodoHandler = (todoItemID, todoCategoryID) => {
     console.log("Removing Todo in TodoPage");
-    console.log(todoItemID);
+    console.log("todoItemID:", todoItemID);
+    console.log("todoCategoryID:", todoItemID);
     setTodoCategories((prevState) => {
       let newState = prevState.filter(
-        (category) => category.id !== todoCategoryID
+        (category) => category._id !== todoCategoryID
       ); // Remove the Category that's being removed from first
+      console.log(newState);
+
       const newCategory = prevState.filter(
-        (category) => category.id === todoCategoryID
+        (category) => category._id === todoCategoryID
       ); // Get the Category that's being removed from to, then remove the selected todo item
 
-      // newCategory[0].todo_items = newCategory[0].todo_items.filter((item) => item.id !== todoItemID);
+      console.log(newCategory);
       console.log(
-        (newCategory[0].todo_items = newCategory[0].todo_items.filter(
-          (item) => item.id.toString() !== todoItemID
+        (newCategory[0].todo = newCategory[0].todo.filter(
+          (item) => String(item._id) !== todoItemID
         ))
       );
       console.log("New category item is: ");
@@ -100,10 +145,11 @@ const TodoPage = (props) => {
     });
   };
 
-  // todoUpdatedItemObject should contain just the field + ID
+  // todoUpdatedItemObject should contain just the field + ID of todoItem
   const updateTodoHandler = (todoItemObject) => {
+    console.log(todoItemObject);
     console.log("Updating item...");
-    const newTodoItemObject = { ...todoItemObject };
+    const newTodoItemObject = JSON.parse(JSON.stringify(todoItemObject));
     const category_id = newTodoItemObject.category_item_id;
     newTodoItemObject["id"] = newTodoItemObject.todo_item_id;
     delete newTodoItemObject.category_item_id;
@@ -114,30 +160,28 @@ const TodoPage = (props) => {
     setTodoCategories((prevState) => {
       // Filter out unedited ItemCategories
       let newState = prevState.filter((category) => {
-        return category.id !== category_id;
+        return category._id !== category_id;
       });
 
       // Grab the edited ItemCategory
       let oldItemCategory = prevState.filter((category) => {
-        return category.id === category_id;
+        return category._id === category_id;
       })[0];
 
       // Grab the unedited todo items in the edited ItemCategory
-      oldItemCategory.todo_items = oldItemCategory.todo_items.filter((item) => {
-        return item.id !== todoItemObject.todo_item_id;
+      oldItemCategory.todo = oldItemCategory.todo.filter((item) => {
+        return item._id !== todoItemObject.todo_item_id;
       });
 
       // Add the new todo item to the edited ItemCategory
-      let newItemCategory = { ...oldItemCategory };
-      newItemCategory.todo_items = [
-        newTodoItemObject,
-        ...newItemCategory.todo_items,
-      ];
+      let newItemCategory = JSON.parse(JSON.stringify(oldItemCategory));
+      newItemCategory.todo = [newTodoItemObject, ...newItemCategory.todo];
 
       // Add the new ItemCategory to the newState
       newState = [newItemCategory, ...newState];
 
-      console.log(newState);
+      console.log("Prevstate", prevState);
+      console.log("Newstate", newState);
       return newState;
     });
   };
@@ -145,17 +189,16 @@ const TodoPage = (props) => {
   // Handle Todo Categories
   const addTodoCategoryHandler = (todoCategoryObject) => {
     console.log("Added a Todo Category");
-    if (!Object.keys(todoCategoryObject).includes("todo_items")) {
-      todoCategoryObject = { ...todoCategoryObject, todo_items: [] };
-    }
     console.log(todoCategoryObject);
+    saveTodoCategory(
+      todoCategoryObject.title,
+      todoCategoryObject.color,
+      todoCategoryObject.todo_items
+    );
 
     setTodoCategories((prevState) => {
-      let newState = prevState.filter(
-        (category) => category.id !== todoCategoryObject.id
-      );
-      newState = [todoCategoryObject, ...newState];
-      console.log(newState);
+      let newState = [todoCategoryObject, ...prevState];
+      console.log("New Category Objects are: ", newState);
       return newState;
     });
   };
@@ -164,7 +207,7 @@ const TodoPage = (props) => {
     console.log("Removing Todo Category");
     setTodoCategories((prevState) => {
       let newState = prevState.filter(
-        (category) => category.id !== category_id
+        (category) => category._id !== category_id
       );
       console.log(newState);
       return newState;
@@ -191,9 +234,9 @@ const TodoPage = (props) => {
             <FloatingLabel label="Choose a module to filter...">
               <Form.Select onChange={chooseModuleHandler} ref={filteredModule}>
                 <option value="ALL">All modules...</option>
-                {MODULES.map((module) => (
-                  <option key={module.key} value={module.module_code}>
-                    {module.module_code + " " + module.module_name}
+                {modules.map((module) => (
+                  <option key={module._id} value={module.code}>
+                    {module.code + " " + module.name}
                   </option>
                 ))}
               </Form.Select>
@@ -218,12 +261,12 @@ const TodoPage = (props) => {
           {chunk.map((category) => {
             return (
               <TodoCard
-                key={category.id}
-                category_id={category.id}
+                key={category._id}
+                category_id={category._id}
                 cardTitle={category.title}
                 cardColor={category.color}
-                todoItems={category.todo_items}
-                modules={MODULES}
+                todoItems={category.todo}
+                modules={modules}
                 className="m-3"
                 onAddTodo={addTodoHandler}
                 onRemoveTodo={removeTodoHandler}

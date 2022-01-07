@@ -41,7 +41,11 @@ exports.updateCat = async (req, res) => {
 
 exports.getAllCats = async (req, res) => {
   try {
-    const cats = await Cat.find();
+    const cats = await Cat.find().populate({
+      path: "todo",
+      populate: { path: "module" },
+      select: "-__v",
+    });
     res.status(200).json({
       status: "success",
       data: {

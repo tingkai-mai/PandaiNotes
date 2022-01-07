@@ -55,8 +55,8 @@ const TodoItemModal = (props) => {
               {props.modules.map((module) => {
                 return (
                   <option
-                    key={module.module_code}
-                  >{`${module.module_code} ${module.module_name}`}</option>
+                    key={module._id}
+                  >{`${module.code} ${module.name}`}</option>
                 );
               })}
             </Form.Select>

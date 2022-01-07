@@ -17,6 +17,7 @@ function TodoCategoryModal(props) {
       id: props.useCase === "ADD" ? Math.random() : props.category_id,
       title: cardTitle.current.value,
       color: cardColor.current.value,
+      todo_items: [],
     });
 
     handleClose();
@@ -29,7 +30,11 @@ function TodoCategoryModal(props) {
   const defaultTitle = "";
   return (
     <>
-      <Button variant="secondary" className={`${classes["addbutton"]} flex-column`} onClick={handleShow}>
+      <Button
+        variant="secondary"
+        className={`${classes["addbutton"]} flex-column`}
+        onClick={handleShow}
+      >
         {icon}
       </Button>
 

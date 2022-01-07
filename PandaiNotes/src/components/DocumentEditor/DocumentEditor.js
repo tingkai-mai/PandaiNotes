@@ -242,6 +242,7 @@ function DocumentEditor({ initialValue }) {
   return (
     <>
       <div>
+        <Button onClick={noteCtx.onLoadNote}>Load Note</Button>
         <Form className="mt-2">
           <Form.Label>Choose the module this note belongs to:</Form.Label>
           <Form.Select
@@ -281,7 +282,6 @@ function DocumentEditor({ initialValue }) {
       <button onClick={save} disabled={!dirty}>
         Save
       </button>
-      {/* <Button onClick={noteCtx.onLoadNote}>Load Note</Button> */}
     </>
   );
 }

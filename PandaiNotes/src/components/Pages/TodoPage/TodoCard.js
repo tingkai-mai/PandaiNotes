@@ -9,6 +9,7 @@ import TodoCategoryModal from "./TodoCategoryModal";
 
 const TodoCard = (props) => {
   const todoItems = props.todoItems;
+  // console.log(props);
 
   // MODAL
   const [showModal, setShowModal] = useState(false);
@@ -88,8 +89,7 @@ const TodoCard = (props) => {
           {todoItems.map((todoItem) => {
             return (
               <TodoItem
-                key={todoItem.id}
-                item_id={todoItem.id}
+                key={todoItem._id}
                 todoItem={todoItem}
                 onDeleteItem={deleteItemHandler}
                 category_id={props.category_id}
