@@ -8,3 +8,15 @@
 hr.solid-divider {
     border-top: 3px solid rgb(92, 92, 92);
 }
+
+.modtitle {
+    font-size: 40px;
+    color: #E34234;
+    font-family: sans-serif;
+    text-align: right;
+}
+
+.moddesc {
+    text-align: right;
+    font-size: 20px;
+}

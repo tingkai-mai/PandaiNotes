@@ -8,6 +8,7 @@ import $ from "jquery";
 import classes from "./ModuleFileExplorer.module.css";
 
 const ModuleFileExplorer = (props) => {
+  // passes on information to ModuleFileTemplate to make the switch to ModuleFileViewer on click
   const viewFileHandler = (evt) => {
     props.onChangeModName(evt.target.id);
     props.onChangeModule(evt.target.id);
@@ -25,6 +26,7 @@ const ModuleFileExplorer = (props) => {
 
   return (
     <Container>
+      {/*current modules section*/}
       <Row>Current Modules</Row>
       <hr></hr>
       <Row>
@@ -39,6 +41,7 @@ const ModuleFileExplorer = (props) => {
           );
         })}
       </Row>
+      {/*all taken modules section*/}
       <Row>All Modules</Row>
       <hr></hr>
       <Row>

@@ -5,7 +5,22 @@ import { Nav, Navbar, Container, Row, Col, Collapse } from "react-bootstrap";
 import { NavbarOverlayData } from "./NavbarOverlayData";
 
 const NavbarOverlay = (props) => {
+  // content for the navbar overlay that pops out when on home
+
+  // handles page switching on the navbar
+  const pageHandler = (item) => {
+    switch (item) {
+      case "New Note":
+        props.onCloseNavbar();
+        props.onCloseOverlay();
+        break;
+      case item:
+        props.onOpenPage(item);
+    }
+  }
+
   return (
+    // opens and closes both overlays
     <Navbar className={`${classes["side-navbar"]} flex-column`}>
       <h1
         onClick={() => {
@@ -26,16 +41,9 @@ const NavbarOverlay = (props) => {
                   className={classes.row}
                   id={window.location.pathname === val.link ? "active" : ""}
                   onClick={() => {
-                    // @NIGEL: Refactor this bring this outside
-                    switch (val.title) {
-                      case "New Note":
-                        props.onCloseNavbar();
-                        props.onCloseOverlay();
-                        break;
-                      case val.title:
-                        props.onOpenPage(val.title);
+                      pageHandler(val.title);
                     }
-                  }}
+                  }
                 >
                   <Container>
                     <Row>

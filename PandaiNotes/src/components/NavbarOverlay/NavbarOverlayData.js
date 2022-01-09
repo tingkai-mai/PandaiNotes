@@ -2,6 +2,7 @@ import React from "react";
 import { AiOutlineHome, AiOutlineTeam, AiOutlineFolder, AiOutlinePlus, AiOutlineCalendar, AiOutlineProfile } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
 
+// data to show the links in NavbarOverlay
 export const NavbarOverlayData = [
   {
     title: "To-Do",

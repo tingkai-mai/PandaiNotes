@@ -8,3 +8,9 @@
 hr.solid-divider {
     border-top: 3px solid rgb(92, 92, 92);
 }
+
+.notes {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    justify-content: space-around;
+}

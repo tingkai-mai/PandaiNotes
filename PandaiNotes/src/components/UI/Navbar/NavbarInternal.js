@@ -4,7 +4,27 @@ import { NavbarData } from "./NavbarData";
 import { Nav, Navbar, NavDropdown, Container, Row, Col } from "react-bootstrap";
 
 const NavbarInternal = (props) => {
+
+  // Handles switching pages
+  const pageHandler = (item) => {
+    switch (item) {
+      case "Home":
+        props.onOpenNavbar();
+        props.onOpenOverlay();
+        break;
+      case "New Note":
+        props.onCloseInternalOverlay();
+        break;
+      case item:
+        props.onOpenInternalOverlay();
+        props.onChangeCurrPage(item);
+        break;
+    }
+  }
+
+
   return (
+    // clickable icon that opens and closes both overlays
     <Navbar className={`${classes["side-navbar"]} flex-column`}>
       <h1
         onClick={() => {
@@ -24,20 +44,9 @@ const NavbarInternal = (props) => {
                   key={key}
                   className={classes.row}
                   onClick={() => {
-                    switch (val.title) {
-                      case "Home":
-                        props.onOpenNavbar();
-                        props.onOpenOverlay();
-                        break;
-                      case "New Note":
-                        props.onCloseInternalOverlay();
-                        break;
-                      case val.title:
-                        props.onOpenInternalOverlay();
-                        props.onChangeCurrPage(val.title);
-                        break;
+                    pageHandler(val.title);
                     }
-                  }}
+                  }
                 >
                   <Container>
                     <Row>

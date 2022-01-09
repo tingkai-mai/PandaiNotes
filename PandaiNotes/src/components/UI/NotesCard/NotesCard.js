@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Card, Button } from "react-bootstrap";
 
+// Component that shows note in ModuleFileViewer
 const NotesCard = (props) => {
   return (
     <Container>
