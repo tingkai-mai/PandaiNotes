@@ -22,14 +22,20 @@ function TodoCategoryModal(props) {
     handleClose();
   };
 
+  // Output of icon and card title changes depending on use-case
   const icon =
     props.useCase === "ADD" ? <AiOutlinePlusCircle /> : <AiOutlineEdit />;
   const cardUseTitle =
     props.useCase === "ADD" ? "Add New Card..." : "Edit Card";
   const defaultTitle = "";
+
   return (
     <>
-      <Button variant="secondary" className={`${classes["addbutton"]} flex-column`} onClick={handleShow}>
+      <Button
+        variant="secondary"
+        className={`${classes["addbutton"]} flex-column`}
+        onClick={handleShow}
+      >
         {icon}
       </Button>
 

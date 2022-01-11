@@ -8,7 +8,7 @@ import { TODO_CATEGORIES } from "../../../db/SAMPLE_TODO_DB";
 import TodoCard from "./TodoCard";
 import TodoCategoryModal from "./TodoCategoryModal";
 
-// HELPER FUNCTIONS
+/* Helper Functions */
 function sliceIntoChunks(arr, chunkSize) {
   const res = [];
   for (let i = 0; i < arr.length; i += chunkSize) {
@@ -23,6 +23,7 @@ const TodoPage = (props) => {
   const chunks = sliceIntoChunks(todoCategories, 3);
 
   // Filter categories containing only modules that fit the requirement
+  // chooseModuleHandler is called when the filter is changed
   const filteredModule = createRef();
   const chooseModuleHandler = (evt) => {
     console.log(filteredModule.current.value);
@@ -43,7 +44,7 @@ const TodoPage = (props) => {
     }
   };
 
-  // Handle Todo Items
+  /* TodoItem Handlers */
   const addTodoHandler = (todoItemObject) => {
     console.log("Added a Todo in TodoPage");
     const newTodoItemObject = { ...todoItemObject };
@@ -142,7 +143,7 @@ const TodoPage = (props) => {
     });
   };
 
-  // Handle Todo Categories
+  /* TodoCategory Handlers */
   const addTodoCategoryHandler = (todoCategoryObject) => {
     console.log("Added a Todo Category");
     if (!Object.keys(todoCategoryObject).includes("todo_items")) {
@@ -172,6 +173,7 @@ const TodoPage = (props) => {
   };
 
   const updateTodoCategoryHandler = (evt) => {
+    // TODO
     console.log("Updating Todo Category");
   };
 

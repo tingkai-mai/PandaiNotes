@@ -10,7 +10,13 @@ import TodoCategoryModal from "./TodoCategoryModal";
 const TodoCard = (props) => {
   const todoItems = props.todoItems;
 
-  // MODAL
+  /* Context Menu Handler */
+  const contextMenuHandler = (evt) => {
+    // evt.preventDefault();
+    console.log("Context menu called");
+  };
+
+  /* Modal Handlers */
   const [showModal, setShowModal] = useState(false);
 
   const closeModalHandler = () => {
@@ -21,7 +27,7 @@ const TodoCard = (props) => {
     setShowModal(true);
   };
 
-  // TODO HANDLERS
+  /* TodoItem Handlers */
   const openAddTodoItemModalHandler = () => {
     console.log("Opening modal to add a todo item");
     openModalHandler();
@@ -39,11 +45,7 @@ const TodoCard = (props) => {
     props.onRemoveTodo(evt.target.getAttribute("value"), props.category_id);
   };
 
-  const contextMenuHandler = (evt) => {
-    // evt.preventDefault();
-    console.log("Context menu called");
-  };
-
+  /* TodoCategory Handlers */
   const modifyTodoCategoryHandler = (todoCategoryObject) => {
     props.onAddTodoCategory({ ...todoCategoryObject, todo_items: todoItems });
   };

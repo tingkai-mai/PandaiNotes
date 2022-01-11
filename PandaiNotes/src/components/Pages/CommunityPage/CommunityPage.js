@@ -1,26 +1,16 @@
 import { React, useReducer, useRef } from "react";
 import classes from "./CommunityPage.module.scss";
 import ModuleSection from "./ModuleSection";
-import { MODULES } from "../../../db/SAMPLE_MODULES_CURRENT_DB";
-import { MODULES_ALL } from "../../../db/SAMPLE_MODULES_ALL_TAKEN_DB";
 import { MODULES_ALL_IN_NUS } from "../../../db/SAMPLE_MODULES_MASTER";
-import {
-  Container,
-  Row,
-  Col,
-  InputGroup,
-  FormControl,
-  Dropdown,
-  Form,
-} from "react-bootstrap";
-import { BsFilterSquare } from "react-icons/bs";
+import { Container, Row, InputGroup, FormControl, Form } from "react-bootstrap";
 
 const filterReducer = (state, action) => {
   console.log(action);
   let filtered = action.val.modules;
   let text_filter = action.val.text_filter;
   let taken_filter = action.val.taken_filter;
-  // Filter by taken_filter
+
+  // Filter by state of module (current, over, never)
   if (taken_filter === "Current Modules Enrolled") {
     filtered = filtered.filter((mod) => {
       return mod.taken === "current";
@@ -41,6 +31,7 @@ const filterReducer = (state, action) => {
     const full_name = mod.module_code + " " + mod.module_name;
     return regexp.test(full_name);
   });
+
   console.log(filtered);
   return {
     text_filter: text_filter,
@@ -60,9 +51,6 @@ function CommunityPage(props) {
   const takenFilterRef = useRef();
 
   const changeFilterHandler = (evt) => {
-    // console.log("filter changed");
-    // console.log(textFilterRef.current.value);
-    // console.log(takenFilterRef.current.value);
     dispatchFilter({
       type: "FILTER",
       val: {
@@ -107,14 +95,6 @@ function CommunityPage(props) {
           return <ModuleSection key={module.module_code} module={module} />;
         })}
       </Row>
-
-      {/* <Row className="pt-2">
-        <div className={classes["subheader"]}>All Modules</div>
-        <hr className={classes["solid-divider"]} />
-        {MODULES_ALL.map((module) => {
-          return <ModuleSection module={module} />;
-        })}
-      </Row> */}
     </Container>
   );
 }

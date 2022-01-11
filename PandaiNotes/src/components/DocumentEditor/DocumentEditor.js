@@ -8,8 +8,11 @@ import { v4 as uuidv4 } from "uuid";
 import { FiAlertTriangle } from "react-icons/fi";
 import classes from "./DocumentEditor.module.scss";
 
+/* Adding custom plugin to use the Annotator from TinyMCE */
 tinymce.PluginManager.add("tag-difficult", function (editor) {
-  console.log("setting up context-menu tag-difficult");
+  // console.log("setting up context-menu tag-difficult");
+
+  // Register the Annotator as a menu item
   editor.ui.registry.addMenuItem("tag-difficult", {
     text: "Tag as difficult",
     icon: "bookmark",
@@ -32,6 +35,7 @@ tinymce.PluginManager.add("tag-difficult", function (editor) {
     },
   });
 
+  // Register the Annotator as a context menu item
   editor.ui.registry.addContextMenu("tag-difficult", {
     update: function (element) {
       console.log("tagging as difficult");
@@ -41,7 +45,7 @@ tinymce.PluginManager.add("tag-difficult", function (editor) {
 });
 
 tinymce.PluginManager.add("tag-important", function (editor) {
-  console.log("setting up context-menu tag-important");
+  // console.log("setting up context-menu tag-important");
   editor.ui.registry.addMenuItem("tag-important", {
     text: "Tag as important",
     icon: "bookmark",
@@ -73,7 +77,7 @@ tinymce.PluginManager.add("tag-important", function (editor) {
 });
 
 tinymce.PluginManager.add("tag-revision", function (editor) {
-  console.log("setting up context-menu tag-revision");
+  // console.log("setting up context-menu tag-revision");
   editor.ui.registry.addMenuItem("tag-revision", {
     text: "Tag as things to revise",
     icon: "bookmark",
@@ -104,6 +108,11 @@ tinymce.PluginManager.add("tag-revision", function (editor) {
   });
 });
 
+/* Settings for the document editor, which can be found here: 
+https://www.tiny.cloud/docs/integrations/react/
+https://www.tiny.cloud/docs/quick-start/
+https://www.tiny.cloud/docs/general-configuration-guide/basic-setup/
+*/
 const settings = {
   selector: "textarea",
   contextmenu:
@@ -122,12 +131,14 @@ const settings = {
   height: "100vh",
   menubar: false,
   resize: false,
-  // Style highlighted content here
+  // Styling of annotated content here
   content_style: `.mce-annotation { background-color: darkgreen; color: white; }
     span[data-mce-annotation="difficult"] { background-color: yellow; color: black; } 
     span[data-mce-annotation="important"] { background-color: red; color: white; } 
     span[data-mce-annotation="revision"] { background-color: green; color: black; } 
     body { font-family:Helvetica,Arial,sans-serif; font-size:14px }`,
+
+  // Logger to see what TinyMCE event is called
   init_instance_callback: function (editor) {
     editor.on("ExecCommand", function (e) {
       console.log(e);
@@ -135,6 +146,7 @@ const settings = {
     });
   },
 
+  // Setting up editor
   setup: function (editor) {
     // Convenience button to grab tags.
     editor.ui.registry.addButton("grab-tags", {
@@ -154,6 +166,7 @@ const settings = {
       },
     });
 
+    // Registering custom Annotation plugins and convenience button to display tags
     editor.on("init", function () {
       editor.annotator.register("grab-tags", {
         persistent: true,
@@ -204,20 +217,19 @@ const settings = {
   },
 };
 
-// TODO: Prompt users to save when navigating away from page!!
-
 function DocumentEditor({ initialValue }) {
   const editorRef = useRef(null);
   const moduleRef = useRef();
+  const noteCtx = useContext(NoteContext);
   const [dirty, setDirty] = useState(false);
   useEffect(() => setDirty(false), [initialValue]);
 
-  const noteCtx = useContext(NoteContext);
-
   const save = () => {
     const content = editorRef.current.getContent();
+    // console.log(content); // Uncomment me to see page output.
     setDirty(false);
     editorRef.current.setDirty(false);
+
     const tags = {
       difficult: tinymce.get()[0].annotator.getAll("difficult"),
       important: tinymce.get()[0].annotator.getAll("important"),

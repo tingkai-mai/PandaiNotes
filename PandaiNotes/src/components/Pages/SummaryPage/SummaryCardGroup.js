@@ -2,7 +2,6 @@ import { React } from "react";
 import SummaryCard from "./SummaryCard";
 
 const SummaryCardGroup = (props) => {
-  console.log(props.chosenTags);
   return (
     <>
       {props.chosenTags.includes("Difficult") &&

@@ -1,5 +1,5 @@
 import classes from "./SummaryPage.module.scss";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import { MODULES_ALL_IN_NUS } from "../../../db/SAMPLE_MODULES_MASTER";
 import React, { useState, useReducer, useRef } from "react";
 import { MultiSelect } from "react-multi-select-component";
@@ -7,7 +7,6 @@ import SummaryCardGroup from "./SummaryCardGroup";
 import SAMPLE_NOTES_JSON from "../../../db/SAMPLE_NOTES_JSON";
 
 const filterReducer = (state, action) => {
-  // console.log("CALLED");
   const mods_filter = action.val.modules;
   const text_filter = action.val.text_filter;
   const chosen_tags = action.val.chosen_tags;
@@ -68,14 +67,11 @@ const filterReducer = (state, action) => {
 
 const SummaryPage = (props) => {
   const textFilterRef = useRef();
+  // Grab only modules that have been taken before
   const filteredMods = MODULES_ALL_IN_NUS.filter(
     (mod) => mod.taken === "current" || mod.taken === "over"
   );
-  const tags_display = [
-    { label: "Difficult", value: "Difficult" },
-    { label: "Important", value: "Important" },
-    { label: "For Revision", value: "For Revision" },
-  ];
+  // Populate array for display of modules
   const mods_display = [];
   for (let i = 0; i < filteredMods.length; i++) {
     mods_display.push({
@@ -83,6 +79,11 @@ const SummaryPage = (props) => {
       value: filteredMods[i].module_code + " " + filteredMods[i].module_name,
     });
   }
+  const tags_display = [
+    { label: "Difficult", value: "Difficult" },
+    { label: "Important", value: "Important" },
+    { label: "For Revision", value: "For Revision" },
+  ];
 
   const [currFilterState, dispatchFilter] = useReducer(filterReducer, {
     text_filter: "",
@@ -98,6 +99,7 @@ const SummaryPage = (props) => {
   // To display initial message
   const [dirty, setDirty] = useState(false);
 
+  /* Handlers to handle change of module/tags/text filters */
   const changeModFilterHandler = (evt) => {
     setDirty(true);
     const updatedMods = evt;
@@ -117,7 +119,6 @@ const SummaryPage = (props) => {
   const changeTagsFilterHandler = (evt) => {
     setDirty(true);
     const updatedTags = evt;
-    // console.log(updatedTags);
     setSelectedTags(evt);
     dispatchFilter({
       type: "FILTER",
@@ -131,7 +132,7 @@ const SummaryPage = (props) => {
     });
   };
 
-  const changeFilterHandler = () => {
+  const changeTextFilterHandler = () => {
     setDirty(true);
     dispatchFilter({
       type: "FILTER",
@@ -155,7 +156,7 @@ const SummaryPage = (props) => {
         <Col>
           <Form.Control
             placeholder="Search by keyword..."
-            onChange={changeFilterHandler}
+            onChange={changeTextFilterHandler}
             ref={textFilterRef}
           />
         </Col>

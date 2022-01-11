@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SAMPLE_NOTES } from "../db/SAMPLE_NOTES_DB";
 
 // Change me to set the initial note. Should default to "" for the actual code!
-// Currently is SAMPLE_NOTE_SMALL for testing purposes.
+// Refer to SAMPLE_NOTES to see the two sample notes for testing
 const EMPTY_NOTE = { id: null, content: "", module: "" };
 const INITIAL_NOTE = SAMPLE_NOTES[1];
 
@@ -59,6 +59,7 @@ export const NoteContextProvider = (props) => {
       });
   };
 
+  // TODO
   const loadNoteHandler = (id) => {
     console.log("Loading note");
   };

@@ -9,16 +9,16 @@ const TodoItem = (props) => {
   const [open, setOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [calendarValue, setCalendarValue] = useState(props.todoItem.deadline);
+  const title = useRef();
+  const description = useRef();
+  const moduleTagged = useRef();
 
+  /* TodoItem Handlers */
   // Checkbox
   const checkboxHandler = (evt) => {
     console.log(evt.target.checked);
     console.log(evt.target.value);
   };
-
-  const title = useRef();
-  const description = useRef();
-  const moduleTagged = useRef();
 
   const openUpdateItemHandler = (evt) => {
     setIsEditing(true);
