@@ -37,6 +37,24 @@ function saveTodoCategory(title, color, TodoItems) {
     });
 }
 
+function saveTodoItem(name, description, deadline, module) {
+  axios
+    .post("http://localhost:3001/api/v1/todo/pushTodo", {
+      name: name,
+      description: description,
+      deadline: deadline,
+      module: module,
+    })
+    .then((res) => {
+      console.log("Successfully saved TodoCategory");
+      console.log(`statusCode: ${res.status}`);
+      console.log(res);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 const TodoPage = (props) => {
   const [todoCategories, setTodoCategories] = useState([]);
   const [modules, setModules] = useState([]);
@@ -87,31 +105,48 @@ const TodoPage = (props) => {
 
   // Handle Todo Items
   const addTodoHandler = (todoItemObject) => {
-    console.log("Added a Todo in TodoPage");
+    console.log(todoItemObject);
+    // console.log("Added a Todo in TodoPage");
+
+    // Set "todo_item_id" field to "id"
     const newTodoItemObject = { ...todoItemObject };
-    newTodoItemObject["id"] = newTodoItemObject.todo_item_id;
+    // newTodoItemObject["id"] = newTodoItemObject.todo_item_id;
     delete newTodoItemObject.category_item_id;
     delete newTodoItemObject.todo_item_id;
 
+    saveTodoItem(
+      newTodoItemObject.name,
+      newTodoItemObject.description,
+      newTodoItemObject.deadline,
+      newTodoItemObject.module
+    );
+
     setTodoCategories((prevState) => {
-      let newState = prevState.filter(
-        (category) => category._id !== todoItemObject.category_item_id
-      ); // Remove the Category that's being added to first
-      let category_id_to_filter = todoItemObject.category_item_id;
-      console.log("ID to filter is: " + category_id_to_filter);
-      const newCategory = prevState.filter(
-        (category) => category._id === todoItemObject.category_item_id
-      ); // Get the Category that's being added to, then add the new todo item to it
-
-      console.log(newCategory[0].todo.push(newTodoItemObject));
-      console.log("New category item is: ");
-      console.log(newCategory);
-
-      newState = [newCategory[0], ...newState];
-      console.log("New state is: ");
+      let newState = JSON.parse(JSON.stringify(prevState));
+      for (let i = 0; i < newState.length; i++) {
+        if (newState[i]._id === todoItemObject.category_item_id) {
+          // console.log(newState[i]);
+          // console.log(newTodoItemObject);
+          newState[i].todo.push(newTodoItemObject);
+        }
+      }
       console.log(newState);
-}
       return newState;
+      // let newState = prevState.filter(
+      //   (category) => category._id !== todoItemObject.category_item_id
+      // ); // Remove the Category that's being added to first
+      // let category_id_to_filter = todoItemObject.category_item_id;
+      // console.log("ID to filter is: " + category_id_to_filter);
+      // const newCategory = prevState.filter(
+      //   (category) => category._id === todoItemObject.category_item_id
+      // ); // Get the Category that's being added to, then add the new todo item to it
+      // console.log(newCategory[0].todo.push(newTodoItemObject));
+      // console.log("New category item is: ");
+      // console.log(newCategory);
+      // newState = [newCategory[0], ...newState];
+      // console.log("New state is: ");
+      // console.log(newState);
+      return prevState;
     });
   };
 

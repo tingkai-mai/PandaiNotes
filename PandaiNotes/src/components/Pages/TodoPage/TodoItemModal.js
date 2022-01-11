@@ -22,9 +22,9 @@ const TodoItemModal = (props) => {
       todo_item_id: Math.random(),
       category_item_id: props.category_id,
       module: todoModuleRef.current.value,
-      title: todoNameRef.current.value,
+      name: todoNameRef.current.value,
       description: todoDescriptionRef.current.value,
-      deadline: calendarValue,
+      deadline: calendarValue.toString(),
     };
     props.onAddTodoItem(newTodoObject);
   };
