@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Button, Form, Col } from "react-bootstrap";
 
+// placeholder searchbar to filter modules in ModuleFileExplorer
 const Searchbar = () => {
   return (
     <Container>

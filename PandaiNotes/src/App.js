@@ -3,6 +3,7 @@ import NavbarInternal from "./components/UI/Navbar/NavbarInternal";
 import OverlayMain from "./components/OverlayMain/OverlayMain";
 import NavbarOverlay from "./components/NavbarOverlay/NavbarOverlay";
 
+// NavbarOverlay pages
 import TodoPage from "./components/Pages/TodoPage/TodoPage";
 import ViewFilePage from "./components/Pages/ViewFilePage/ViewFilePage";
 import CommunityPage from "./components/Pages/CommunityPage/CommunityPage";
@@ -11,6 +12,7 @@ import ModulePage from "./components/Pages/ModulesPage/ModulePage";
 import SettingsPage from "./components/Pages/SettingsPage/SettingsPage";
 import NavbarManager from "./components/HomeComponents/NavbarManager/NavbarManager";
 
+// NavbarInternal pages
 import ExportFilePage from "./components/Pages/ExportFilePage/ExportFilePage";
 import OpenFilePage from "./components/Pages/OpenFilePage/OpenFilePage";
 import SaveFilePage from "./components/Pages/SaveFilePage/SaveFilePage";
@@ -25,9 +27,9 @@ import classes from "./App.module.scss";
 function App() {
   // Create overlay handler
 
-  const [overlayActive, setOverlayActive] = useState(false); // Changed
+  const [overlayActive, setOverlayActive] = useState(false); 
   const [NavbarActive, setNavbarActive] = useState(false);
-  const [overlayPage, setOverlayPage] = useState(<SummaryPage />); // Changed
+  const [overlayPage, setOverlayPage] = useState(<SummaryPage />); 
   const [overlayInternalActive, setInternalActive] = useState(false);
   const [currPage, setCurrPage] = useState(<ExportFilePage />);
 

@@ -3,6 +3,7 @@ import classes from "./ModuleCard.module.css";
 
 import { Card } from "react-bootstrap";
 
+// Component in ModuleFileExplorer that shows the different modules
 const ModuleCard = (props) => {
   return (
     <>

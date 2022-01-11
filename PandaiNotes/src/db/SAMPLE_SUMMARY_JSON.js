@@ -1,4 +1,4 @@
-const SAMPLE_NOTES_JSON = [
+const SAMPLE_SUMMARY_JSON = [
   {
     id: 1,
     content:
@@ -54,4 +54,4 @@ const SAMPLE_NOTES_JSON = [
   },
 ];
 
-export default SAMPLE_NOTES_JSON;
+export default SAMPLE_SUMMARY_JSON;

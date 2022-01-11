@@ -1,5 +1,6 @@
 import React from 'react'
 
+// placeholder Settings Page
 function SettingsPage() {
     return (
         <div>

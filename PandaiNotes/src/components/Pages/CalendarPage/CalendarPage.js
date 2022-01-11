@@ -1,5 +1,6 @@
 import React from 'react'
 
+// placeholder calendar page
 function CalendarPage() {
     return (
         <div>
