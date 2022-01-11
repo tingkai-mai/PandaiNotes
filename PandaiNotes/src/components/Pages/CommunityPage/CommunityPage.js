@@ -1,19 +1,14 @@
 import { React, useReducer, useRef } from "react";
 import classes from "./CommunityPage.module.scss";
 import ModuleSection from "./ModuleSection";
-import { MODULES } from "../../../db/SAMPLE_MODULES_CURRENT_DB";
-import { MODULES_ALL } from "../../../db/SAMPLE_MODULES_ALL_TAKEN_DB";
 import { MODULES_ALL_IN_NUS } from "../../../db/SAMPLE_MODULES_MASTER";
 import {
   Container,
   Row,
-  Col,
   InputGroup,
   FormControl,
-  Dropdown,
   Form,
 } from "react-bootstrap";
-import { BsFilterSquare } from "react-icons/bs";
 
 const filterReducer = (state, action) => {
   console.log(action);

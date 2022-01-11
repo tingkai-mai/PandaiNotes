@@ -5,7 +5,6 @@ import ModuleCard from "../../UI/ModuleCard/ModuleCard";
 import { MODULES } from "../../../db/SAMPLE_MODULES_CURRENT_DB";
 import { MODULES_ALL } from "../../../db/SAMPLE_MODULES_ALL_TAKEN_DB";
 import $ from "jquery";
-import classes from "./ModuleFileExplorer.module.css";
 
 const ModuleFileExplorer = (props) => {
   // passes on information to ModuleFileTemplate to make the switch to ModuleFileViewer on click

@@ -1,7 +1,6 @@
 import { React } from "react";
-import classes from "./ViewFilePage.module.scss";
 import ModuleFileTemplate from "../../HomeComponents/ModuleFileTemplate/ModuleFileTemplate";
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 const ViewFilePage = (props) => {
   return (

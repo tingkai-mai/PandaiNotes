@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./NavbarOverlay.module.css";
-import { Nav, Navbar, Container, Row, Col, Collapse } from "react-bootstrap";
+import { Nav, Navbar, Container, Row, Col } from "react-bootstrap";
 
 import { NavbarOverlayData } from "./NavbarOverlayData";
 
